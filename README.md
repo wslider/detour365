@@ -10,6 +10,8 @@ Features:
         on thew side 
     Social Media Dashboard 
 
+    Future: Verse of the Day? 
+
 Pages:
     Main Page Post / Feed 
     About - What is Detour 365? The Mission? 
