@@ -12,6 +12,10 @@ Features:
 
     Future: Verse of the Day? 
 
+    Sign Up for Updates
+
+*Future: Malayalam Language Option
+
 Pages:
     Main Page Post / Feed 
     About - What is Detour 365? The Mission? 
