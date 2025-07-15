@@ -6,8 +6,11 @@ Main Hub for DEtour 365 Content
 Features: 
     YouTube Feed? 
         embedded videos in blog post like format
+
     RSS Feed
-        on thew side 
+        
+
+
     Social Media Dashboard 
 
     Future: Verse of the Day? 
