@@ -18,10 +18,14 @@ function updateMainImage (){
     const hour = now.getHours();
     const mainImage = document.getElementById('mainImage'); 
      if (hour >= 6 && hour <= 15) { 
-        mainImage.href='https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/paths-to-the-top-william-slider.jpg';
+        mainImage.src='https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/paths-to-the-top-william-slider.jpg';
     }
     else if (hour <19) {
-        mainImage.href='https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/smoky-mountain-sunset-from-clingmans-dome-william-slider.jpg';
+        mainImage.src='https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/smoky-mountain-sunset-from-clingmans-dome-william-slider.jpg';
     }
-    else {mainImage.href='https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/night-forest-silhouettes-william-slider.jpg';}
+    else {mainImage.src='https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/night-forest-silhouettes-william-slider.jpg';}
 }
+
+updateMainImage(); 
+
+setInterval(updateMainImage, 60000);
