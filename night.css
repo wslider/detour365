@@ -1,4 +1,8 @@
 body {background-color: #00062f;
     color:#ffffffdf;
-    font-family: monospace, sans-serif;
+    font-family:monospace, system-ui, Courier, 'Courier New', sans-serif;
+}
+h1 {
+   font-size: 2rem;
+   font-weight: 600; 
 }

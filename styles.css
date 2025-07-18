@@ -1,3 +1,14 @@
 body {background-color: #015e01;
     color:#ffffffdf;
+    font-family:monospace, system-ui, Courier, 'Courier New', sans-serif;
+}
+h1 {
+   font-size: 2rem;
+   font-weight: 600; 
+}
+
+/*need to fix this
+nav {
+    display:flex;
+    flex-direction: row;
 }
