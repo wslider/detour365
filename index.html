@@ -20,6 +20,38 @@
             <img id="mainImage" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/smoky-mountain-sunset-from-clingmans-dome-william-slider.jpg" alt="image of sunset in the Smoky Mountains">
             </div>
         </section>
+
+        <form action="/submit" method="post">
+            <fieldset>
+                <legend>Prayer Request</legend>
+                <div class="formGroup">
+                    <label for="requestType">Request Type</label>
+                    <select id="requestType" name="requestType">
+                        <option value="concern">Concern</option>
+                        <option value="urgent">URGENT</option>
+                        <option value="praise">Praise</option>
+                        <option value="testemony">Testemony</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="formGroup">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="formGroup">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="formGroup">
+                    <label for="share" placeholder="share your prayer request here"></label>
+                    <input type="textarea" id="share" name="share">
+                </div>
+                <div class="formGroup">
+                    <input type="submit" value="Submit">
+                </div>
+            </fieldset>
+        </form>
+
     </main>
     <footer>
     </footer>
