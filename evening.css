@@ -6,3 +6,28 @@ h1 {
    font-size: 2rem;
    font-weight: 600; 
 }
+
+
+.formContainer {
+  width: 500px;
+  clear: both;
+  font-size: 1.25rem;
+}
+
+.formGroup {
+  box-sizing: border-box;  
+  padding: 10px;
+}
+
+.formContainer input {
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+ }
+
+.formContainer label {
+  width: 50%;
+  clear: both;
+  text-align: left;
+}
+
