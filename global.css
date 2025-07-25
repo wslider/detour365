@@ -1,14 +1,17 @@
 
 h1 {
-   font-size: 2rem;
+   font-size: 4rem;
    font-weight: 600; 
 }
 
 .navbar {
-    width:100%;
+    width: 90vw;
     font-size: 2rem; 
-    display: flexbox;
+    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row; 
+    justify-content: space-around;
 }
 
 .imageFormBox {
