@@ -53,6 +53,10 @@ h1 {
     height:100%
 }
 
+#detour365LogoSquare {
+  max-width: 200px;
+}
+
 @media only screen and (max-width: 600px) {
   
     .heading {
@@ -78,5 +82,8 @@ h1 {
     width:100vw;
   }
 
+  #detour365LogoSquare {
+  max-width: 50vw;
+}
 
 }
