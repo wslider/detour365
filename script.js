@@ -18,11 +18,11 @@ function updateMainImage (){
     const hour = now.getHours();
     const mainImage = document.getElementById('mainImage'); 
      if (hour >= 6 && hour <= 15) { 
-        mainImage.src='20220730_201456~2.jpg';
+        mainImage.src='hurricane-ridge-olymipic.jpg';
         mainImage.alt='image of hurricane ridge in Olympic National Park';
     }
     else if (hour <19) {
-        mainImage.src='20220805_203435-01.jpeg';
+        mainImage.src='tartoosh-sunset-trail.jpeg';
         mainImage.alt='mountain trail at sunset';
     }
     else {
