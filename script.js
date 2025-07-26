@@ -26,8 +26,8 @@ function updateMainImage (){
         mainImage.alt='mountain trail at sunset';
     }
     else {
-        mainImage.src='https://william-slider.pixels.com/featured/smoky-mountain-sunset-from-clingmans-dome-william-slider.html';
-        mainImage.alt-'smoky mountain sunset';
+        mainImage.src='rainier-night-sky.jpg';
+        mainImage.alt-'image of night sky and Mount Rainier';
     }
 }
 
