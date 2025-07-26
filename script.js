@@ -26,8 +26,8 @@ function updateMainImage (){
         mainImage.alt='mountain trail at sunset';
     }
     else {
-        mainImage.src='20220805_223032-01.jpeg';
-        mainImage.alt-'night sky over Mount Rainier';
+        mainImage.src='https://william-slider.pixels.com/featured/smoky-mountain-sunset-from-clingmans-dome-william-slider.html';
+        mainImage.alt-'smoky mountain sunset';
     }
 }
 
