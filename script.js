@@ -18,16 +18,16 @@ function updateMainImage (){
     const hour = now.getHours();
     const mainImage = document.getElementById('mainImage'); 
      if (hour >= 6 && hour <= 15) { 
-        mainImage.src='https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/paths-to-the-top-william-slider.jpg';
-        mainImage.alt='mountain with path starting at the base forking into two hiking paths to the top';
+        mainImage.src='20220730_201456~2.jpg';
+        mainImage.alt='image of hurricane ridge in Olympic National Park';
     }
     else if (hour <19) {
-        mainImage.src='https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/smoky-mountain-sunset-from-clingmans-dome-william-slider.jpg';
-        mainImage.alt='sunset in the smoky mountains viewed from Clingmans Dome';
+        mainImage.src='20220805_203435-01.jpeg';
+        mainImage.alt='mountain trail at sunset';
     }
     else {
-        mainImage.src='https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/night-forest-silhouettes-william-slider.jpg';
-        mainImage.alt-'night sky over silhouettes of evergreen trees';
+        mainImage.src='20220805_223032-01.jpeg';
+        mainImage.alt-'night sky over Mount Rainier';
     }
 }
 
