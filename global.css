@@ -31,6 +31,7 @@ a:hover {
     flex-direction: row;
     width:90%;
     height:60%; 
+    margin:5%; 
 }
 
 /* media query for imageFormBox */
@@ -60,6 +61,10 @@ a:hover {
   text-align: left;
 }
 
+.quote {
+  text-align: justify;
+}
+
 #mainImage {
     width:50%; 
     height:100%
@@ -78,24 +83,34 @@ a:hover {
     .imageFormBox {
     display: flexbox;
     flex-direction: column;
-    width:99%; 
+    width:90%; 
+    align-content: center;
   }
 
   .navbar { 
     font-size: 1rem;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   .formContainer {
     width:100%;
     height:50%; 
+    margin-top: 5%;
+    margin-bottom:5%; 
   }
 
   #mainImage {
-    width:100vw;
+    width:85vw;
+    display:block;
+    margin-left: auto; 
+    margin-right: auto; 
   }
 
   #detour365LogoSquare {
   max-width: 50vw;
+  display:block;
+  margin: 5% auto; 
 }
 
 }
