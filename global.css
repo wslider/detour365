@@ -12,6 +12,18 @@ h1 {
     flex-wrap: wrap;
     flex-direction: row; 
     justify-content: space-around;
+    color: whitesmoke;
+}
+
+a {
+  text-decoration: none;
+  color:whitesmoke;
+}
+
+a:hover {
+  text-decoration: underline;
+  font-weight: 700;
+  color: whitesmoke;
 }
 
 .imageFormBox {
