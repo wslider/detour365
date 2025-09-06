@@ -1,4 +1,34 @@
+.header {
+    padding: 5%; 
+    margin: 3%; 
+    border-bottom: solid white 5px;  
+    text-align: center;
+}
+
+
 li {
     margin-top: 3%;
     margin-bottom: 3%;
+}
+
+.videoNotes {
+    padding: 4%; 
+    margin: 2% auto;
+    max-width: 80vw;
+}
+
+.readingsNotesContainer {
+    border: solid white 3px; 
+    max-width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+    align-items: center;
+}
+
+/* .episodeContainerArticle {
+    background-color: #000510;
+    padding: 5%; 
+    border-top: solid white 4px; 
 }
