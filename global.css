@@ -1,7 +1,12 @@
 
-h1 {
+header {
    font-size: 4rem;
    font-weight: 600; 
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 500; 
 }
 
 .navbar {
@@ -46,6 +51,7 @@ a:hover {
 .formGroup {
   box-sizing: border-box;  
   padding: 10px;
+  font-family: system-ui, monospace, courier, sans-serif;
 }
 
 .formContainer input , .formContainer textarea {
@@ -109,7 +115,7 @@ a:hover {
 
   #detour365LogoSquare {
   max-width: 50vw;
-  display:block;
+  display: block;
   margin: 5% auto; 
 }
 
