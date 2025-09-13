@@ -1,14 +1,18 @@
+/* global.css - Site-wide styles */
 
+/* Global header element styling */
 header {
-   font-size: 4rem;
-   font-weight: 600; 
+    font-size: 4rem;
+    font-weight: 600; 
 }
 
+/* Global h1 styling */
 h1 {
-  font-size: 3rem;
-  font-weight: 500; 
+    font-size: 3rem;
+    font-weight: 500; 
 }
 
+/* Navbar styling */
 .navbar {
     width: 90vw;
     font-size: 2rem; 
@@ -20,103 +24,109 @@ h1 {
     color: whitesmoke;
 }
 
+/* Links */
 a {
-  text-decoration: none;
-  color:whitesmoke;
+    text-decoration: none;
+    color: whitesmoke;
 }
 
 a:hover {
-  text-decoration: underline;
-  font-weight: 700;
-  color: whitesmoke;
+    text-decoration: underline;
+    font-weight: 700;
+    color: whitesmoke;
 }
 
+/* Image form box - Likely for other pages */
 .imageFormBox {
-    display:flex; 
+    display: flex; 
     flex-direction: row;
-    width:90%;
-    height:60%; 
-    margin:5%; 
+    width: 90%;
+    height: 60%; 
+    margin: 5%; 
 }
 
-/* media query for imageFormBox */
-
+/* Form container */
 .formContainer {
-  height:100%;
-  width:50%;
-  clear: both;
-  font-size: 1.25rem;
+    height: 100%;
+    width: 50%;
+    clear: both;
+    font-size: 1.25rem;
 }
 
+/* Form group */
 .formGroup {
-  box-sizing: border-box;  
-  padding: 10px;
-  font-family: system-ui, monospace, courier, sans-serif;
+    box-sizing: border-box;  
+    padding: 10px;
+    font-family: system-ui, monospace, courier, sans-serif;
 }
 
-.formContainer input , .formContainer textarea {
-  width: 100%;
-  box-sizing: border-box;
-  clear: both;
-  font-size: 1.25rem;
- }
+/* Form inputs and textarea */
+.formContainer input, .formContainer textarea {
+    width: 100%;
+    box-sizing: border-box;
+    clear: both;
+    font-size: 1.25rem;
+}
 
+/* Form labels */
 .formContainer label {
-  width: 100%;
-  clear: both;
-  text-align: left;
+    width: 100%;
+    clear: both;
+    text-align: left;
 }
 
+/* Quote styling */
 .quote {
-  text-align: justify;
+    text-align: justify;
 }
 
+/* Main image */
 #mainImage {
-    width:50%; 
-    height:100%
+    width: 50%; 
+    height: 100%
 }
 
+/* Logo */
 #detour365LogoSquare {
-  max-width: 200px;
+    max-width: 200px;
 }
 
+/* Media query for small screens */
 @media only screen and (max-width: 600px) {
-  
     .heading {
-    text-align: center;
-}
+        text-align: center;
+    }
   
     .imageFormBox {
-    display: flexbox;
-    flex-direction: column;
-    width:90%; 
-    align-content: center;
-  }
+        display: flex; /* Changed from flexbox (typo/invalid) to flex */
+        flex-direction: column;
+        width: 90%; 
+        align-content: center;
+    }
 
-  .navbar { 
-    font-size: 1rem;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
+    .navbar { 
+        font-size: 1rem;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
 
-  .formContainer {
-    width:100%;
-    height:50%; 
-    margin-top: 5%;
-    margin-bottom:5%; 
-  }
+    .formContainer {
+        width: 100%;
+        height: 50%; 
+        margin-top: 5%;
+        margin-bottom: 5%; 
+    }
 
-  #mainImage {
-    width:85vw;
-    display:block;
-    margin-left: auto; 
-    margin-right: auto; 
-  }
+    #mainImage {
+        width: 85vw;
+        display: block;
+        margin-left: auto; 
+        margin-right: auto; 
+    }
 
-  #detour365LogoSquare {
-  max-width: 50vw;
-  display: block;
-  margin: 5% auto; 
-}
-
+    #detour365LogoSquare {
+        max-width: 50vw;
+        display: block;
+        margin: 5% auto; 
+    }
 }
