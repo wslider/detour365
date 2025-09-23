@@ -15,7 +15,7 @@ h1 {
 /* Navbar styling */
 .navbar {
     width: 90vw;
-    font-size: 2rem; 
+    font-size: 1.5rem; 
     gap: 1rem;
     display: flex;
     flex-wrap: wrap;
