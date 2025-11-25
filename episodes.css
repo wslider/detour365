@@ -1,0 +1,19 @@
+.container {
+    display: flex; 
+    flex-direction: column;
+    gap: 20px; 
+    justify-content: space-between;
+    margin: 25px; 
+    align-items: center;
+    align-content: center;
+    box-sizing: border-box;
+}
+
+.episode {
+    border: 5px solid white; 
+    box-sizing: border-box;
+    box-shadow: 5px 5px #100005;
+    padding: 5px; 
+    margin: 5px; 
+    width: 50vw;
+}
