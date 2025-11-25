@@ -43,10 +43,10 @@ async function loadEpisodes() {
 
     const items = xml.querySelectorAll("item");
 
-    // Filter: Only episodes where description contains "nathaniel" (any case)
+    // Filter: Only episodes where description contains "nathaniel" or "vlog" (any case)
     const filteredItems = Array.from(items).filter(item => {
       const desc = (item.querySelector("description")?.textContent || "").toLowerCase();
-      return desc.includes("nathaniel");
+      return desc.includes("nathaniel" || "vlog");
     });
 
     if (filteredItems.length === 0) {
@@ -85,7 +85,7 @@ async function loadEpisodes() {
 
   } catch (error) {
     container.innerHTML = `
-      <p style="color:#c62828;">Failed to load episodes.</p>
+      <p>Failed to load episodes.🛸</p>
       <p>Try refreshing in a few minutes.</p>
     `;
   }
