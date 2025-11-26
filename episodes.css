@@ -15,5 +15,11 @@
     box-shadow: 5px 5px #100005;
     padding: 5px; 
     margin: 5px; 
-    width: 50vw;
+    width: 75vw;
+}
+
+@media only screen and (min-width: 700px) {
+    .episode {
+        width: 50vw; 
+    }
 }

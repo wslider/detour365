@@ -42,7 +42,7 @@ async function loadEpisodes() {
     if (xml.querySelector("parsererror")) throw new Error("Invalid RSS");
 
     const items = xml.querySelectorAll("item");
-
+                          
     // Filter: Only episodes where description contains "nathaniel" or "vlog" (any case)
     const filteredItems = Array.from(items).filter(item => {
       const desc = (item.querySelector("description")?.textContent || "").toLowerCase();
