@@ -9,8 +9,10 @@
     <title>Detour 365</title>
 </head>
 <body>
-    <main>
-        <h1 class="heading">Detour 365</h1>
+        <div class="heading">
+            <img src="detour365-logo-square.jpeg" class="logo" alt="detour365 logo" id="detour365LogoSquare">
+            <h1>Detour 365</h1>
+        </div>
         <div class="navbar" id="topnavbar">
                 <a href="index.html">🏔️ Home</a>
                 <a>🌲 About</a>
@@ -18,48 +20,17 @@
                 <a href="https://www.youtube.com/@detour365">🎥 Watch</a>
                 <a>🥾 Take The Detour</a>
         </div>
-    <article class="imageFormBox">
+
+    <main class="main">
         <img id="mainImage" src="hurricane-ridge-olymipic.jpg" alt="image of sunset in the Smoky Mountains">
-        <div class="formContainer">
-            <form action="submit" method="post" enctype="text/plain">
-                <fieldset>
-                    <legend>Prayer Request</legend>
-                    <div class="formGroup">
-                        <label for="requestType">Request Type</label>
-                        <select id="requestType" name="requestType">
-                            <option value="concern">Concern</option>
-                            <option value="urgent">URGENT</option>
-                            <option value="praise">Praise</option>
-                            <option value="testimony">Testimony</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="formGroup">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your Name or Anonymous"  required>
-                    </div>
-                    <div class="formGroup">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="formGroup">
-                        <label for="share">Details</label>
-                        <textarea id="share" name="share" placeholder="type your prayer request here" required></textarea>
-                    </div>
-                    <div class="formGroup">
-                        <input type="submit" value="Send">
-                    </div>
-                </fieldset>
-            </form>
+        <div class="quoteContainer">
+            <blockquote class="quote"><i>Trust in the Lord with all your heart and lean not on your own understanding;
+        in all your ways submit to him, and he will make your paths straight - Proverbs 3:5-6 NIV</i></blockquote>
         </div>
-    </article>
-    <div>
-        <img src="detour365-logo-square.jpeg" alt="detour365 logo" id="detour365LogoSquare">
-    </div>
     </main>
-    <footer>
-       <blockquote class="quote"><i>Trust in the Lord with all your heart and lean not on your own understanding;
-        in all your ways submit to him, and he will make your paths straight - Proverbs 3:5-6 NIV</i></blockquote> 
+<span></span>
+    <footer class="footer">
+        Detour 365 - 2025
     </footer>
     <script src="./script.js"></script>
 </body>

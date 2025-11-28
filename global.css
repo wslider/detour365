@@ -1,9 +1,22 @@
 /* global.css - Site-wide styles */
 
 /* Global header element styling */
-header {
-    font-size: 4rem;
-    font-weight: 600; 
+
+body {
+    margin: 0;
+    display: flex; 
+    flex-direction: column;
+}
+
+.heading {
+    display: flex; 
+    flex-direction: row;
+    height: 10vh;
+    width: 90%; 
+    box-sizing: border-box;
+    margin: 3vh;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* Global h1 styling */
@@ -12,9 +25,15 @@ h1 {
     font-weight: 500; 
 }
 
+.logo {
+    height: 5vh; 
+    margin-right: 10vw; 
+}
+
 /* Navbar styling */
 .navbar {
-    width: 90vw;
+    width: 100%;
+    min-height: fit-content; 
     font-size: 1.5rem; 
     gap: 1rem;
     display: flex;
@@ -22,6 +41,9 @@ h1 {
     flex-direction: row; 
     justify-content: space-around;
     color: whitesmoke;
+    margin-top: 3vh;
+    margin-bottom: 3vh; 
+    box-sizing: border-box;
 }
 
 /* Links */
@@ -36,97 +58,37 @@ a:hover {
     color: whitesmoke;
 }
 
-/* Image form box - Likely for other pages */
-.imageFormBox {
+.main {
     display: flex; 
-    flex-direction: row;
-    width: 90%;
-    height: 60%; 
-    margin: 5%; 
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: space-evenly;
 }
 
 /* Form container */
-.formContainer {
-    height: 100%;
-    width: 50%;
-    clear: both;
-    font-size: 1.25rem;
-}
-
-/* Form group */
-.formGroup {
-    box-sizing: border-box;  
-    padding: 10px;
-    font-family: system-ui, monospace, courier, sans-serif;
-}
-
-/* Form inputs and textarea */
-.formContainer input, .formContainer textarea {
+.quoteContainer {
     width: 100%;
-    box-sizing: border-box;
-    clear: both;
     font-size: 1.25rem;
-}
-
-/* Form labels */
-.formContainer label {
-    width: 100%;
-    clear: both;
-    text-align: left;
+    margin-top: 3vh;
+    margin-bottom: 3vh; 
 }
 
 /* Quote styling */
 .quote {
-    text-align: justify;
+    text-align: center;
 }
 
 /* Main image */
 #mainImage {
-    width: 50%; 
-    height: 100%
+    width: 70%; 
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
 
-/* Logo */
-#detour365LogoSquare {
-    max-width: 200px;
-}
-
-/* Media query for small screens */
-@media only screen and (max-width: 600px) {
-    .heading {
-        text-align: center;
-    }
-  
-    .imageFormBox {
-        display: flex; /* Changed from flexbox (typo/invalid) to flex */
-        flex-direction: column;
-        width: 90%; 
-        align-content: center;
-    }
-
-    .navbar { 
-        font-size: 1rem;
-        margin-top: 5%;
-        margin-bottom: 5%;
-    }
-
-    .formContainer {
-        width: 100%;
-        height: 50%; 
-        margin-top: 5%;
-        margin-bottom: 5%; 
-    }
-
-    #mainImage {
-        width: 85vw;
-        display: block;
-        margin-left: auto; 
-        margin-right: auto; 
-    }
-
-    #detour365LogoSquare {
-        max-width: 50vw;
-        display: block;
-        margin: 5% auto; 
-    }
+.footer {
+    margin-bottom: 3vh;
+    margin-top: 5vh; 
+    text-align: center;
 }

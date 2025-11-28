@@ -64,17 +64,19 @@ async function loadEpisodes() {
         : "Date unknown";
 
       const rawDesc = item.querySelector("description")?.textContent || "";
-      const cleanDesc = rawDesc.replace(/<[^>]*>/g, "").trim();
+      const cleanDesc = rawDesc.replace(/<[^>]*>/g, " ");
 
       const audioUrl = item.querySelector("enclosure")?.getAttribute("url") || "";
       const link = item.querySelector("link")?.textContent?.trim() || "#";
+      const epImage = item.querySelector("image")?.getAttribute("href") || ""; 
 
       const div = document.createElement("div");
       div.className = "episode";
       div.innerHTML = `
         <h3>${title}</h3>
         <p><strong>${date}</strong></p>
-        ${audioUrl ? `<audio controls src="${audioUrl}"></audio>` : ""}
+        <img src="${epImage}" class="epImage"> 
+        ${audioUrl ? `<audio controls src="${audioUrl}" class="audio"></audio>` : ""}
         <p>${cleanDesc.substring(0, 250)}${cleanDesc.length > 250 ? "…" : ""} 
            <a href="${link}" target="_blank">Read more →</a>
         </p>

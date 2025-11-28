@@ -15,11 +15,24 @@
     box-shadow: 5px 5px #100005;
     padding: 5px; 
     margin: 5px; 
-    width: 75vw;
+    width: 90vw;
+}
+
+.epImage {
+    max-width: 90%;
+    margin: 3vw; 
+    align-self: center;
+    border-radius: 15px;
+}
+
+.audio {
+    width: 90%;
+    margin: 3vw; 
+    align-self:center; 
 }
 
 @media only screen and (min-width: 700px) {
     .episode {
         width: 50vw; 
     }
-}
+    }
