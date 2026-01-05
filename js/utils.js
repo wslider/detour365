@@ -3,14 +3,14 @@ export function updateCustomCss () {
     const hours=now.getHours();
     const customCssStyle = document.getElementById('customCssStyle');
     if (hours >= 6 && hours < 15) {
-        customCssStyle.href = '/css/daytime.css';
+        customCssStyle.href = "css/daytime.css";
         
     }
     else if (hours >= 15 && hours < 20) {
-        customCssStyle.href = '/css/evening.css';
+        customCssStyle.href = "css/evening.css";
          }
     else {
-        customCssStyle.href = '/css/night.css';
+        customCssStyle.href = "css/night.css";
     }
 }
 
