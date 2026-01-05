@@ -1,0 +1,19 @@
+.body {
+    background-image: url(/images/hurricane-ridge-olymipic.jpg);
+    background-color: #024e2f;
+    background-size: cover;           
+    background-position: center;      
+    background-repeat: no-repeat;     
+    background-attachment: fixed;     
+    min-height: 100vh; 
+    color: #f9fbfa;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0; 
+}
+
+.header {
+    font-size: 2rem;
+    text-align: center;
+    margin: 15px;
+    color: #0f003fe8; 
+}

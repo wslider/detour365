@@ -1,0 +1,96 @@
+     :root {
+      --sprucePine: #003a00; 
+      --kentuckyNight: #000d08;
+      --mountainFog: #f0fff8; 
+      --stormCloud: #333849;
+      --campfireSmoke: #2f2e2eb3;
+      --smokeyMountainMist: #b0c4de;
+      --blueRidgeParkway: #002167;
+      --starLight: #e1ceff; 
+    }
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+        color: var(--mountainFog); 
+        display: flex; 
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0; 
+        min-height: 100vh;
+    }   
+
+.header {
+    font-size: 2rem;
+    text-align: center;
+    margin: 15px;
+    text-align: center;
+    text-shadow: 3px 3px 5px #000000a1;
+}
+
+
+/* Navigation menu */
+    .topnav {
+        overflow: hidden;
+        background-color: var(--kentuckyNight);
+        width: 100%;
+    }
+
+        .topnav #myLinks {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            background-color: var(--stormCloud); 
+        }
+
+        .topnav a {
+            color: var(--mountainFog);
+            padding: 0.8rem; 
+            font-size: 1.5rem; 
+            display: block;
+            text-align: center;
+        }
+
+        .active {
+            background-color: var(--kentuckyNight);
+            font-weight: 600;
+            color: var(--mountainFog);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--mountainFog);
+        }
+
+        a:hover {
+            text-decoration: none;
+            font-weight: 700;
+            color: var(--starLight);
+        }
+
+        .hiddenContent {
+            display: none;
+        }
+
+
+
+
+.quoteContainer {
+    margin: 20px;
+    padding: 10px;
+    border-left: 4px solid var(--stormCloud);
+    background-color: var(--campfireSmoke); 
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--mountainFog);
+    box-shadow: 5px 5px 15px #000000a1;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    color: var(--mountainFog);
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px #000000a1;
+    margin-top: auto;
+}

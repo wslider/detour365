@@ -31,4 +31,4 @@ Appearance:
     🥾 : Hiking Theme 
 
 
-![ detour 365 logo ](detour365-logo-square.jpeg)
+![ detour 365 logo ](/images/detour365-logo-square.jpeg)

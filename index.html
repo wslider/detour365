@@ -3,35 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="global.css"> 
-    <link rel="stylesheet" id="customCssStyle" href="styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="detour365-logo-square.jpeg" /> 
+    <meta description="Detour 365 - Take the Detour - a Bible Study based on finding the journey of faith, adventure, and inspiration in life. Join us for podcasts, videos, and stories as we explore the Bible."> 
+    <meta keywords="Detour 365, Bible Study, Faith Journey, Adventure, Inspiration, Podcasts, Videos, Stories, Christian Living">
+    <meta author="William Slider">
+    <meta copyright="© 2026 William Slider">
+    <meta name="robots" content="index, follow">
     <title>Detour 365</title>
+   
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Detour 365">
+    <meta property="og:description" content="Take the Detour - a Bible Study based on finding the journey of faith, adventure, and inspiration in life. Join us for podcasts, videos, and stories as we explore the Bible.">
+    <meta property="og:image" content="/images/detour365-logo-square.jpeg">
+    <meta property="og:url" content="https://www.wslider.github.io/detour365/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Detour 365">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Detour 365">
+    <meta name="twitter:description" content="Take the Detour - a Bible Study based on finding the journey of faith, adventure, and inspiration in life. Join us for podcasts, videos, and stories as we explore the Bible.">
+    <meta name="twitter:image" content="/images/detour365-logo-square.jpeg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/detour365-logo-square.jpeg">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/detour365-logo-square.jpeg"> 
+    <link rel="apple-touch-icon" href="/images/detour365-logo-square.jpeg">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/styles.css"> 
+    <link rel="stylesheet" id="customCssStyle" href="./css/evening.css">
+    
+   
 </head>
-<body>
-        <div class="heading">
-            <img src="detour365-logo-square.jpeg" class="logo" alt="detour365 logo" id="detour365LogoSquare">
+<body class="body">
+
+        <nav class="topnav" id="topNavBar">
+            <a class="active" id="dropMenu"> ≡ Menu</a>
+            <div id="myLinks">
+                <a href="index.html">🌲Home</a>
+                <a href="https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd?si=082221aceb0c4fb6" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.youtube.com/@detour365" target="_blank">🎥 Watch</a>
+            </div>
+        </nav>
+
+        <header class="header">
             <h1>Detour 365</h1>
-        </div>
-        <div class="navbar" id="topnavbar">
-                <a href="index.html">🏔️ Home</a>
-                <a>🌲 About</a>
-                <a href="episodes.html">🎙️ Podcast</a>
-                <a href="https://www.youtube.com/@detour365">🎥 Watch</a>
-                <a>🥾 Take The Detour</a>
-        </div>
+            <h3><i>Take The Detour</i></h3>
+        </header>
+        
 
     <main class="main">
-        <img id="mainImage" src="hurricane-ridge-olymipic.jpg" alt="image of sunset in the Smoky Mountains">
         <div class="quoteContainer">
             <blockquote class="quote"><i>Trust in the Lord with all your heart and lean not on your own understanding;
         in all your ways submit to him, and he will make your paths straight - Proverbs 3:5-6 NIV</i></blockquote>
         </div>
     </main>
 <span></span>
-    <footer class="footer">
-        Detour 365 - 2025
+    <footer class="footer" id="footer">
     </footer>
-    <script src="./script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>
