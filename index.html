@@ -37,14 +37,18 @@
 </head>
 <body class="body">
 
-        <nav class="topnav" id="topNavBar">
-            <a class="active" id="dropMenu"> ≡ Menu</a>
-            <div id="myLinks">
+
+    <nav class="topnav" id="topNavBar">
+        <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+            <div class="navLinks" id="myLinks">
                 <a href="index.html">🌲Home</a>
+                <a href="about.html"> ℹ️ About</a>
                 <a href="https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd?si=082221aceb0c4fb6" target="_blank">🎙️ Podcast</a>
                 <a href="https://www.youtube.com/@detour365" target="_blank">🎥 Watch</a>
             </div>
-        </nav>
+    </nav>
 
         <header class="header">
             <h1>Detour 365</h1>
@@ -53,10 +57,22 @@
         
 
     <main class="main">
-        <div class="quoteContainer">
+        <div class="quoteContainer container">
             <blockquote class="quote"><i>Trust in the Lord with all your heart and lean not on your own understanding;
         in all your ways submit to him, and he will make your paths straight - Proverbs 3:5-6 NIV</i></blockquote>
         </div>
+        <section class ="thisWeekSection container">
+            <h2>This Week on Detour 365</h2>
+            <div class="thisWeekContent" id="thisWeekContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </section>
+        <section class="recentEpisode container">
+            <h2>Recent Episode</h2>
+            <div class="recentEpisodesContent" id="recentEpisodesContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </section>
     </main>
 <span></span>
     <footer class="footer" id="footer">
