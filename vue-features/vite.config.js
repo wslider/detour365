@@ -9,7 +9,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
-  base: '/vue-features/',   
+  base: '/detour365/vue-features/',   
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
