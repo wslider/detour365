@@ -106,7 +106,28 @@ h1, h2, h3 {
             flex-direction: column;
         }
 
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
 
+}
+
+.container {
+    width: clamp(300px, 90%, 800px);
+    margin: 20px auto;
+    padding: 15px;
+    background-color: var(--transparentMidnight);
+    box-shadow: 5px 5px 15px #000000a1;
+    border-radius: 8px;
+}
+
+.episodeImage {
+    width: clamp(200px, 100%, 400px);
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 3px 3px 10px #000000a1;
+}
 
 
 .quoteContainer {

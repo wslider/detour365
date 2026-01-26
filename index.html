@@ -33,8 +33,7 @@
     <link rel="stylesheet" href="css/styles.css"> 
     <link rel="stylesheet" id="customCssStyle" href="css/evening.css">
 
-    <!-- Vue.js CDN -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    
     
    
 </head>
@@ -71,50 +70,19 @@
             </div>
         </section>
 
-        <section class="container" id="latest-episode">
+        <section class="container" id="latestEpisode">
             <div>Loading latest Detour 365 episode...</div>
         </section>
 
-        <script>
-        const { createApp, ref, onMounted } = Vue;
-        createApp({
-            setup() {
-                const latestEpisode = ref(null);
-                const loading = ref(true);
-                const error = ref(null);
-                const episodeContainer = document.getElementById('latest-episode');
-
-
-                onMounted(async () => {
-                    try {
-                        const response = await fetch('https://anchor.fm/s/593de1b4/podcast/rss');
-                        const xmlData = await response.xml();
-                        //convert xml data to json
-                        const parser = new DOMParser();
-                        const xmlDoc = parser.parseFromString(new XMLSerializer().serializeToString(xmlData), "text/xml");
-                        const items = xmlDoc.getElementsByTagName('item');
-                        const firstItem = items[0];
-                        const data = {
-                            title: firstItem.getElementsByTagName('title')[0].textContent,
-                            link: firstItem.getElementsByTagName('link')[0].textContent,
-                            pubDate: firstItem.getElementsByTagName('pubDate')[0].textContent,
-                            description: firstItem.getElementsByTagName('description')[0].textContent,
-                        };
-                        latestEpisode.value = data;
-                    } catch (error) {
-                        console.error('Error fetching latest episode:', error);
-                    }
-                });
-
-                return { latestEpisode };
-            }
-        }).mount('#latest-episode');
-        </script>
+        
 
     </main>
 <span></span>
     <footer class="footer" id="footer">
     </footer>
     <script type="module" src="js/script.js"></script>
+
+<!-- Temporary dev links for local testing only – remove before commit -->
+<script type="module" src="http://localhost:5173/src/main.js"></script>
 </body>
 </html>
