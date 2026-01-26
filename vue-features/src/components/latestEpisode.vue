@@ -87,12 +87,12 @@ onMounted(async () => {
     />
 
     <img
-      v-else
-      src="/images/detour365-logo-square.jpg"  
-      alt="Detour 365 Logo (fallback)"
-      class="episodeImage image"
-      loading="lazy"
-    />
+        v-else
+        src="/images/detour365-logo-square.jpeg"
+        alt="Detour 365 Logo (fallback)"
+        class="episode-image"
+        loading="lazy"
+        />
 
     <a :href="episode.link" target="_blank">Click to Listen</a>
     </div>
