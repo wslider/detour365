@@ -1,3 +1,16 @@
+     :root {
+      --sprucePine: #003a00; 
+      --kentuckyNight: #000d08;
+      --mountainFog: #f0fff8; 
+      --stormCloud: #333849;
+      --campfireSmoke: #2f2e2eb3;
+      --smokeyMountainMist: #b0c4de;
+      --blueRidgeParkway: #002167;
+      --starLight: #e1ceff; 
+      --midnightBlue: #001f3f;
+      --transparentMidnight: #001f3f80;
+    }
+
 .body {
     background-image: url('https://wslider.github.io/detour365/images/tartoosh-sunset-trail.jpeg');
     background-size: cover;           
@@ -5,8 +18,8 @@
     background-repeat: no-repeat;     
     background-attachment: fixed;     
     min-height: 100vh; 
-    background-color: #333a70;
-    color:#ffffffdf;
+    background-color: var(--kentuckyNight);
+    color:var(--mountainFog);
     font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -14,5 +27,6 @@
     font-size: 2rem;
     text-align: center;
     margin: 15px;
-    mix-blend-mode: difference; 
+    color: var(--mountainFog);
+    text-shadow: 3px 3px 5px #000000a1;
 }

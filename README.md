@@ -1,34 +1,5 @@
-# detour365
+# Vue 3 + Vite
 
-Main Hub for DEtour 365 Content 
-    Landing Page for Refference
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-Features: 
-    YouTube Feed? 
-        embedded videos in blog post like format
-
-    RSS Feed
-        
-
-
-    Social Media Dashboard 
-
-    Future: Verse of the Day? 
-
-    Sign Up for Updates
-
-*Future: Malayalam Language Option
-
-Pages:
-    Main Page Post / Feed 
-    About - What is Detour 365? The Mission? 
-
-
-Appearance: 
-    🌲 : 
-    📷 : Use Photos from pixels williamslider 
-    🏔️ : 
-    🥾 : Hiking Theme 
-
-
-![ detour 365 logo ](/images/detour365-logo-square.jpeg)
+Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
