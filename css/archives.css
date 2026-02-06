@@ -12,7 +12,7 @@
     }
 
 .body {
-    background-image: url('/images/library.jpg');
+    background-image: url('https://wslider.github.io/detour365/images/library.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: left;
