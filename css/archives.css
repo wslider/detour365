@@ -1,0 +1,29 @@
+     :root {
+      --sprucePine: #003a00; 
+      --kentuckyNight: #000d08;
+      --mountainFog: #f0fff8; 
+      --stormCloud: #333849;
+      --campfireSmoke: #2f2e2eb3;
+      --smokeyMountainMist: #b0c4de;
+      --blueRidgeParkway: #002167;
+      --starLight: #e1ceff; 
+      --midnightBlue: #001f3f;
+      --transparentMidnight: #001f3f80;
+    }
+
+.body {
+    background-image: url('/images/library.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: left;
+    color: whitesmoke;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+
+
+.container , .header {
+    background-color: var(--campfireSmoke);
+}
+
