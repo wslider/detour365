@@ -1,47 +1,114 @@
 async function fetchLatestEpisode() {
-    const url = "https://anchor.fm/s/593de1b4/podcast/rss";
-    try {
-        const response = await fetch(url);
-        const data = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, "application/xml");
-        const items = xmlDoc.getElementsByTagName("item");
-        if (items.length > 0) {
-            const latestItem = items[0];
-            const title = latestItem.getElementsByTagName("title")[0].textContent;
-            const pubDate = latestItem.getElementsByTagName("pubDate")[0].textContent;
-            const link = latestItem.getElementsByTagName("link")[0].textContent;
-            const episodeImage = latestItem.getElementsByTagName("itunes:image")[0].getAttribute("href");
-            return { title, pubDate, link, episodeImage };
-        }
-    } catch (error) {
-        console.error("Error fetching or parsing RSS feed:", error);
+  const rssUrl = "https://anchor.fm/s/593de1b4/podcast/rss";
+  
+  // Use allorigins proxy to bypass CORS (Anchor.fm doesn't allow cross-origin reads)
+  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
+  
+  // Alternative proxies if allorigins rate-limits you someday:
+  // const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`;
+  // const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(rssUrl)}`;
+
+  try {
+    const response = await fetch(proxyUrl);
+    if (!response.ok) {
+      throw new Error(`Proxy/RSS fetch failed: HTTP ${response.status}`);
     }
+    
+    const data = await response.text();
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(data, "application/xml");
+    
+    // Check for parse errors
+    if (xmlDoc.querySelector("parsererror")) {
+      throw new Error("RSS XML parse error");
+    }
+
+    const items = xmlDoc.getElementsByTagName("item");
+    if (items.length === 0) {
+      throw new Error("No episodes found in RSS");
+    }
+
+    const latestItem = items[0];
+    
+    // Safe extraction with fallbacks
+    const titleEl = latestItem.getElementsByTagName("title")[0];
+    const pubDateEl = latestItem.getElementsByTagName("pubDate")[0];
+    const linkEl = latestItem.getElementsByTagName("link")[0];
+    const imageEl = latestItem.getElementsByTagName("itunes:image")[0];
+    const enclosureEl = latestItem.getElementsByTagName("enclosure")[0];
+
+    return {
+      title: titleEl ? titleEl.textContent.trim() : "Untitled Episode",
+      pubDate: pubDateEl ? pubDateEl.textContent : "",
+      link: linkEl ? linkEl.textContent : "#",
+      episodeImage: imageEl ? imageEl.getAttribute("href") : "",
+      audioUrl: enclosureEl ? enclosureEl.getAttribute("url") : "",
+    };
+  } catch (error) {
+    console.error("Error fetching/parsing Detour 365 RSS:", error);
     return null;
+  }
 }
 
 export async function displayLatestEpisode() {
-    const latestEpisodeContainer = document.getElementById("latestEpisodes");
-    const backupImageSrc = "/images/detour365-logo-square.jpeg";
-    if (!latestEpisodeContainer) return;
-    const latestEpisodeData = await fetchLatestEpisode();
-    if (latestEpisodeData) {
-        latestEpisodeContainer.innerHTML = `
-            <h2>Latest Episode</h2>
-            <h3><a href="${latestEpisodeData.link}" target="_blank" rel="noopener" style="color: white; cursor:pointer;">${latestEpisodeData.title}</a></h3>
-            <p>Published on: ${new Date(latestEpisodeData.pubDate).toLocaleDateString()}</p>
-            <img class="episodeImage" src="${latestEpisodeData.episodeImage || backupImageSrc}" alt="Episode Image" style="width: clamp(90%, 300px, 500px);" 
+  const container = document.getElementById("latestEpisodes");
+  if (!container) {
+    console.warn("#latestEpisodes container not found");
+    return;
+  }
 
-/>`      
-        latestEpisodeContainer.style.display = "flex";
-        latestEpisodeContainer.style.flexDirection = "column";
-        latestEpisodeContainer.style.alignItems = "center";
-        latestEpisodeContainer.style.textAlign = "center";
-        latestEpisodeContainer.style.justifyContent = "center";
-        latestEpisodeContainer.style.gap = "1vh";
-        ;
-    }
-    else {
-        latestEpisodeContainer.innerHTML = "<p>Unable to load the latest episode at this time.</p>";
-    }
+  const backupImage = "/images/detour365-logo-square.jpeg"; // your fallback
+
+  container.innerHTML = '<p class="loading">Loading latest episode...</p>';
+
+  const data = await fetchLatestEpisode();
+
+  if (data && data.audioUrl) {
+    const formattedDate = data.pubDate 
+      ? new Date(data.pubDate).toLocaleDateString("en-US", { 
+          year: "numeric", month: "long", day: "numeric" 
+        }) 
+      : "Date unavailable";
+
+    container.innerHTML = `
+      <h2>Latest Episode</h2>
+      <h3>
+        <a href="${data.link}" target="_blank" rel="noopener noreferrer" 
+           style="color: white; text-decoration: underline; cursor: pointer;">
+          ${data.title}
+        </a>
+      </h3>
+      <p>Published: ${formattedDate}</p>
+      <audio controls id="audioPlayer" style="width: 100%; max-width: 500px;">
+        <source src="${data.audioUrl}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <img class="episodeImage" 
+           src="${data.episodeImage || backupImage}" 
+           alt="Cover for ${data.title}" 
+           loading="lazy"
+           style="width: clamp(200px, 40%, 400px); max-height: 400px; object-fit: cover; border-radius: 8px;"
+           onerror="this.src='${backupImage}'; this.alt='Fallback podcast logo';"
+      />
+    `;
+
+    // Apply flex styles (you can move to CSS file if preferred)
+    Object.assign(container.style, {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      textAlign: "center",
+      justifyContent: "center",
+      gap: "1rem",
+      padding: "1rem",
+    });
+  } else {
+    container.innerHTML = `
+      <p style="color: #ffcccc;">Unable to load the latest episode right now.<br>
+      Please check back later or visit the podcast directly on Spotify/Anchor.</p>
+      <a href="https://podcasters.spotify.com/pod/show/detour365" target="_blank" rel="noopener">
+        Listen on Spotify →
+      </a>
+    `;
+  }
 }
