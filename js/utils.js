@@ -90,5 +90,5 @@ export function updateFooter() {
         break;
     }
 
-    footer.textContent = `William Slider - ${footerMonth} ${footerYear}`;
+    footer.textContent = `Detour 365 - ${footerMonth} ${footerYear}`;
 }

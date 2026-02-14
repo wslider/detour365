@@ -9,6 +9,10 @@
       --starLight: #e1ceff; 
       --midnightBlue: #001f3f;
       --transparentMidnight: #001f3f80;
+      --marianaTrench: #00111f;
+        --spacing-sm: 0.5rem;
+        --spacing-md: 1rem;
+        --spacing-lg: 2rem;
     }
 
 * {
@@ -171,13 +175,68 @@ h1, h2, h3 {
     text-align: left;
 }
 
+      /* Social links container */
+      .socialLinks {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(1rem, 4vw, 2rem);           
+        margin: var(--spacing-md) 0;
+        padding: 0;
+        list-style: none;  
+      }
+
+      .socialLinks li {
+        margin: 0;
+      }
+
+      /* Social icon styling (works with inline SVG or <img class="social-icon">) */
+      .social-icon {
+        width:          clamp(2rem, 6vw, 2.8rem);
+        height:         auto;
+        fill:           white;               
+        color:          white;
+        transform:      scale(1);    
+        isolation:      isolate;                             
+        transition: transform 0.2s ease, color 0.2s ease;
+      }
+
+      /* Hover/focus interaction */
+      .socialLinks a:hover .social-icon,
+      .socialLinks a:focus .social-icon {
+        transform: scale(1.18);                
+        color: var(--starLight);               /* hover glow */
+      }
+
+      /* Optional: slight platform-specific hover tint (subtle) */
+      .socialLinks a[href*="x.com"]:hover .social-icon    { color: #1da1f2; }
+      .socialLinks a[href*="github"]:hover .social-icon   { color: #f0f6fc; }
+      .socialLinks a[href*="linkedin"]:hover .social-icon { color: #0a66c2; }
+
+      /* Make links more touch-friendly */
+      .socialLinks a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-sm);
+        border-radius: 10px;                   
+        background-color: var(--marianaTrench);
+        transition: background 0.2s ease;
+      }
+
+      .socialLinks a:hover,
+      .socialLinks a:focus {
+        background: rgba(51, 56, 73, 0.1);     /* --stormCloud faint overlay */
+      }
+
 
 .footer {
     text-align: center;
-    font-size: 1.5rem;
-    padding: 10px;
+    font-style: italic;
+    font-size: 2rem;
+    padding: 1rem;
     color: var(--mountainFog);
-    font-size: 1rem;
     text-shadow: 1px 1px 2px #000000a1;
-    margin-top: auto;
+    margin-top: 5vh;
 }
