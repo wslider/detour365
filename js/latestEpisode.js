@@ -78,18 +78,21 @@ export async function displayLatestEpisode() {
           ${data.title}
         </a>
       </h3>
-      <p>Published: ${formattedDate}</p>
-      <audio controls id="audioPlayer" style="width: 100%; max-width: 500px;">
-        <source src="${data.audioUrl}" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+      
       <img class="episodeImage" 
            src="${data.episodeImage || backupImage}" 
            alt="Cover for ${data.title}" 
            loading="lazy"
-           style="width: clamp(200px, 40%, 400px); max-height: 400px; object-fit: cover; border-radius: 8px;"
+           style="width: clamp(225px, 50%, 500px); max-height: 500px; object-fit: cover; border-radius: 8px;"
            onerror="this.src='${backupImage}'; this.alt='Fallback podcast logo';"
       />
+      <audio controls id="audioPlayer" style="width: 100%; max-width: 500px;">
+        <source src="${data.audioUrl}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <p>Published: ${formattedDate}</p>
+
     `;
 
     // Apply flex styles (you can move to CSS file if preferred)
