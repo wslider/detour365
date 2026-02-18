@@ -1,12 +1,9 @@
 async function fetchLatestEpisode() {
+
   const rssUrl = "https://anchor.fm/s/593de1b4/podcast/rss";
   
-  // Use allorigins proxy to bypass CORS (Anchor.fm doesn't allow cross-origin reads)
-  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
   
-  // Alternative proxies if allorigins rate-limits you someday:
-  // const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`;
-  // const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(rssUrl)}`;
+  const proxyUrl = 'https://detour365-rss-proxy.wslider2000.workers.dev/' + '?url=' + encodeURIComponent(rssUrl);
 
   try {
     const response = await fetch(proxyUrl);
