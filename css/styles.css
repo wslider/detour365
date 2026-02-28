@@ -175,6 +175,82 @@ h1, h2, h3 {
     text-align: left;
 }
 
+/* Verse of the Day image styling */
+
+
+.container.verseContainer {
+    position: relative;           /* contains the absolute children */
+    width: clamp(320px, 95%, 780px);
+    max-width: 780px;
+    margin: 1.5rem auto;
+    border: 3px solid var(--mountainFog);
+    border-radius: 10px;
+    overflow: hidden;             /* ← very important */
+    background: var(--kentuckyNight); /* dark fallback */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.verseContainer > h2 {
+    margin: 1rem 1rem 0.5rem;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    color: var(--mountainFog);
+}
+
+/* Image wrapper – controls aspect ratio & prevents layout shift */
+.verseImageContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;          /* ← adjust: 5/4, 3/2, 1/1 etc. to match your images */
+}
+
+/* Background image */
+.verseImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Text overlay */
+.verseTextContainer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(1.5rem, 6vw, 3rem);
+
+    color: var(--mountainFog);
+    text-align: center;
+
+    /* Readability helpers – pick ONE or combine lightly */
+    background: rgba(0, 0, 0, 0.45);          /* semi-dark overlay */
+    /* backdrop-filter: blur(2.5px); */        /* nice but optional – remove if perf concern */
+    text-shadow: 0 0 10px #000c, 0 0 5px #0008; /* strong shadow = works on almost any image */
+}
+
+/* Responsive font scaling + line-height for long verses */
+.verseTextContainer .verse-text {
+    font-size: clamp(1.05rem, 3.8vw, 1.9rem);
+    line-height: 1.38;
+    max-width: 92%;
+    margin: 0.4em 0;
+    font-weight: 400;
+}
+
+.verseTextContainer .reference {
+    font-size: clamp(1rem, 3.2vw, 1.45rem);
+    opacity: 0.92;
+    margin-top: 1.1rem;
+    font-style: italic;
+}
+
+
       /* Social links container */
       .socialLinks {
         display: flex;
