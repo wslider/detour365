@@ -22,11 +22,11 @@ function getSaturdayOfCurrentWeek() {
     saturday.setDate(today.getDate() + (6 - dayOfWeek));
     if (dayOfWeek === 6) saturday = today; // Already Saturday → use today
 
-    const year = saturday.getFullYear();
-    const month = saturday.toLocaleString('default', { month: 'long' });
-    const day = String(saturday.getDate()).padStart(2, '0'); // "07"
+    const yearSat = saturday.getFullYear();
+    const monthSat = saturday.toLocaleString('default', { month: 'long' });
+    const daySat = String(saturday.getDate()).padStart(2, '0'); // "07"
 
-    return `${year} ${month} ${day}`;
+    return `${yearSat} ${monthSat} ${daySat}`;
 }
 
 export async function displayThisWeek() {
