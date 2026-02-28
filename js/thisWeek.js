@@ -11,7 +11,7 @@ const epSeries = document.getElementById('epSeries');
 const epFullPassage = document.getElementById('epFullPassage');
 
 // Your Cloudflare Worker proxy URL 
-const workerProxy = 'https://detour365.wslider2000.workers.dev/?url=';
+const workerProxy = 'https://white-wood-a995.wslider2000.workers.dev/?url=';
 
 const bibleID = '7142879509583d59-04'; // WEBBE
 
