@@ -22,13 +22,13 @@ export async function displayVerseOfTheDay() {
         if (!verseData) {
             verseText.textContent = " Lean not on your own understanding, but in all your ways submit to him, and he will make your paths straight. Proverbs 3:5-6";
             verseReference.textContent = "Proverbs 3:5-6";
-            verseImage.src = "/images/tartoosh-sunset-trail.jpeg";
+            verseImage.src = "https://wslider.github.io/detour365/images/tartoosh-sunset-trail.jpeg";
             verseImage.alt = "Proverbs 3:5-6";
             return;
         }
         verseText.textContent = verseData.text; 
         verseReference.textContent = verseData.reference;
-        verseImage.src = "/images/tartoosh-sunset-trail.jpeg";
+        verseImage.src = "https://wslider.github.io/detour365/images/tartoosh-sunset-trail.jpeg";
         verseImage.alt = `${verseData.reference} - ${verseData.text}`;
 
     }
