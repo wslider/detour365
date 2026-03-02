@@ -10,8 +10,8 @@ const epPassage = document.getElementById('epPassage');
 const epSeries = document.getElementById('epSeries');
 const epFullPassage = document.getElementById('epFullPassage');
 
-// Your Cloudflare Worker proxy URL 
-const workerProxy = 'https://white-wood-a995.wslider2000.workers.dev/?url=';
+// Updated Cloudflare Worker proxy URL (only for Bible passage fetch)
+const workerProxy = 'https://bible-proxy.wslider2000.workers.dev/?url=';
 
 const bibleID = '7142879509583d59-04'; // WEBBE
 
@@ -38,7 +38,7 @@ export async function displayThisWeek() {
         epSeries.textContent = '';
         epFullPassage.textContent = '';
 
-        // Fetch podcast JSON
+        // Fetch podcast JSON (direct - no proxy needed)
         const response = await fetch('data/podcast.json');
         if (!response.ok) {
             throw new Error(`Failed to load podcast.json: ${response.status}`);
@@ -59,7 +59,7 @@ export async function displayThisWeek() {
         epPassage.textContent = episode.passage ? `Passage: ${episode.passage}` : 'No passage listed';
         epSeries.textContent = episode.series ? `Series: ${episode.series}` : 'Standalone';
 
-        // Fetch full passage text via Worker proxy
+        // Fetch full passage text via the new Worker proxy
         if (episode.passage) {
             // Parse reference to OSIS format (e.g. "Gen.8.1-Gen.8.22")
             const parser = new bcv_parser(enLang);
@@ -79,7 +79,7 @@ export async function displayThisWeek() {
                 '&include-verse-spans=false' +
                 '&use-org-id=false';
 
-            // Call your Worker proxy
+            // Call the new Worker proxy
             const proxyUrl = workerProxy + encodeURIComponent(baseUrl);
 
             const passageRes = await fetch(proxyUrl);
