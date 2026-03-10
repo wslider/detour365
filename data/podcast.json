@@ -1,5 +1,495 @@
 [
     {
+        "id": 1,
+        "date": "2023 September 11",
+        "title": "#01: Proverbs 12:9",
+        "passage": "Proverbs 12:9; Luke (Parable of the Wedding Banquet)",
+        "series": null
+    },
+    {
+        "id": 2,
+        "date": "2023 October 22",
+        "title": "#02: Proverbs 13:20 | Influences",
+        "passage": "Proverbs 13:20",
+        "series": null
+    },
+    {
+        "id": 3,
+        "date": "2023 November 20",
+        "title": "#03: Mark 4:30-34 | Mustard Seed Kingdom",
+        "passage": "Mark 4:30-34",
+        "series": "Parables Series"
+    },
+    {
+        "id": 4,
+        "date": "2023 November 27",
+        "title": "#04: Matthew 13:44-46 | Hidden Treasure",
+        "passage": "Matthew 13:44-46",
+        "series": "Parables Series"
+    },
+    {
+        "id": 5,
+        "date": "2023 December 04",
+        "title": "#05: Luke 1:26-38",
+        "passage": "Luke 1:26-38",
+        "series": null
+    },
+    {
+        "id": 6,
+        "date": "2024 January 03",
+        "title": "#06: New Years Message for 2024",
+        "passage": "Proverbs 3:5-6; Philippians 4:6-7",
+        "series": "Special"
+    },
+    {
+        "id": 7,
+        "date": "2024 January 14",
+        "title": "#07: Matthew 2:1-12 | Wisdom of the Wise Men",
+        "passage": "Matthew 2:1-12",
+        "series": "Dreams & Visions (Christmas Series)"
+    },
+    {
+        "id": 8,
+        "date": "2024 January 21",
+        "title": "#08: Matthew 2:13-23 | To Egypt & Back",
+        "passage": "Matthew 2:13-23",
+        "series": "Dreams & Visions (Christmas Series)"
+    },
+    {
+        "id": 9,
+        "date": "2024 January 22",
+        "title": "#09: Luke 18:1-8 | Persistence",
+        "passage": "Luke 18:1-8",
+        "series": "Parables Series"
+    },
+    {
+        "id": 10,
+        "date": "2024 January 29",
+        "title": "#10: Matthew 18:21-35 | Perspectives on Forgiveness",
+        "passage": "Matthew 18:21-35",
+        "series": "Parables Series"
+    },
+    {
+        "id": 11,
+        "date": "2024 February 05",
+        "title": "#11: Luke 15:11-32 | Prodigal Son (Part 1)",
+        "passage": "Luke 15:11-32",
+        "series": "Parables Series"
+    },
+    {
+        "id": 12,
+        "date": "2024 February 12",
+        "title": "#12: Luke 15:11-32 | Prodigal Son (Part 2)",
+        "passage": "Luke 15:11-32",
+        "series": "Parables Series"
+    },
+    {
+        "id": 13,
+        "date": "2024 February 19",
+        "title": "#13: Matthew 20:1-16 | Laborers in the Vineyard (Part 1)",
+        "passage": "Matthew 20:1-16",
+        "series": "Parables Series"
+    },
+    {
+        "id": 14,
+        "date": "2024 February 26",
+        "title": "#14: Matthew 20:1-16 | Laborers in the Vineyard (Part 2)",
+        "passage": "Matthew 20:1-16",
+        "series": "Parables Series"
+    },
+    {
+        "id": 15,
+        "date": "2024 March 04",
+        "title": "#15: Matthew 25:1-13 | The Ten Virgins",
+        "passage": "Matthew 25:1-13",
+        "series": "Parables Series"
+    },
+    {
+        "id": 16,
+        "date": "2024 March 11",
+        "title": "#16: Luke 15:11-32 | Parables, Prodigals and Pigs - Part 1",
+        "passage": "Luke 15:11-32",
+        "series": "Parables Series"
+    },
+    {
+        "id": 17,
+        "date": "2024 March 18",
+        "title": "#17: Luke 15:11-32 | Parables, Prodigals and Pigs - Part 2",
+        "passage": "Luke 15:11-32",
+        "series": "Parables Series"
+    },
+    {
+        "id": 18,
+        "date": "2024 March 31",
+        "title": "#18: Matthew 25:1-13 | Wisdom & Waiting",
+        "passage": "Matthew 25:1-13",
+        "series": "Easter Special"
+    },
+    {
+        "id": 19,
+        "date": "2024 April 08",
+        "title": "#19: Luke 16:19-31 | 2 Paths",
+        "passage": "Luke 16:19-31",
+        "series": "Parables Series"
+    },
+    {
+        "id": 20,
+        "date": "2024 April 15",
+        "title": "#20: Luke 16:1-13 | The Parable of the Shrewd Manager",
+        "passage": "Luke 16:1-13",
+        "series": "Parables Series"
+    },
+    {
+        "id": 21,
+        "date": "2024 April 22",
+        "title": "#21: Genesis 2:1-3 | God Rested?",
+        "passage": "Genesis 2:1-3",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 22,
+        "date": "2024 April 29",
+        "title": "#22: Genesis 3 | Tests, Opportunities, and Our Relationship with God",
+        "passage": "Genesis 3",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 23,
+        "date": "2024 May 06",
+        "title": "#23: Genesis 4 | God Desires The Best For Us & From Us",
+        "passage": "Genesis 4",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 24,
+        "date": "2024 May 27",
+        "title": "#24: God & Enoch - Part 1",
+        "passage": "Genesis 5:21-24; Book of Enoch",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 25,
+        "date": "2024 June 02",
+        "title": "#25: God & Enoch - Part 2",
+        "passage": "Genesis 5:24; Genesis 6:1-13; Book of Enoch",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 26,
+        "date": "2024 June 09",
+        "title": "#26: Noah & The World Before The Flood",
+        "passage": "Genesis 6:5-19; Book of Enoch (selected)",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 27,
+        "date": "2024 June 16",
+        "title": "#27: God & The Tower of Babel",
+        "passage": "Genesis 11:1-9",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 28,
+        "date": "2024 June 23",
+        "title": "#28: Genesis 18:1-15 | 3 Visitors",
+        "passage": "Genesis 18:1-15",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 29,
+        "date": "2024 June 30",
+        "title": "#29: Genesis 18:16-33",
+        "passage": "Genesis 18:16-33",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 30,
+        "date": "2024 July 07",
+        "title": "#30: Genesis 19:1-29 | God Rescues Lot",
+        "passage": "Genesis 19:1-29",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 31,
+        "date": "2024 July 14",
+        "title": "#31: Genesis 32:22-32 | Wrestling with God",
+        "passage": "Genesis 32:22-32",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 32,
+        "date": "2024 July 21",
+        "title": "#32: Exodus 3:1-22 | Burning Bush (part 1)",
+        "passage": "Exodus 3:1-22",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 33,
+        "date": "2024 July 28",
+        "title": "#33: Exodus 4:1-17 | Burning Bush (part 2)",
+        "passage": "Exodus 4:1-17",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 34,
+        "date": "2024 August 04",
+        "title": "#34: Exodus 4:18-26 | Zipporah Saves Moses",
+        "passage": "Exodus 4:18-26",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 35,
+        "date": "2024 August 11",
+        "title": "#35: Exodus - Did God Harden Pharaoh's Heart?",
+        "passage": "Exodus (various)",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 36,
+        "date": "2024 August 18",
+        "title": "#36: Exodus 24:9-14 | Sapphire Pavement",
+        "passage": "Exodus 24:9-14",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 37,
+        "date": "2024 August 25",
+        "title": "#37: Exodus 32 - The Golden Calf (part 1)",
+        "passage": "Exodus 32",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 38,
+        "date": "2024 September 01",
+        "title": "#38: Exodus 32 - The Golden Calf (part 2)",
+        "passage": "Exodus 32",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 39,
+        "date": "2024 September 08",
+        "title": "#39: Exodus 33:7-11 | Speaking to God Face to Face",
+        "passage": "Exodus 33:7-11",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 40,
+        "date": "2024 September 15",
+        "title": "#40: Exodus 33-34 | Moses Intercedes",
+        "passage": "Exodus 33-34",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 41,
+        "date": "2024 September 22",
+        "title": "#41: Job 1 - God's Divine Council",
+        "passage": "Job 1",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 42,
+        "date": "2024 September 29",
+        "title": "#42: Job 2",
+        "passage": "Job 2",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 43,
+        "date": "2024 October 06",
+        "title": "#43: Job 39-42 | God Answers Job",
+        "passage": "Job 39-42",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 44,
+        "date": "2024 October 13",
+        "title": "#44: Exodus 34 | The Shining Face of Moses",
+        "passage": "Exodus 34",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 45,
+        "date": "2024 October 20",
+        "title": "#45: Numbers 12 | Humility of Moses",
+        "passage": "Numbers 12",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 46,
+        "date": "2024 December 01",
+        "title": "#46: Luke 1:26-48 | God Chose Mary",
+        "passage": "Luke 1:26-38, 1:46-55",
+        "series": "Advent 2024"
+    },
+    {
+        "id": 47,
+        "date": "2024 December 08",
+        "title": "#47: Matthew 1:18-25 | Joseph",
+        "passage": "Matthew 1:18-25",
+        "series": "Advent 2024"
+    },
+    {
+        "id": 48,
+        "date": "2024 December 15",
+        "title": "#48: Luke 2:1-7 | Journey to Bethlehem",
+        "passage": "Luke 2:1-7",
+        "series": "Advent 2024"
+    },
+    {
+        "id": 49,
+        "date": "2024 December 22",
+        "title": "#49: Luke 2:8-21 | Shepherds",
+        "passage": "Luke 2:8-21",
+        "series": "Advent 2024"
+    },
+    {
+        "id": 50,
+        "date": "2024 December 27",
+        "title": "#50: Luke 2:22-38 | Simeon & Anna",
+        "passage": "Luke 2:22-38",
+        "series": "Advent 2024"
+    },
+    {
+        "id": 51,
+        "date": "2025 January 03",
+        "title": "#51: Matthew 2:1-12 | The Wise Men or Magi",
+        "passage": "Matthew 2:1-12",
+        "series": "Advent 2024"
+    },
+    {
+        "id": 52,
+        "date": "2025 January 11",
+        "title": "#52: Matthew 2:13-23 | Journey to Egypt",
+        "passage": "Matthew 2:13-23",
+        "series": "Advent 2024"
+    },
+    {
+        "id": 53,
+        "date": "2025 January 17",
+        "title": "#53: Joshua 5-6 | Faith to Conquer Strongholds",
+        "passage": "Joshua 5:13-6:5",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 54,
+        "date": "2025 January 24",
+        "title": "#54: Judges 6 | God & Gideon (part 1)",
+        "passage": "Judges 6",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 55,
+        "date": "2025 January 31",
+        "title": "#55: Judges 7 | Gideon (part 2)",
+        "passage": "Judges 7",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 56,
+        "date": "2025 February 07",
+        "title": "#56: Samson - Judges 13",
+        "passage": "Judges 13",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 57,
+        "date": "2025 February 15",
+        "title": "#57: 1 Samuel 3 | When God Calls",
+        "passage": "1 Samuel 3",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 58,
+        "date": "2025 February 21",
+        "title": "#58: 1 Kings 8 | Holy Places",
+        "passage": "1 Kings 8",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 59,
+        "date": "2025 February 28",
+        "title": "#59: 1 Kings 19 | When God Whispers",
+        "passage": "1 Kings 19",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 60,
+        "date": "2025 March 07",
+        "title": "#60: Isaiah 6 & Matthew 13",
+        "passage": "Isaiah 6; Matthew 13:10-23",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 61,
+        "date": "2025 March 15",
+        "title": "#61: Ezekiel 1",
+        "passage": "Ezekiel 1",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 62,
+        "date": "2025 March 21",
+        "title": "#62: Ezekiel 10",
+        "passage": "Ezekiel 10",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 63,
+        "date": "2025 March 29",
+        "title": "#63: Daniel 3 | The 4th Man in The Fire",
+        "passage": "Daniel 3",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 64,
+        "date": "2025 April 05",
+        "title": "#64: Daniel 5 | The Writing on The Wall",
+        "passage": "Daniel 5",
+        "series": "Humanity of God"
+    },
+    {
+        "id": 65,
+        "date": "2025 December 03",
+        "title": "#65: Chronological Reading of The Christmas Story",
+        "passage": "Christmas narrative (Gospels)",
+        "series": "Special"
+    },
+    {
+        "id": 66,
+        "date": "2025 December 08",
+        "title": "#66: Luke 1:5-25",
+        "passage": "Luke 1:5-25",
+        "series": null
+    },
+    {
+        "id": 67,
+        "date": "2025 December 13",
+        "title": "#67: Luke 1:26-38",
+        "passage": "Luke 1:26-38",
+        "series": null
+    },
+    {
+        "id": 68,
+        "date": "2026 January 07",
+        "title": "#68: Luke 2:1-21",
+        "passage": "Luke 2:1-21",
+        "series": null
+    },
+    {
+        "id": 69,
+        "date": "2026 February 03",
+        "title": "#69: Matthew 2:19-23",
+        "passage": "Matthew 2:19-23",
+        "series": null
+    },
+    {
+        "id": 70,
+        "date": "2026 February 03",
+        "title": "#70: Luke 2:40-50",
+        "passage": "Luke 2:40-52",
+        "series": null
+    },
+    {
         "id": 71,
         "date": "2026 February 07",
         "title": "Episode 71: But God Remembered Noah",
@@ -37,7 +527,7 @@
     {
         "id": 76,
         "date": "2026 March 14",
-        "title": "Episode 75: Pharaoh's Dreams and God's Plan",
+        "title": "Episode 76: Pharaoh's Dreams and God's Plan",
         "passage": "Genesis 40-41",
         "series": "But God"
     },
