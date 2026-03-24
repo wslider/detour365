@@ -8,6 +8,7 @@ const epDate = document.getElementById('epDate');
 const epTitle = document.getElementById('epTitle');
 const epPassage = document.getElementById('epPassage');
 const epSeries = document.getElementById('epSeries');
+const epPassageLink = document.getElementById('episode-backup-link'); 
 const epFullPassage = document.getElementById('epFullPassage');
 
 // Updated Cloudflare Worker proxy URL (only for Bible passage fetch)
@@ -57,6 +58,7 @@ export async function displayThisWeek() {
         epDate.textContent = episode.date;
         epTitle.textContent = episode.title;
         epPassage.textContent = episode.passage ? `Passage: ${episode.passage}` : 'No passage listed';
+        epPassageLink.href = `https://duckduckgo.com/?q=${episode.passage}&ia=web` || `https://www.biblegateway.com/`;
         epSeries.textContent = episode.series ? `Series: ${episode.series}` : 'Standalone';
 
         // Fetch full passage text via the new Worker proxy
@@ -86,8 +88,6 @@ export async function displayThisWeek() {
 
             if (!passageRes.ok) {
                 console.error(`Passage fetch failed: ${passageRes.status} ${passageRes.statusText}`);
-
-                document.getElementById('passage-backup-link').href = `"https://duckduckgo.com/?q=" + ${episode.passage} + "&ia=web"`
             }
 
             const passageData = await passageRes.json();
