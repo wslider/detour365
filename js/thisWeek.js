@@ -36,12 +36,12 @@ export async function displayThisWeek() {
         epTitle.textContent = '';
         epPassage.textContent = '';
         epSeries.textContent = '';
-        epFullPassage.textContent = '';
+        //epFullPassage.textContent = '';
 
         // Fetch podcast JSON (direct - no proxy needed)
         const response = await fetch('data/podcast.json');
         if (!response.ok) {
-            throw new Error(`Failed to load podcast.json: ${response.status}`);
+            throw new Error(`click to view passage`); 
         }
         const data = await response.json();
 
@@ -85,11 +85,13 @@ export async function displayThisWeek() {
             const passageRes = await fetch(proxyUrl);
 
             if (!passageRes.ok) {
-                throw new Error(`Passage fetch failed: ${passageRes.status} ${passageRes.statusText}`);
+                console.error(`Passage fetch failed: ${passageRes.status} ${passageRes.statusText}`);
+
+                document.getElementById('passage-backup-link').href = `"https://duckduckgo.com/?q=" + ${episode.passage} + "&ia=web"`
             }
 
             const passageData = await passageRes.json();
-            const text = passageData.data?.content?.trim() || '(Full passage text unavailable)';
+            const text = passageData.data?.content?.trim() || '(click passage to view)';
 
             epFullPassage.textContent = text;
         } else {
@@ -99,6 +101,6 @@ export async function displayThisWeek() {
     } catch (error) {
         console.error('Error in displayThisWeek:', error);
         epDate.textContent = 'Error loading episode';
-        epFullPassage.textContent = `Could not load passage: ${error.message}`;
+       console.error( `Could not load passage: ${error.message}`);
     }
 } 
