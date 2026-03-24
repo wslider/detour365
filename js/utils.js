@@ -15,28 +15,33 @@ export function updateCustomCss () {
 }
 
 export function navBarLinks() {
-    const myLinks = document.getElementById("myLinks");
-    const currentDisplay = window.getComputedStyle(myLinks).display;
-    const topNavBar = document.getElementById('topNavBar'); 
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('myLinks');
 
-    if (currentDisplay === "block" || currentDisplay === "flex") {
-        myLinks.style.display = "none";
-    } else if (window.innerWidth < 768) {
-        myLinks.style.display = "flex";
-        myLinks.style.flexDirection = "column";
-        topNavBar.style.display = "flex";
-        topNavBar.style.flexDirection = "column"; 
-    } else {
-        myLinks.style.display = "flex";
-        myLinks.style.flexDirection = "row";
-        myLinks.style.justifyContent = "space-evenly"
-        myLinks.style.gap = "2vw"
-        topNavBar.style.display = "flex"; 
-        topNavBar.style.flexDirection = "row"; 
-        topNavBar.style.justifyContent = "flex-start";
-        topNavBar.style.gap = "5vw"; 
-        topNavBar.style.padding = "0 3vw 0 -1vw";
+  if (!hamburger || !navLinks) return;
+
+  function toggleMenu() {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    
+    hamburger.setAttribute('aria-expanded', !isOpen);
+    hamburger.classList.toggle('active');       // ← toggles X icon
+    navLinks.classList.toggle('active');
+  }
+
+  function closeMenu() {
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.classList.remove('active');       // ← X goes back to hamburger
+    navLinks.classList.remove('active');
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+      closeMenu();
     }
+  });
 }
 
 

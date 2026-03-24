@@ -56,10 +56,9 @@ h1, h2, h3 {
             align-items: center;
             position: relative; 
             padding: 1rem 1.5rem;
-            background-color: var(--midnightBlue);        
+            background: var(--midnightBlue);        
             color: var(--mountainFog);
             min-height: 10vh;
-            margin-bottom:0; 
             width: 100%; 
         }
     
@@ -85,6 +84,30 @@ h1, h2, h3 {
         background: white;
         margin: 6px 0;
         transition: all 0.3s ease;
+        }
+
+        /* Hamburger becomes X when menu is open */
+        .hamburger.active span:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 6px);   /* adjust translate values if needed */
+        }
+
+        .hamburger.active span:nth-child(2) {
+          opacity: 0;   /* middle bar disappears */
+        }
+
+        .hamburger.active span:nth-child(3) {
+          transform: rotate(-45deg) translate(7px, -6px);  /* adjust translate values if needed */
+        }
+
+        /* Optional: make transitions smoother on all spans */
+        .hamburger span {
+          display: block;
+          width: 28px;
+          height: 3px;
+          background: white;
+          margin: 6px 0;
+          transition: all 0.35s ease;   /* slightly longer for nicer feel */
+          transform-origin: center;
         }
 
         .navLinks {
@@ -113,6 +136,8 @@ h1, h2, h3 {
             display: flex;
             flex-direction: column;
         }
+
+        
 
 .main {
     display: flex;
