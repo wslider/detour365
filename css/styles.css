@@ -341,3 +341,25 @@ h1, h2, h3 {
     text-shadow: 1px 1px 2px #000000a1;
     margin-top: 3vh;
 }
+
+
+.container.iframe-container {
+
+    width: 100%;
+    min-height: fit-content; 
+    
+    }
+
+.iframe {
+    width: 100%; 
+    height: 56.25%; 
+}
+
+@media only screen and (min-width: 600px) {
+    
+    .iframe {
+        height: 315px; 
+        width: 560px; 
+    }
+
+}

@@ -100,7 +100,6 @@ export async function displayThisWeek() {
 
     } catch (error) {
         console.error('Error in displayThisWeek:', error);
-        epDate.textContent = 'Error loading episode';
        console.error( `Could not load passage: ${error.message}`);
     }
 } 
