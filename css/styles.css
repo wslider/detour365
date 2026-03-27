@@ -344,10 +344,7 @@ h1, h2, h3 {
 
 
 .container.iframe-container {
-
-    width: 100%;
     min-height: fit-content; 
-    
     }
 
 .iframe {
