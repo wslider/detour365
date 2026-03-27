@@ -34,10 +34,10 @@ export function navBarLinks() {
     navLinks.classList.remove('active');
   }
 
-  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('pointerdown', toggleMenu);
 
   // Close on outside click
-  document.addEventListener('click', (e) => {
+  document.addEventListener('pointerdown', (e) => {
     if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
       closeMenu();
     }
