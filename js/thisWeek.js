@@ -11,7 +11,7 @@ const epDate = document.getElementById('epDate');
 const epTitle = document.getElementById('epTitle');
 const epPassage = document.getElementById('epPassage');
 const epSeries = document.getElementById('epSeries');
-const epPassageLink = document.getElementById('episode-backup-link');
+const epPassageLink = document.getElementById('passage-backup-link');
 const epFullPassage = document.getElementById('epFullPassage');
 
 function getSaturdayOfCurrentWeek() {
