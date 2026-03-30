@@ -1,20 +1,18 @@
-// thisWeek.js
-
-// Import Bible reference parser directly via CDN 
+// Import Bible reference parser (still needed only for potential future use or validation)
+/*
 import { bcv_parser } from 'https://cdn.jsdelivr.net/npm/bible-passage-reference-parser@3/esm/bcv_parser.js';
-import * as enLang from 'https://cdn.jsdelivr.net/npm/bible-passage-reference-parser@3/esm/lang/en.js';
+import * as enLang from 'https://cdn.jsdelivr.net/npm/bible-passage-reference-parser@3/esm/lang/en.js'; 
+*/
+
+// Note: Bible API fetching has been temporarily scrapped.
+// We are now only pulling data from podcast.json and using DuckDuckGo !bg bang for passage links.
 
 const epDate = document.getElementById('epDate');
 const epTitle = document.getElementById('epTitle');
 const epPassage = document.getElementById('epPassage');
 const epSeries = document.getElementById('epSeries');
-const epPassageLink = document.getElementById('episode-backup-link'); 
+const epPassageLink = document.getElementById('episode-backup-link');
 const epFullPassage = document.getElementById('epFullPassage');
-
-// Updated Cloudflare Worker proxy URL (only for Bible passage fetch)
-const workerProxy = 'https://bible-proxy.wslider2000.workers.dev/?url=';
-
-const bibleID = '7142879509583d59-04'; // WEBBE
 
 function getSaturdayOfCurrentWeek() {
     const today = new Date();
@@ -25,7 +23,7 @@ function getSaturdayOfCurrentWeek() {
 
     const yearSat = saturday.getFullYear();
     const monthSat = saturday.toLocaleString('default', { month: 'long' });
-    const daySat = String(saturday.getDate()).padStart(2, '0'); // "07"
+    const daySat = String(saturday.getDate()).padStart(2, '0');
 
     return `${yearSat} ${monthSat} ${daySat}`;
 }
@@ -33,17 +31,18 @@ function getSaturdayOfCurrentWeek() {
 export async function displayThisWeek() {
     try {
         // Loading state
-        epDate.textContent = 'Loading episode...';
+        epDate.textContent = '';
         epTitle.textContent = '';
         epPassage.textContent = '';
         epSeries.textContent = '';
-        //epFullPassage.textContent = '';
+        epFullPassage.textContent = '';
 
-        // Fetch podcast JSON (direct - no proxy needed)
+        // Fetch podcast JSON
         const response = await fetch('data/podcast.json');
         if (!response.ok) {
-            throw new Error(`click to view passage`); 
+            throw new Error('Failed to load podcast data');
         }
+
         const data = await response.json();
 
         const targetDate = getSaturdayOfCurrentWeek();
@@ -54,52 +53,32 @@ export async function displayThisWeek() {
             return;
         }
 
-        // Display episode metadata with clean labels
+        // Display basic episode info
         epDate.textContent = episode.date;
         epTitle.textContent = episode.title;
-        epPassage.textContent = episode.passage ? `Passage: ${episode.passage}` : 'No passage listed';
-        epPassageLink.href = `https://duckduckgo.com/?q=${episode.passage}&ia=web` || `https://www.biblegateway.com/`;
         epSeries.textContent = episode.series ? `Series: ${episode.series}` : 'Standalone';
 
-        // Fetch full passage text via the new Worker proxy
+        // Handle passage display and DuckDuckGo !bg link
         if (episode.passage) {
-            // Parse reference to OSIS format (e.g. "Gen.8.1-Gen.8.22")
-            const parser = new bcv_parser(enLang);
-            const parsed = parser.parse(episode.passage);
-            let osis = parsed.osis();
+            epPassage.textContent = `Passage: ${episode.passage}`;
 
-            // Uppercase book codes for API.Bible (GEN, PSA, etc.)
-            osis = osis.replace(/([A-Za-z]+)\./g, (m, book) => book.toUpperCase() + '.');
-
-            // Build API.Bible passage URL
-            const baseUrl = `https://rest.api.bible/v1/bibles/${bibleID}/passages/${osis}?` +
-                'content-type=text' +
-                '&include-notes=false' +
-                '&include-titles=true' +
-                '&include-chapter-numbers=false' +
-                '&include-verse-numbers=true' +
-                '&include-verse-spans=false' +
-                '&use-org-id=false';
-
-            // Call the new Worker proxy
-            const proxyUrl = workerProxy + encodeURIComponent(baseUrl);
-
-            const passageRes = await fetch(proxyUrl);
-
-            if (!passageRes.ok) {
-                console.error(`Passage fetch failed: ${passageRes.status} ${passageRes.statusText}`);
-            }
-
-            const passageData = await passageRes.json();
-            const text = passageData.data?.content?.trim() || '(click passage to view)';
-
-            epFullPassage.textContent = text;
+            // Create DuckDuckGo !bg bang link (goes directly to Bible Gateway)
+            const searchQuery = encodeURIComponent(episode.passage);
+            epPassageLink.href = `https://duckduckgo.com/?q=!bg+${searchQuery}`;
+            epPassageLink.target = "_blank";
+            epPassageLink.rel = "noopener";
+            epPassageLink.style.display = "inline";
+            
+            // Optional: Make link text more user-friendly
+            epPassageLink.textContent = `Read ${episode.passage}`;
         } else {
+            epPassage.textContent = 'No passage listed';
+            epPassageLink.href = "#";
+            epPassageLink.style.display = "none";
             epFullPassage.textContent = '(No passage reference provided)';
         }
 
     } catch (error) {
         console.error('Error in displayThisWeek:', error);
-       console.error( `Could not load passage: ${error.message}`);
     }
-} 
+}

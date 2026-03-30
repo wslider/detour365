@@ -68,7 +68,7 @@ export async function displayLatestEpisode() {
       : "Date unavailable";
 
     container.innerHTML = `
-      <h2>Latest Episode</h2>
+      <h2>Latest Episode On Spotify</h2>
       <h3>
         <a href="${data.link}" target="_blank" rel="noopener noreferrer" 
            style="color: white; text-decoration: underline; cursor: pointer;">

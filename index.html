@@ -63,30 +63,26 @@
             <blockquote class="quote"><i>Trust in the Lord with all your heart and lean not on your own understanding;
         in all your ways submit to him, and he will make your paths straight - Proverbs 3:5-6 NIV</i></blockquote>
         </div>
-        <section class="thisWeekContent container" id="thisWeekContent">
-            <h2>This Week on Detour 365 ... </h2>
-                <h3 id="epDate"></h3>
-                <h3 id="epTitle"></h3>
-                <a href="https://www.biblegateway.com/" id="passage-backup-link" target="_blank"><h3 id="epPassage"></h3></a>
-                <h3 id="epSeries"></h3>
-                <blockquote class="fullPassage quoteContainer" id="epFullPassage"></blockquote>
-        </section>
-
-        <section class="container iframe-container" id="latest-episode-youtube">
+        
+        <div class="container iframe-container" id="player-container">
             <h2>Lastest Episode on YouTube</h2>
-            <iframe class="iframe" src="https://www.youtube.com/embed/bjblCJsMDXo?si=ME7e-hU6Y3tfewBJ" 
-            title="YouTube video player" frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </section>
+
+            <!-- Use YouTube iframe API to input id for latest video  -->
+            
+            <iframe class="iframe" id="player"
+                src="https://www.youtube.com/embed/bjblCJsMDXo?si=ME7e-hU6Y3tfewBJ" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
 
         <section class="container latestEpisodes" id="latestEpisodes">
             
         </section>
 
-        <!-- Add embedded YouTube Video -->
-
-        <div class="container verseContainer">
+        <section class="container">
         <h2>Verse of the Day</h2>
 
         <div class="verseImageContainer">
@@ -110,9 +106,22 @@
                 </div>
             </div>
         </div>
-        </div>
-            
+        </section>
+
+
+        <section class="thisWeekContent container" id="thisWeekContent">
+            <h2>This Week on Detour 365 ... </h2>
+                <h3 id="epDate"></h3>
+                <h3 id="epTitle"></h3>
+                <a href="" id="passage-backup-link" target="_blank"><h3 id="epPassage"></h3></a>
+                <h3 id="epSeries"></h3>
+                <blockquote class="fullPassage quoteContainer" id="epFullPassage"></blockquote>
+        </section>
+        
+    <div>
+        <h2>Follow Us & Take The Detour</h2>       
     <ul class="socialLinks" role="list">
+
         <li>
             <a href="https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd?si=082221aceb0c4fb6" aria-label="Detour 365 on Spotify" title="Spotify Podcast">
                 <img class="social-icon" src="images/Spotify_Primary_Logo_RGB_White.png" alt="Spotify Icon">
@@ -133,6 +142,7 @@
             </a>
         </li>
     </ul>
+    </div>
 
 
 
@@ -141,5 +151,6 @@
     <footer class="footer" id="footer">
     </footer>
     <script type="module" src="js/script.js"></script>
+    <script src="js/youtube.js"></script>
 </body>
 </html>

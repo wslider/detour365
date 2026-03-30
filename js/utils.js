@@ -16,29 +16,41 @@ export function updateCustomCss () {
 
 export function navBarLinks() {
   const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('myLinks');
+  const navLinks = document.getElementById('myLinks');
 
   if (!hamburger || !navLinks) return;
 
   function toggleMenu() {
     const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-    
-    hamburger.setAttribute('aria-expanded', !isOpen);
-    hamburger.classList.toggle('active');       // ← toggles X icon
-    navLinks.classList.toggle('active');
+    const newState = !isOpen;
+
+    hamburger.setAttribute('aria-expanded', newState);
+    hamburger.classList.toggle('active', newState);
+    navLinks.classList.toggle('active', newState);
   }
 
   function closeMenu() {
     hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.classList.remove('active');       // ← X goes back to hamburger
+    hamburger.classList.remove('active');
     navLinks.classList.remove('active');
   }
 
-  hamburger.addEventListener('pointerdown', toggleMenu);
+  // Use 'click' instead of 'pointerdown' for better reliability
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();        // Prevent the event from bubbling to the document handler
+    toggleMenu();
+  });
 
-  // Close on outside click
-  document.addEventListener('pointerdown', (e) => {
+  // Close menu when clicking/tapping outside
+  document.addEventListener('click', (e) => {
     if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // Optional: Close menu when pressing ESC key for accessibility
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
       closeMenu();
     }
   });
