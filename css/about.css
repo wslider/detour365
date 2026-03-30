@@ -1,0 +1,207 @@
+     :root {
+      scroll-behavior: smooth;
+      --sprucePine: #003a00; 
+      --kentuckyNight: #000d08;
+      --mountainFog: #f0fff8; 
+      --stormCloud: #333849;
+      --campfireSmoke: #2f2e2eb3;
+      --smokeyMountainMist: #b0c4de;
+      --blueRidgeParkway: #002167;
+      --starLight: #e1ceff; 
+      --midnightBlue: #001f3f;
+      --transparentMidnight: #001f3f80;
+      --marianaTrench: #00111f;
+        --spacing-sm: 0.5rem;
+        --spacing-md: 1rem;
+        --spacing-lg: 2rem;
+    }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blueRidgeParkway)
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    margin-top: 10px;
+}
+
+
+.timeline-container {
+    margin-top: 20px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.line {
+    position: absolute;
+    left: 50%;
+    height: 1600px;
+    width: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    transform: translateX(-50%);
+    background-color: var(--mountainFog);
+}
+
+.line a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    color: rgb(55, 131, 65);
+    background-color: var(--mountainFog);
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card {
+    font-size: 1rem;
+    width: 200px;
+    height: fit-content;
+    border-radius: 10px;
+    background-color: var(--marianaTrench);
+    margin-bottom: 10px;
+}
+
+.card > a {
+text-decoration: none;
+font-style: italic;
+font-weight: 600;
+font-size: 1.1rem; 
+cursor: pointer;
+color: var(--mountainFog);
+text-align: center;
+}
+
+.left {
+    position: relative;
+    left: -150px;
+}
+
+.right {
+    position: relative;
+    left: 150px;
+}
+
+.left::after,
+.right::after {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: var(--midnightBlue);
+    border-radius: 0px 10px;
+    transform: rotate(-45deg);
+    z-index: -1;
+}
+
+.left::after {
+    top: 5px;
+    right: -10px;
+}
+
+.right::after {
+    top: 5px;
+    left: -10px;
+}
+
+.card h1 {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    background-color: var(--midnightBlue);
+}
+
+.card p {
+    padding: 10px;
+}
+
+.thumbnail {
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+}
+
+.left .thumbnail {
+    left: 113%;
+}
+
+.right .thumbnail {
+    right: 225px;
+}
+
+@media screen and (max-width:790px) {
+    body {
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .main-container {
+        width: auto;
+    }
+
+    .line {
+        height: 1550px;
+    }
+
+    .card {
+        top: 70px;
+        margin-bottom: 100px;
+    }
+
+    .left::after,
+    .right::after {
+        visibility: hidden;
+    }
+
+    .left {
+        left: auto;
+    }
+
+    .right {
+        left: auto;
+    }
+
+    .left .thumbnail {
+        top: -70px;
+        left: 75px;
+    }
+
+    .right .thumbnail {
+        top: -70px;
+        left: 75px;
+    }
+}
