@@ -1,3 +1,9 @@
+// DOM Elements
+
+const searchInput = document.getElementById('searchInput')
+const searchButton = document.getElementById('searchButton')
+const searchOutput = document.getElementById('searchOutput')
+
 
 // search with submit event listener 
 
