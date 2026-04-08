@@ -35,7 +35,6 @@ body {
     text-align: center;
     box-sizing: border-box;
     width: 100%;
-    margin-bottom: 15px;
     text-align: center;
     text-shadow: 3px 3px 5px #000000a1;
     color: var(--mountainFog); 
@@ -353,11 +352,13 @@ h1, h2, h3 {
 
 .container.iframe-container {
     min-height: fit-content; 
+    padding: 5vh 5vw; 
     }
 
 .iframe {
     width: 100%; 
-    height: 56.25%; 
+    height: 66.25%; 
+    box-sizing: border-box;
 }
 
 @media only screen and (min-width: 600px) {

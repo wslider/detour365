@@ -24,9 +24,7 @@
 }
 
 .header {
-    font-size: 2rem;
-    text-align: center;
-    margin: 15px;
     color: var(--mountainFog);
     text-shadow: 3px 3px 5px #000000a1;
+    background-color: var(--transparentMidnight);
 }
