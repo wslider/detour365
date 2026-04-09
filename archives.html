@@ -36,15 +36,14 @@
         
         <section class="container">
             <h2>Search The Archives</h2>
-            <form class="searchForm" id="searchArchives">
-                    <input class="textInput" id="searchInput" name="searchArchivesInput" type="text" placeholder='type a search term like "Genesis"'>
-                    <button class="button" id="searchButton" type="submit">Search</button>
-            </form>
+            <div class="searchForm">
+                <input type="text" id="searchInput" placeholder="Search videos...">
+                <button id="searchButton">Search</button>
+            </div>
+            <div id="searchOutput"></div>
         </section>
 
-        <section class="container searchOutput" id="searchOutput">
-            <p>Welcome to the Detour 365 episode archives. Dive into our journey of faith, adventure, and inspiration as we explore the Bible together.</p>
-        </section>
+        
 
         <!-- Timeline starting with Present and going backwards as you scroll down -->
         <!-- Cards for important events with images (altered) -->
@@ -53,5 +52,6 @@
 
     </main>
 <script type="module" src="js/script.js"></script>
+<script src="js/archives.js"></script>
 </body>
 </html>
