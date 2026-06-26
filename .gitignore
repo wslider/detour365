@@ -1,5 +1,7 @@
 notes.md
 .env 
+.venv
+.venv/
 
 # wrangler files
 .wrangler

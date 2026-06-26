@@ -6,7 +6,7 @@ const searchOutput = document.getElementById('searchOutput');
 const ytChannelId = 'UCgfVr2t5RBmkkuaWeKbWEvQ';
 
 async function searchYouTube(query) {
-    if (!query) {
+    if (!query || query.trim() === '') {
         searchOutput.innerHTML = '<p>Please enter a search term.</p>';
         return;
     }
@@ -14,63 +14,73 @@ async function searchYouTube(query) {
     const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${ytChannelId}`;
     const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
-    searchOutput.innerHTML = '<p>Searching...</p>'; // feedback
+    searchOutput.innerHTML = `<p>Searching for "${query}"...</p>`;
 
     try {
         const response = await fetch(proxyUrl);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
         const data = await response.json();
 
         if (!data.items || data.items.length === 0) {
-            throw new Error('No videos found in the channel feed');
+            throw new Error('No videos found');
         }
 
-        // Search in both title and description (case-insensitive)
+        // === TEMPORARY DEBUG - REMOVE LATER ===
+        console.log("=== First item structure ===");
+        console.log("media object:", JSON.stringify(data.items[0]?.media, null, 2));
+        console.log("Has media.description?", !!data.items[0]?.media?.description);
+
+        // Improved search
+        const searchLower = query.toLowerCase().trim();
+
         const results = data.items.filter(item => {
-            const searchLower = query.toLowerCase();
-            return (
-                (item.title && item.title.toLowerCase().includes(searchLower)) ||
-                (item.description && item.description.toLowerCase().includes(searchLower))
-            );
+            const title = (item.title || '').toLowerCase();
+
+            let desc = '';
+            if (item.media?.description) {
+                desc = String(item.media.description).toLowerCase();
+            } else if (item['media:description']) {
+                desc = String(item['media:description']).toLowerCase();
+            } else if (item.description) {
+                desc = String(item.description).toLowerCase();
+            }
+
+            return title.includes(searchLower) || desc.includes(searchLower);
         });
 
-        // Clear previous results
         searchOutput.innerHTML = '';
 
         if (results.length === 0) {
-            searchOutput.innerHTML = `<p>No videos found for "${query}".</p>`;
+            searchOutput.innerHTML = `<p>No matches found for "${query}".<br>Try: genesis, joseph, resurrection, palm, timestamps</p>`;
             return;
         }
 
         results.forEach(item => {
-            const videoUrl = item.link; // rss2json gives full watch URL
-            const videoId = videoUrl.split('v=')[1]?.split('&')[0] || videoUrl.split('/').pop();
+            let videoId = '';
+            if (item.link) {
+                videoId = item.link.split('v=')[1]?.split('&')[0] || item.link.split('/').pop();
+            } else if (item.yt?.videoId || item['yt:videoId']) {
+                videoId = item.yt?.videoId || item['yt:videoId'];
+            }
 
             if (!videoId) return;
 
-            // Create a container div for better styling
             const videoDiv = document.createElement('div');
             videoDiv.className = 'video-result';
-            videoDiv.style.marginBottom = '20px';
-
-            const iframe = document.createElement('iframe');
-            iframe.width = "560";
-            iframe.height = "315";
-            iframe.src = `https://www.youtube.com/embed/${videoId}`;
-            iframe.title = item.title || "YouTube video";
-            iframe.frameBorder = "0";
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-            iframe.allowFullscreen = true;
+            videoDiv.style.marginBottom = '30px';
 
             const titleEl = document.createElement('h3');
             titleEl.textContent = item.title || 'Untitled';
 
-            videoDiv.appendChild(titleEl);
-            videoDiv.appendChild(iframe);
+            const iframe = document.createElement('iframe');
+            iframe.width = "100%";
+            iframe.height = "315";
+            iframe.src = `https://www.youtube.com/embed/${videoId}`;
+            iframe.allowFullscreen = true;
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+            videoDiv.append(titleEl, iframe);
             searchOutput.appendChild(videoDiv);
         });
 
