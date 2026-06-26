@@ -339,6 +339,12 @@ h1, h2, h3 {
       }
 
 
+      .seal {
+        height: clamp(50px, 50%, 200px);
+        width: clamp(50px, 50%, 200px);
+        border-radius: 50%;
+        }
+
 .footer {
     text-align: center;
     font-style: italic;

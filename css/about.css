@@ -164,6 +164,13 @@ text-align: center;
     right: 225px;
 }
 
+        .seal {
+        height: clamp(50px, 50%, 200px);
+        width: clamp(50px, 50%, 200px);
+        border-radius: 50%;
+        z-index: 0;
+        }
+
 @media screen and (max-width:790px) {
     body {
         text-align: center;
@@ -174,7 +181,7 @@ text-align: center;
     }
 
     .line {
-        height: 400%;
+        height: 3000px;
     }
 
     .card {
