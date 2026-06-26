@@ -2,6 +2,7 @@ notes.md
 .env 
 .venv
 .venv/
+.vscode/
 
 # wrangler files
 .wrangler
