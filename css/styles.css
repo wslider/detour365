@@ -45,6 +45,14 @@ h1, h2, h3 {
     color: var(--mountainFog); 
 }
 
+h2 {
+    font-size: 1.8rem; 
+}
+
+h3 {
+    font-size: 1.4rem
+}
+
 
 
 
@@ -156,6 +164,10 @@ h1, h2, h3 {
     background-color: var(--transparentMidnight);
     box-shadow: 5px 5px 15px #000000a1;
     border-radius: 8px;
+}
+
+.thisWeekContent.container {
+    background-color: var(--midnightBlue);
 }
 
 .latestEpisodes {
