@@ -10,6 +10,7 @@ import * as enLang from 'https://cdn.jsdelivr.net/npm/bible-passage-reference-pa
 const epDate = document.getElementById('epDate');
 const epTitle = document.getElementById('epTitle');
 const epPassage = document.getElementById('epPassage');
+const epPassageTitle = document.getElementById('epPassageTitle');
 const epSeries = document.getElementById('epSeries');
 const epPassageLink = document.getElementById('passage-backup-link');
 const epFullPassage = document.getElementById('epFullPassage');
@@ -33,6 +34,7 @@ export async function displayThisWeek() {
         // Loading state
         epDate.textContent = '';
         epTitle.textContent = '';
+        epPassageTitle.textContent ='';
         epPassage.textContent = '';
         epSeries.textContent = '';
         epFullPassage.textContent = '';
@@ -71,10 +73,12 @@ export async function displayThisWeek() {
             
             // Optional: Make link text more user-friendly
             epPassageLink.textContent = `Read ${episode.passage}`;
+            epPassageTitle.textContent = `${episode.passage}`;
         } else {
             epPassage.textContent = 'No passage listed';
             epPassageLink.href = "#";
             epPassageLink.style.display = "none";
+            epPassageTitle.textContent = 'No passage listed'; 
             epFullPassage.textContent = '(No passage reference provided)';
         }
 
