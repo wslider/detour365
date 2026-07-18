@@ -3,10 +3,12 @@ import { navBarLinks } from "./utils.js";
 import { updateFooter } from "./utils.js";
 import { displayLatestEpisode } from "./latestEpisode.js";
 import { displayVerseOfTheDay } from "./daily.js";
-import { displayThisWeek } from "./thisWeek.js";    
+import { displayThisWeek } from "./thisWeek.js";  
+import { generateShareableVerseImage } from "./daily.js";  
 
 
 document.getElementById('topNavBar').addEventListener('click', navBarLinks);
+document.getElementById('shareVerseImageBtn').addEventListener('click', generateShareableVerseImage);
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -27,3 +29,5 @@ if (document.readyState === 'loading') {
     updateFooter();
     setInterval(updateFooter, 24 * 60 * 60 * 1000); // Update every day
 };  
+
+

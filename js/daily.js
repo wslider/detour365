@@ -39,3 +39,63 @@ export async function displayVerseOfTheDay() {
 
 }
 
+
+export async function generateShareableVerseImage() {
+    // Get the current verse from the page
+    const currentVerseText = document.getElementById('verseText').innerText.trim();
+    const currentReference = document.getElementById('verseReference').innerText.trim();
+
+    if (!currentVerseText || currentVerseText.includes("Loading")) {
+        alert("Verse is still loading. Please try again in a moment.");
+        return;
+    }
+
+    // Populate the hidden share card
+    document.getElementById('share-verse-text').innerText = currentVerseText;
+    document.getElementById('share-verse-reference').innerText = currentReference;
+
+    const card = document.getElementById('verse-share-card');
+    card.style.display = 'block';
+
+    try {
+        // Generate high-quality image
+        const canvas = await html2canvas(card, {
+            scale: 2,                    // Higher quality
+            logging: false,
+            backgroundColor: null
+        });
+
+        // Hide the card again
+        card.style.display = 'none';
+
+        // === DOWNLOAD ===
+        const link = document.createElement('a');
+        const date = new Date().toISOString().split('T')[0];
+        link.download = `detour365-verse-${date}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        // === SHARE (especially good on mobile) ===
+        if (navigator.canShare && navigator.canShare({ files: [] })) {
+            canvas.toBlob(async (blob) => {
+                const file = new File([blob], `detour365-verse-${date}.png`, { type: 'image/png' });
+
+                try {
+                    await navigator.share({
+                        files: [file],
+                        title: "Verse of the Day",
+                        text: `${currentVerseText}\n\n${currentReference}\n\n#detour365 #verseoftheday`
+                    });
+                } catch (err) {
+                    console.log("Share was cancelled or failed.");
+                }
+            });
+        }
+
+    } catch (error) {
+        console.error("Error generating image:", error);
+        alert("Sorry, there was a problem creating the image.");
+        card.style.display = 'none';
+    }
+}
+

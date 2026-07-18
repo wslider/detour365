@@ -33,8 +33,11 @@
     <link rel="stylesheet" href="css/styles.css"> 
     <link rel="stylesheet" id="customCssStyle" href="css/evening.css">
     
-   
+   <!-- html2canvas for shareable verse images -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 </head>
+
 <body class="body">
 
 
@@ -107,6 +110,53 @@
             </div>
         </div>
         </section>
+
+
+                    <!-- Share Button -->
+            <div style="text-align: center; margin: 1rem 0;">
+                <button onclick="generateShareableVerseImage()" id="shareVerseImageBtn"
+                        style="padding: 14px 28px; 
+                            background-color: #2c3e50; 
+                            color: white; 
+                            border: none; 
+                            border-radius: 8px; 
+                            font-size: 1.1rem; 
+                            cursor: pointer;
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                    📸 Share Verse as Image
+                </button>
+            </div>
+
+            <!-- Hidden High-Quality Share Card (for generating the image) -->
+            <div id="verse-share-card" style="display: none; width: 1080px; height: 1080px; position: relative; 
+                background-image: url('https://wslider.github.io/detour365/images/tartoosh-sunset-trail.jpeg'); 
+                background-size: cover; background-position: center; font-family: Georgia, serif; overflow: hidden;">
+                
+                <!-- Dark overlay for readability -->
+                <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.42);"></div>
+
+                <!-- Verse Content -->
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                            text-align: center; padding: 60px; width: 88%; max-width: 920px;">
+                    
+                    <p id="share-verse-text" 
+                    style="font-size: 46px; line-height: 1.35; margin: 0 0 50px 0; 
+                            color: #f0fff8; text-shadow: 0 0 12px rgba(0,0,0,0.85);">
+                    </p>
+                    
+                    <p id="share-verse-reference" 
+                    style="font-size: 32px; font-style: italic; margin: 0; 
+                            color: #e1ceff; text-shadow: 0 0 10px rgba(0,0,0,0.8);">
+                    </p>
+                </div>
+
+                <!-- Branding -->
+                <div style="position: absolute; bottom: 55px; left: 0; right: 0; text-align: center;">
+                    <p style="margin: 0; font-size: 26px; color: #f0fff8; text-shadow: 0 0 8px rgba(0,0,0,0.7);">
+                        Detour 365
+                    </p>
+                </div>
+            </div>
 
 
         <section class="thisWeekContent container" id="thisWeekContent">
