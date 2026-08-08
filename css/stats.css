@@ -1,0 +1,110 @@
+     :root {
+      scroll-behavior: smooth;
+      --sprucePine: #003a00; 
+      --kentuckyNight: #000d08;
+      --mountainFog: #f0fff8; 
+      --stormCloud: #333849;
+      --campfireSmoke: #2f2e2eb3;
+      --smokeyMountainMist: #b0c4de;
+      --blueRidgeParkway: #002167;
+      --starLight: #e1ceff; 
+      --midnightBlue: #001f3f;
+      --transparentMidnight: #001f3f80;
+      --marianaTrench: #00111f;
+        --spacing-sm: 0.5rem;
+        --spacing-md: 1rem;
+        --spacing-lg: 2rem;
+    }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--blueRidgeParkway)
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vh 0;
+    row-gap: 20px;
+    box-sizing: border-box;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+    
+         .figure-group-div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        }
+
+        .figure {
+        width: auto;  
+        padding: 2vh 1vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        }
+
+            .figure-image {
+            width: 100%; 
+            padding: 5% 5%; 
+            }
+
+
+        .seal {
+        height: clamp(50px, 50%, 200px);
+        width: clamp(50px, 50%, 200px);
+        border-radius: 50%;
+        z-index: 0;
+        }
+
+@media screen and (max-width:790px) {
+    body {
+        text-align: center;
+    }
+
+    .main-container {
+        width: auto;
+    }
+
+         .figure-group-div {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        }
+
+        .figure {
+        width: 100vw; 
+        max-width: 100vw;
+        padding: 5vh 5vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        }
+
+            .figure-image {
+            width: 100%; 
+            padding: 5% 5%; 
+            }
+
+    
+}
