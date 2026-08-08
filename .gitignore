@@ -1,19 +1,60 @@
+# === Project specific ===
 notes.md
-venv/
-.env 
-.venv
-.venv/
-.vscode/
+notebooks/
+*.db
+.db*
 
-# wrangler files
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# === IDE / Editor ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === OS generated ===
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# === Cloudflare Wrangler ===
 .wrangler
 .dev.vars*
 !.dev.vars.example
-!.env.example
 
-# notebooks
-notebooks/ 
-
-# databases
-*.db
-.db*
+# === Jupyter / notebooks ===
+.ipynb_checkpoints/

@@ -1,0 +1,49 @@
+name: Update Bible Study Stats
+
+on:
+  # Run every Saturday at 12:00 UTC (you can change this)
+  schedule:
+    - cron: '0 12 * * 6'
+
+  # Also allow running it manually from the Actions tab
+  workflow_dispatch:
+
+  # Optional: also run when you push changes to the python/ folder
+  # push:
+  #   paths:
+  #     - 'python/**'
+  #     - 'data/**'
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get a copy of your repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'   # or '3.11' / '3.13' – match what you use
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. Run your script
+      - name: Generate charts
+        run: python python/stats.py
+        # ↑ change "your_script_name.py" to the real filename
+
+      # 5. Commit the new plots back to the repo (if they changed)
+      - name: Commit and push updated plots
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add plots/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update Bible study charts" && git push)
