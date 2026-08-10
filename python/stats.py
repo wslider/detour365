@@ -70,6 +70,32 @@ class BibleStudyStats:
             how="left",
         )
 
+    def _total_episodes(self):
+        df = self.enriched_df.reset_index(drop=True).copy()
+        df["episode_count"] = df.index + 1
+
+        plt.figure(figsize=(9, 7))
+        plt.plot(df["date"], df["episode_count"])
+        plt.tight_layout()
+
+        plt.title("Total Episodes", fontsize=18, pad=16)
+        plt.xlabel("Date (Year-Month)", fontsize=14)
+        plt.ylabel("Episode Count", fontsize=14)
+
+        ax = plt.gca()
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+
+        # Save
+        filename = "episode_count.png"
+        full_path = self.plots_dir / filename
+        if full_path.exists():
+            print(f"{full_path} already exists and will be overwritten.")
+        plt.savefig(full_path, dpi=300, bbox_inches="tight")
+        plt.show()
+        
+
+
     def _plot_horizontal_bar(
         self,
         series: pd.Series,
@@ -121,6 +147,9 @@ class BibleStudyStats:
         self._extract_books()
         self._merge_categories()
 
+        # Line Chart of Total Episodes 
+        self._total_episodes()  
+
         # Category chart
         self._plot_horizontal_bar(
             series=self.enriched_df["category"],
@@ -137,7 +166,7 @@ class BibleStudyStats:
             filename="book_counts.png",
         )
 
-
+        
 if __name__ == "__main__":
     stats = BibleStudyStats()
     stats.update_stats()
