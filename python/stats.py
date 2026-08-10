@@ -71,7 +71,12 @@ class BibleStudyStats:
         )
 
     def _total_episodes(self):
-        df = self.enriched_df.reset_index(drop=True).copy()
+        df = (
+        self.enriched_df
+        .sort_values("date")         
+        .reset_index(drop=True)
+        .copy()
+        )
         df["episode_count"] = df.index + 1
 
         plt.figure(figsize=(9, 7))
