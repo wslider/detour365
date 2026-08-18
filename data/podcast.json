@@ -785,73 +785,91 @@
     {
         "id": 88,
         "date": "2026 August 08",
-        "title": "#88: Acts 2 - Part 1",
-        "passage": "Acts 2",
+        "title": "#88: Pentecost",
+        "passage": "Acts 2:1-13",
         "series": "God Changes Everything",
         "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Acts%202%&version=NIV",
         "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
     },
     {
-        "id": 89,
-        "date": "2026 August 15",
-        "title": "#88: Acts 2 - Part 2",
-        "passage": "Acts 2",
-        "series": "God Changes Everything",
-        "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Acts%2013%3A30&version=NIV",
-        "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
-    },
-    {
-        "id": 90,
-        "date": "2026 August 22",
-        "title": "#90: God Changes Everything Hath Chosen the Foolish Things",
-        "passage": "1 Corinthians 1:27",
-        "series": "God Changes Everything",
-        "bible_gateway_link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%201%3A27&version=NIV",
-        "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
-    },
-    {
-        "id": 91,
-        "date": "2026 August 29",
-        "title": "#91: God Changes Everything Hath Revealed Them Unto Us",
-        "passage": "1 Corinthians 2:10",
-        "series": "God Changes Everything",
-        "bible_gateway_link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%202%3A10&version=NIV",
-        "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
-    },
-    {
-        "id": 92,
-        "date": "2026 September 05",
-        "title": "#92: God Changes Everything Gave the Increase",
-        "passage": "1 Corinthians 3:6-7",
-        "series": "God Changes Everything",
-        "bible_gateway_link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%203%3A6-7&version=NIV",
-        "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
-    },
-    {
-        "id": 93,
-        "date": "2026 September 12",
-        "title": "#93: God Changes Everything Is Faithful",
-        "passage": "1 Corinthians 10:13",
-        "series": "God Changes Everything",
-        "bible_gateway_link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%2010%3A13&version=NIV",
-        "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
-    },
-    {
-        "id": 94,
-        "date": "2026 September 19",
-        "title": "#94: God Changes Everything, Who Is Rich in Mercy",
-        "passage": "Ephesians 2:4",
-        "series": "God Changes Everything",
-        "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Ephesians%202%3A4&version=NIV",
-        "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
-    },
-    {
-        "id": 95,
-        "date": "2026 September 26",
-        "title": "#95: God Changes Everything Had Mercy on Him",
-        "passage": "Philippians 2:27",
-        "series": "God Changes Everything",
-        "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Philippians%202%3A27&version=NIV",
-        "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
-    }
+    "id": 89,
+    "date": "2026 August 15",
+    "title": "#89: Peter's Sermon - Part 1",
+    "passage": "Acts 2:14-41",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Acts%202%3A14-41&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+},
+{
+    "id": 90,
+    "date": "2026 August 22",
+    "title": "#90: Peter's Sermon - Part 2",
+    "passage": "Acts 2:14-41",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Acts%202%3A14-41&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+},
+{
+    "id": 91,
+    "date": "2026 August 29",
+    "title": "#91: Fellowship of the Believers",
+    "passage": "Acts 2:42-47",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Acts%202%3A42-47&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+},
+{
+    "id": 92,
+    "date": "2026 September 05",
+    "title": "#92: God Changes Everything Hath Chosen the Foolish Things",
+    "passage": "1 Corinthians 1:27",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%201%3A27&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+},
+{
+    "id": 93,
+    "date": "2026 September 12",
+    "title": "#93: God Changes Everything Hath Revealed Them Unto Us",
+    "passage": "1 Corinthians 2:10",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%202%3A10&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+},
+{
+    "id": 94,
+    "date": "2026 September 19",
+    "title": "#94: God Changes Everything Gave the Increase",
+    "passage": "1 Corinthians 3:6-7",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%203%3A6-7&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+},
+{
+    "id": 95,
+    "date": "2026 September 26",
+    "title": "#95: God Changes Everything Is Faithful",
+    "passage": "1 Corinthians 10:13",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=1%20Corinthians%2010%3A13&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+},
+{
+    "id": 96,
+    "date": "2026 October 03",
+    "title": "#96: God Changes Everything, Who Is Rich in Mercy",
+    "passage": "Ephesians 2:4",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Ephesians%202%3A4&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+},
+{
+    "id": 97,
+    "date": "2026 October 10",
+    "title": "#97: God Changes Everything Had Mercy on Him",
+    "passage": "Philippians 2:27",
+    "series": "God Changes Everything",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Philippians%202%3A27&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+}
 ]
