@@ -189,7 +189,6 @@ h3 {
 }
 
 .episodeImage {
-    width: clamp(200px, 100%, 400px);
     height: auto;
     border-radius: 8px;
     box-shadow: 3px 3px 10px #000000a1;
