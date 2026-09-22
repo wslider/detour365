@@ -22,7 +22,22 @@ jobs:
         env:
           D365_YOUTUBE_API_KEY: ${{ secrets.D365_YOUTUBE_API_KEY }}
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python deps
+        run: pip install requests pandas matplotlib seaborn python-dotenv
+
+      - name: Update channel stats and plots
+        run: python python/stats.py
+        env:
+          D365_YOUTUBE_API_KEY: ${{ secrets.D365_YOUTUBE_API_KEY }}
+
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update YouTube archive"
-          file_pattern: data/youtube.json
+          commit_message: "chore: update YouTube archive and stats"
+          file_pattern: |
+            data/youtube.json
+            data/d365_yt_stats.json
+            plots/*.png

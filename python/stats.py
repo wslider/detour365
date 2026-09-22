@@ -1,32 +1,42 @@
-import pandas as pd
+# python/stats/py
+
 import datetime as dt
+import os
 import re
-import matplotlib.pyplot as plt
-import seaborn as sns
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+from dotenv import load_dotenv
+
+from youtube_stats import YTstats
 
 
 class BibleStudyStats:
-    """Analyze Detour 365 podcast episodes and generate Bible book/category charts."""
+    """
+    - Analyze Detour 365 podcast episodes and generate Bible book/category charts.
+    - Engagement stats: fetch channel views from YouTube Data API.
+    """
 
     def __init__(
         self,
         podcast_path: str | Path = "../data/podcast.json",
         bible_path: str | Path = "../data/bible_books.csv",
+        yt_data_path: str | Path = "../data/d365_yt_stats.json",
         plots_dir: str | Path = "../plots",
     ):
-        # Resolve all paths relative to *this script file*
         script_dir = Path(__file__).resolve().parent
 
         self.podcast_path = (script_dir / podcast_path).resolve()
         self.bible_path = (script_dir / bible_path).resolve()
+        self.yt_data_path = (script_dir / yt_data_path).resolve()
         self.plots_dir = (script_dir / plots_dir).resolve()
-
-        # Create plots folder if it doesn't exist
         self.plots_dir.mkdir(parents=True, exist_ok=True)
 
         print(f"Podcast data : {self.podcast_path}")
         print(f"Bible data   : {self.bible_path}")
+        print(f"YouTube data : {self.yt_data_path}")
         print(f"Plots folder : {self.plots_dir}")
 
         if not self.podcast_path.exists():
@@ -38,13 +48,11 @@ class BibleStudyStats:
         self.bible_df = pd.read_csv(self.bible_path)
         self.podcast_df["date"] = pd.to_datetime(self.podcast_df["date"])
 
-        # Will be filled later
         self.current_saturday = None
         self.past_df = None
         self.enriched_df = None
 
     def _get_current_saturday(self) -> dt.datetime:
-        """Return the Saturday of the current week."""
         now = dt.datetime.now()
         days_to_saturday = 5 - now.weekday()
         self.current_saturday = now + dt.timedelta(days=days_to_saturday)
@@ -52,17 +60,18 @@ class BibleStudyStats:
         return self.current_saturday
 
     def _filter_past_and_current(self):
-        """Keep only episodes up to (and including) this week's Saturday."""
         self._get_current_saturday()
-        self.past_df = self.podcast_df[self.podcast_df["date"] <= self.current_saturday].copy()
+        self.past_df = self.podcast_df[
+            self.podcast_df["date"] <= self.current_saturday
+        ].copy()
 
     def _extract_books(self):
-        """Extract the Bible book name from the 'passage' column."""
-        pattern = "|".join([rf"\b{re.escape(book)}\b" for book in self.bible_df["book"]])
+        pattern = "|".join(
+            [rf"\b{re.escape(book)}\b" for book in self.bible_df["book"]]
+        )
         self.past_df["book"] = self.past_df["passage"].str.extract(f"({pattern})")
 
     def _merge_categories(self):
-        """Add category and testament information."""
         self.enriched_df = pd.merge(
             self.past_df[["id", "date", "title", "passage", "book"]],
             self.bible_df[["book", "category", "testament"]],
@@ -72,17 +81,15 @@ class BibleStudyStats:
 
     def _total_episodes(self):
         df = (
-        self.enriched_df
-        .sort_values("date")         
-        .reset_index(drop=True)
-        .copy()
+            self.enriched_df.sort_values("date")
+            .reset_index(drop=True)
+            .copy()
         )
         df["episode_count"] = df.index + 1
 
         plt.figure(figsize=(9, 7))
         plt.plot(df["date"], df["episode_count"])
         plt.tight_layout()
-
         plt.title("Total Episodes", fontsize=18, pad=16)
         plt.xlabel("Date (Year-Month)", fontsize=14)
         plt.ylabel("Episode Count", fontsize=14)
@@ -91,15 +98,20 @@ class BibleStudyStats:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
 
-        # Save
-        filename = "episode_count.png"
-        full_path = self.plots_dir / filename
-        if full_path.exists():
-            print(f"{full_path} already exists and will be overwritten.")
+        full_path = self.plots_dir / "episode_count.png"
         plt.savefig(full_path, dpi=300, bbox_inches="tight")
-        plt.show()
-        
+        plt.close()
 
+    def _youtube_stats(self):
+        load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+        api_key = os.getenv("D365_YOUTUBE_API_KEY")
+        if not api_key:
+            raise RuntimeError("Missing D365_YOUTUBE_API_KEY")
+
+        yt = YTstats(api_key, "UCgfVr2t5RBmkkuaWeKbWEvQ")
+        stats = yt.get_channel_statistics()
+        yt.dump(self.yt_data_path)
+        print("YouTube channel stats:", stats)
 
     def _plot_horizontal_bar(
         self,
@@ -109,7 +121,6 @@ class BibleStudyStats:
         filename: str | Path,
         top_n: int = 20,
     ):
-        """Reusable horizontal bar chart with value labels."""
         counts = series.value_counts().head(top_n).sort_values(ascending=False)
 
         plt.figure(figsize=(12, 9))
@@ -124,7 +135,6 @@ class BibleStudyStats:
         plt.xlabel("Number of Episodes", fontsize=14)
         plt.ylabel(ylabel, fontsize=14)
 
-        # Value labels
         for p in ax.patches:
             width = p.get_width()
             ax.text(
@@ -139,31 +149,23 @@ class BibleStudyStats:
         plt.grid(axis="x", alpha=0.3)
         plt.tight_layout()
 
-        # Save
         full_path = self.plots_dir / filename
-        if full_path.exists():
-            print(f"{full_path} already exists and will be overwritten.")
         plt.savefig(full_path, dpi=300, bbox_inches="tight")
-        plt.show()
+        plt.close()
 
     def update_stats(self):
-        """Main method – run the full pipeline."""
+        self._youtube_stats()
         self._filter_past_and_current()
         self._extract_books()
         self._merge_categories()
+        self._total_episodes()
 
-        # Line Chart of Total Episodes 
-        self._total_episodes()  
-
-        # Category chart
         self._plot_horizontal_bar(
             series=self.enriched_df["category"],
             title="Detour 365 Bible Study - Literary Types",
             ylabel="Literary Type",
             filename="category_counts.png",
         )
-
-        # Book chart
         self._plot_horizontal_bar(
             series=self.enriched_df["book"],
             title="Detour 365 Bible Study - Books",
@@ -171,7 +173,6 @@ class BibleStudyStats:
             filename="book_counts.png",
         )
 
-        
+
 if __name__ == "__main__":
-    stats = BibleStudyStats()
-    stats.update_stats()
+    BibleStudyStats().update_stats()
