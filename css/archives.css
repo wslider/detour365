@@ -1,15 +1,19 @@
-     :root {
-      --sprucePine: #003a00; 
-      --kentuckyNight: #000d08;
-      --mountainFog: #f0fff8; 
-      --stormCloud: #333849;
-      --campfireSmoke: #2f2e2eb3;
-      --smokeyMountainMist: #b0c4de;
-      --blueRidgeParkway: #002167;
-      --starLight: #e1ceff; 
-      --midnightBlue: #001f3f;
-      --transparentMidnight: #001f3f80;
-    }
+:root {
+    --sprucePine: #003a00; 
+    --kentuckyNight: #000d08;
+    --mountainFog: #f0fff8; 
+    --stormCloud: #333849;
+    --campfireSmoke: #2f2e2eb3;
+    --smokeyMountainMist: #b0c4de;
+    --blueRidgeParkway: #002167;
+    --starLight: #e1ceff; 
+    --midnightBlue: #001f3f;
+    --transparentMidnight: #001f3f80;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 .body {
     background-image: url('https://wslider.github.io/detour365/images/library.jpg');
@@ -23,10 +27,40 @@
     width: 100vw; 
     max-width: 100vw;
     box-sizing: border-box;
+    justify-content: flex-start;
 }
 
 
-.container , .header {
-    background-color: var(--campfireSmoke);
-}
+    .container , .header {
+        background-color: var(--campfireSmoke);
+    }
 
+        .searchForm {
+            display: flex; 
+            flex-direction: column;
+            font-size: 1.1rem;
+            gap: 1vh;
+        }
+
+            .searchInput {
+                font-size:1.1rem;
+            }
+
+            .searchButton {
+                font-size: 1.1rem; 
+            }
+
+@media only screen and (min-width: 600px) {
+
+    .searchContainer {
+        width: 50vw;
+    }
+
+        .searchForm {
+            display: flex; 
+            flex-direction: row;
+            min-width: 20vw;
+            font-size: 1.2rem;
+            gap: 2vw;
+        }
+}
