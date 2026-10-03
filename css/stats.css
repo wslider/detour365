@@ -67,6 +67,10 @@ header {
         text-align: center;
         }
 
+            .caption {
+            text-align: center;
+            }
+            
             .figure-image {
             width: 100%; 
             padding: 5% 5%; 
