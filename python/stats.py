@@ -158,7 +158,7 @@ class BibleStudyStats:
         )
         text = re.sub(r"[^A-Za-z\s]", " ", text).lower()
         stop = {w.lower() for w in STOPWORDS}
-        text = " ".join(w for w in text.split() if w not in stop and len(w) > 2)
+        text = " ".join(w for w in text.split() if w not in stop and len(w) > 2).upper()
 
         wc = WordCloud(width=1600, height=800, background_color="black").generate(text)
         plt.figure(figsize=(10, 5))
