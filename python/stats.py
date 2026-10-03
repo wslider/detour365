@@ -1,6 +1,5 @@
-# python/stats/py
-
 import datetime as dt
+import json
 import os
 import re
 from pathlib import Path
@@ -9,6 +8,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from dotenv import load_dotenv
+from wordcloud import STOPWORDS, WordCloud
 
 from youtube_stats import YTstats
 
@@ -22,6 +22,8 @@ class BibleStudyStats:
     def __init__(
         self,
         podcast_path: str | Path = "../data/podcast.json",
+        daily_path: str | Path = "../data/daily.json",
+        yt_videos_path: str | Path = "../data/youtube.json",
         bible_path: str | Path = "../data/bible_books.csv",
         yt_data_path: str | Path = "../data/d365_yt_stats.json",
         plots_dir: str | Path = "../plots",
@@ -29,20 +31,23 @@ class BibleStudyStats:
         script_dir = Path(__file__).resolve().parent
 
         self.podcast_path = (script_dir / podcast_path).resolve()
+        self.daily_path = (script_dir / daily_path).resolve()
+        self.yt_videos_path = (script_dir / yt_videos_path).resolve()
         self.bible_path = (script_dir / bible_path).resolve()
         self.yt_data_path = (script_dir / yt_data_path).resolve()
         self.plots_dir = (script_dir / plots_dir).resolve()
         self.plots_dir.mkdir(parents=True, exist_ok=True)
 
-        print(f"Podcast data : {self.podcast_path}")
-        print(f"Bible data   : {self.bible_path}")
-        print(f"YouTube data : {self.yt_data_path}")
-        print(f"Plots folder : {self.plots_dir}")
+        print(f"Podcast data   : {self.podcast_path}")
+        print(f"Daily verses   : {self.daily_path}")
+        print(f"YouTube videos : {self.yt_videos_path}")
+        print(f"Bible data     : {self.bible_path}")
+        print(f"YouTube stats  : {self.yt_data_path}")
+        print(f"Plots folder   : {self.plots_dir}")
 
-        if not self.podcast_path.exists():
-            raise FileNotFoundError(f"Podcast file not found: {self.podcast_path}")
-        if not self.bible_path.exists():
-            raise FileNotFoundError(f"Bible file not found: {self.bible_path}")
+        for path in (self.podcast_path, self.daily_path, self.yt_videos_path, self.bible_path):
+            if not path.exists():
+                raise FileNotFoundError(f"File not found: {path}")
 
         self.podcast_df = pd.read_json(self.podcast_path)
         self.bible_df = pd.read_csv(self.bible_path)
@@ -54,7 +59,7 @@ class BibleStudyStats:
 
     def _get_current_saturday(self) -> dt.datetime:
         now = dt.datetime.now()
-        days_to_saturday = 5 - now.weekday()
+        days_to_saturday = (5 - now.weekday()) % 7
         self.current_saturday = now + dt.timedelta(days=days_to_saturday)
         print(f"This Week's Saturday is {self.current_saturday}")
         return self.current_saturday
@@ -66,10 +71,11 @@ class BibleStudyStats:
         ].copy()
 
     def _extract_books(self):
-        pattern = "|".join(
-            [rf"\b{re.escape(book)}\b" for book in self.bible_df["book"]]
+        books = sorted(self.bible_df["book"].astype(str), key=len, reverse=True)
+        pattern = "|".join(rf"\b{re.escape(book)}\b" for book in books)
+        self.past_df["book"] = self.past_df["passage"].str.extract(
+            f"({pattern})", expand=False
         )
-        self.past_df["book"] = self.past_df["passage"].str.extract(f"({pattern})")
 
     def _merge_categories(self):
         self.enriched_df = pd.merge(
@@ -80,11 +86,7 @@ class BibleStudyStats:
         )
 
     def _total_episodes(self):
-        df = (
-            self.enriched_df.sort_values("date")
-            .reset_index(drop=True)
-            .copy()
-        )
+        df = self.enriched_df.sort_values("date").reset_index(drop=True).copy()
         df["episode_count"] = df.index + 1
 
         plt.figure(figsize=(9, 7))
@@ -98,8 +100,7 @@ class BibleStudyStats:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
 
-        full_path = self.plots_dir / "episode_count.png"
-        plt.savefig(full_path, dpi=300, bbox_inches="tight")
+        plt.savefig(self.plots_dir / "episode_count.png", dpi=300, bbox_inches="tight")
         plt.close()
 
     def _youtube_stats(self):
@@ -124,12 +125,7 @@ class BibleStudyStats:
         counts = series.value_counts().head(top_n).sort_values(ascending=False)
 
         plt.figure(figsize=(12, 9))
-        ax = sns.barplot(
-            y=counts.index,
-            x=counts.values,
-            palette="mako",
-            orient="h",
-        )
+        ax = sns.barplot(y=counts.index, x=counts.values, palette="mako", orient="h")
 
         plt.title(title, fontsize=18, pad=16)
         plt.xlabel("Number of Episodes", fontsize=14)
@@ -148,9 +144,27 @@ class BibleStudyStats:
 
         plt.grid(axis="x", alpha=0.3)
         plt.tight_layout()
+        plt.savefig(self.plots_dir / filename, dpi=300, bbox_inches="tight")
+        plt.close()
 
-        full_path = self.plots_dir / filename
-        plt.savefig(full_path, dpi=300, bbox_inches="tight")
+    def _plot_wordcloud(self):
+        daily = pd.read_json(self.daily_path)
+        raw = json.loads(self.yt_videos_path.read_text(encoding="utf-8"))
+        videos = pd.json_normalize(raw["videos"])
+        text = " ".join(
+            pd.concat([daily["text"], videos["description"]], ignore_index=True)
+            .dropna()
+            .astype(str)
+        )
+        text = re.sub(r"[^A-Za-z\s]", " ", text).lower()
+        stop = {w.lower() for w in STOPWORDS}
+        text = " ".join(w for w in text.split() if w not in stop and len(w) > 2)
+
+        wc = WordCloud(width=1600, height=800, background_color="black").generate(text)
+        plt.figure(figsize=(10, 5))
+        plt.imshow(wc, interpolation="bilinear")
+        plt.axis("off")
+        plt.savefig(self.plots_dir / "d365_wordcloud.png", dpi=300, bbox_inches="tight")
         plt.close()
 
     def update_stats(self):
@@ -159,7 +173,6 @@ class BibleStudyStats:
         self._extract_books()
         self._merge_categories()
         self._total_episodes()
-
         self._plot_horizontal_bar(
             series=self.enriched_df["category"],
             title="Detour 365 Bible Study - Literary Types",
@@ -172,6 +185,7 @@ class BibleStudyStats:
             ylabel="Book",
             filename="book_counts.png",
         )
+        self._plot_wordcloud()
 
 
 if __name__ == "__main__":
