@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prayer Requests</title>
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  <style>
+    body {
+      background-color: #00062f;
+      background-image: url('/images/rainier-night-sky.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #ffffffdf;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      font-size: 2rem;
+    }
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      background: rgba(0, 7, 49, 0.7);
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    h1, h2 { margin-top: 0; }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    input, textarea, button {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffffdf;
+      padding: 0.6rem 0.8rem;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 2rem;
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    button {
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      align-self: flex-start;
+    }
+    button:hover { background: rgba(255, 255, 255, 0.25); }
+    .error { color: #ff6b6b; }
+    .prayer {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.75rem 0;
+    }
+    .prayer small { color: rgba(255, 255, 255, 0.7); }
+    .timestamp { font-size: 1rem; }
+    .htmx-indicator { display: none; }
+    .htmx-request .htmx-indicator { display: inline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prayer Requests</h1>
+
+    <form hx-post="/api/prayers"
+          hx-target="#prayer-list"
+          hx-swap="innerHTML"
+          hx-indicator="#indicator">
+      <input type="password" name="passcode" id="passcode" placeholder="Passcode" required>
+      <input type="text" name="name" placeholder="Your name (optional)">
+      <textarea name="prayer" placeholder="Prayer request" required></textarea>
+      <input type="hidden" name="action" value="create">
+      <button type="submit">Submit</button>
+      <span id="indicator" class="htmx-indicator">Saving…</span>
+    </form>
+
+    <h2>Recent Requests</h2>
+    <div id="prayer-list"
+         hx-get="/api/prayers"
+         hx-trigger="load"
+         hx-vals="js:{passcode: document.querySelector('#passcode').value}">
+      <p>Enter the passcode and submit (or reload) to view requests.</p>
+    </div>
+  </div>
+
+  <script>
+    // Copy the current passcode into the hidden fields of answer/delete forms
+    document.body.addEventListener("htmx:configRequest", (evt) => {
+      const passcode = document.querySelector("#passcode").value;
+      if (evt.detail.parameters) {
+        evt.detail.parameters.passcode = passcode;
+      }
+    });
+  </script>
+</body>
+</html>
