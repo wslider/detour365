@@ -27,7 +27,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install Python deps
-        run: pip install requests pandas matplotlib seaborn python-dotenv
+        run: pip install -r requirements.txt
 
       - name: Update channel stats and plots
         run: python python/stats.py

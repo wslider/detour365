@@ -11,13 +11,15 @@ on:
 jobs:
   update-stats:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed so the final git push works
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
@@ -28,6 +30,8 @@ jobs:
 
       - name: Generate charts
         run: python python/stats.py
+        env:
+          D365_YOUTUBE_API_KEY: ${{ secrets.D365_YOUTUBE_API_KEY }}
 
       - name: Commit and push updated plots
         run: |
@@ -35,3 +39,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add plots/
           git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update Bible study charts" && git push)
+
+
+
+
