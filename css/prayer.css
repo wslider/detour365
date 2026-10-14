@@ -1,186 +1,237 @@
     :root {
-      --sprucePine: #003a00; 
-      --kentuckyNight: #000d08;
-      --mountainFog: #f0fff8; 
-      --stormCloud: #333849;
-      --campfireSmoke: #2f2e2eb3;
-      --smokeyMountainMist: #b0c4de;
-      --blueRidgeParkway: #002167;
-      --starLight: #e1ceff; 
-      --midnightBlue: #001f3f;
-      --transparentMidnight: #001f3f80;
-      --marianaTrench: #00111f;
-        --spacing-sm: 0.5rem;
-        --spacing-md: 1rem;
-        --spacing-lg: 2rem;
-    }
-   
-   
-   body {
-      background-color: #00062f;
-      background-image: url('/images/rainier-night-sky.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: #ffffffdf;
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-      font-size: 2rem;
-    }
-    .container {
-      max-width: 640px;
-      margin: 0 auto;
-      background: rgba(0, 7, 49, 0.7);
-      padding: 1.5rem;
-      border-radius: 8px;
-    }
-    h1, h2 { margin-top: 0; }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-    
-    input, textarea, button {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ffffffdf;
-      padding: 0.6rem 0.8rem;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 2rem;
-    }
-    input::placeholder, textarea::placeholder {
-      color: rgba(255, 255, 255, 0.5);
-    }
-    textarea { min-height: 100px; resize: vertical; }
-    .prayer.answered {
-    opacity: 0.7;
-    border-left: 4px solid #4ade80;
-    padding-left: 0.75rem;
-    }
-    .answer-note {
-    margin-top: 0.5rem;
-    font-size: 0.9em;
-    color: #bbf7d0;
-    }
-    .actions {
-    margin-top: 0.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    }
-    .actions form {
-    display: flex;
-    gap: 0.4rem;
-    align-items: center;
-    }
-    .actions input[type="text"] {
-    font-size: 1rem;
-    padding: 0.3rem 0.5rem;
-    }
-    button {
-      background: rgba(255, 255, 255, 0.15);
-      cursor: pointer;
-    }
-    .error { color: #ff6b6b; }
-    .prayer {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 0.75rem 0;
-    }
-    .prayer small { color: rgba(255, 255, 255, 0.7); }
-    .timestamp { font-size: 1rem; }
-    .htmx-indicator { display: none; }
-    .htmx-request .htmx-indicator { display: inline; }
+  --sprucePine: #003a00;
+  --kentuckyNight: #000d08;
+  --mountainFog: #f0fff8;
+  --stormCloud: #333849;
+  --campfireSmoke: #2f2e2eb3;
+  --smokeyMountainMist: #b0c4de;
+  --blueRidgeParkway: #002167;
+  --starLight: #e1ceff;
+  --midnightBlue: #001f3f;
+  --transparentMidnight: #001f3f80;
+  --marianaTrench: #00111f;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+}
 
-    /* Navigation menu base styles*/
-        .topnav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative; 
-            padding: 1rem 1.5rem;       
-            color: var(--mountainFog);
-            min-height: 5vh;
-            width: 100%; 
-        }
-    
-       
+body {
+  background-color: #00062f;
+  background-image: url('/images/rainier-night-sky.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #ffffffdf;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  font-size: 1.6rem;
+}
 
-        .hamburger {
-        display: block;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0.5rem;
-        z-index: 1000;
-        position: absolute;
-        right: 1.5rem;
-        top: 0.5rem;
-        }
+.container {
+  max-width: 720px;
+  margin: 2rem auto;
+  background: rgba(0, 7, 49, 0.75);
+  padding: 1.5rem 1.75rem;
+  border-radius: 10px;
+  backdrop-filter: blur(3px);
+}
 
-        
-        .hamburger span {
-        display: block;
-        width: 28px;
-        height: 3px;
-        background: white;
-        margin: 6px 0;
-        transition: all 0.3s ease;
-        }
+h1, h2 {
+  margin-top: 0;
+  text-align: center;
+}
 
-        /* Hamburger becomes X when menu is open */
-        .hamburger.active span:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 6px);   /* adjust translate values if needed */
-        }
+/* Main create form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
 
-        .hamburger.active span:nth-child(2) {
-          opacity: 0;   /* middle bar disappears */
-        }
+input, textarea, button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffffdf;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1.4rem;
+}
 
-        .hamburger.active span:nth-child(3) {
-          transform: rotate(-45deg) translate(7px, -6px);  /* adjust translate values if needed */
-        }
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
 
-        /* Optional: make transitions smoother on all spans */
-        .hamburger span {
-          display: block;
-          width: 30px;
-          height: 3px;
-          background: white;
-          margin: 6px 0;
-          transition: all 0.35s ease;   /* slightly longer for nicer feel */
-          transform-origin: center;
-        }
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
 
-        .navLinks {
-        display: none;               
-        flex-direction: column;
-        left: 0;
-        width: 100%;
-        padding: 1rem;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        max-height: fit-content;
-        }
+button {
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.15s ease;
+}
 
-        .navLinks a { 
-            color: white;
-            text-decoration: none;
-            padding: 1rem 0;
-            font-size: 2.5rem;
-            border-bottom: 1px solid var(--blueRidgeParkway)
-        }
+button:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
 
-        .nav-links a:hover, .nav-links a:focus {
-        background: var(--stormCloud);
-        }
+.error {
+  color: #ff6b6b;
+  font-weight: bold;
+}
 
-        .navLinks.active {
-            display: flex;
-            flex-direction: column;
-        }
+/* Prayer list items */
+.prayer {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 1rem 0;
+  margin-bottom: 0.25rem;
+}
 
+.prayer.answered {
+  opacity: 0.75;
+  border-left: 4px solid #4ade80;
+  padding-left: 0.9rem;
+  background: rgba(74, 222, 128, 0.07);
+  border-radius: 4px;
+}
 
+.prayer small {
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.timestamp {
+  font-size: 0.95rem;
+}
+
+.answer-note {
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(74, 222, 128, 0.12);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: #bbf7d0;
+}
+
+/* Action forms (edit / answer / delete) */
+.actions {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.actions form {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin: 0;
+  flex: 1 1 280px;
+}
+
+.actions input[type="text"] {
+  font-size: 1.1rem;
+  padding: 0.35rem 0.55rem;
+  flex: 1;
+  min-width: 120px;
+}
+
+.actions button {
+  font-size: 1.1rem;
+  padding: 0.35rem 0.75rem;
+  white-space: nowrap;
+}
+
+.htmx-indicator {
+  display: none;
+}
+
+.htmx-request .htmx-indicator {
+  display: inline;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Navigation */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 1rem 1.5rem;
+  color: var(--mountainFog);
+  min-height: 5vh;
+  width: 100%;
+}
+
+.hamburger {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
+  position: absolute;
+  right: 1.5rem;
+  top: 0.5rem;
+}
+
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: white;
+  margin: 6px 0;
+  transition: all 0.35s ease;
+  transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.navLinks {
+  display: none;
+  flex-direction: column;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: fit-content;
+}
+
+.navLinks a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem 0;
+  font-size: 2rem;
+  border-bottom: 1px solid var(--blueRidgeParkway);
+}
+
+.navLinks a:hover,
+.navLinks a:focus {
+  background: var(--stormCloud);
+}
+
+.navLinks.active {
+  display: flex;
+  flex-direction: column;
+}
