@@ -4,65 +4,24 @@
   <meta charset="UTF-8">
   <title>Prayer Requests</title>
   <script src="https://unpkg.com/htmx.org@2.0.4"></script>
-  <style>
-    body {
-      background-color: #00062f;
-      background-image: url('/images/rainier-night-sky.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: #ffffffdf;
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-      font-size: 2rem;
-    }
-    .container {
-      max-width: 640px;
-      margin: 0 auto;
-      background: rgba(0, 7, 49, 0.7);
-      padding: 1.5rem;
-      border-radius: 8px;
-    }
-    h1, h2 { margin-top: 0; }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-    input, textarea, button {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ffffffdf;
-      padding: 0.6rem 0.8rem;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 2rem;
-    }
-    input::placeholder, textarea::placeholder {
-      color: rgba(255, 255, 255, 0.5);
-    }
-    textarea { min-height: 100px; resize: vertical; }
-    button {
-      background: rgba(255, 255, 255, 0.15);
-      cursor: pointer;
-      align-self: flex-start;
-    }
-    button:hover { background: rgba(255, 255, 255, 0.25); }
-    .error { color: #ff6b6b; }
-    .prayer {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 0.75rem 0;
-    }
-    .prayer small { color: rgba(255, 255, 255, 0.7); }
-    .timestamp { font-size: 1rem; }
-    .htmx-indicator { display: none; }
-    .htmx-request .htmx-indicator { display: inline; }
-  </style>
+  <link rel="stylesheet" href="css/prayer.css">
 </head>
 <body>
+    <nav class="topnav" id="topNavBar">
+        <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="navLinks" id="myLinks">
+            <a href="index.html">🌲 Home</a>
+            <a href="about.html">🗻 About</a>
+            <a href="prayer.html">🕯️ Prayer</a>
+            <a href="archives.html">📖 Archives</a>
+            <a href="https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd?si=082221aceb0c4fb6" target="_blank">🎙️ Podcast</a>
+            <a href="https://www.youtube.com/@detour365" target="_blank">🎥 Watch</a>
+            <a href="stats.html">🗺️ Stats</a>
+        </div>
+    </nav>
+
   <div class="container">
     <h1>Prayer Requests</h1>
 
@@ -118,5 +77,7 @@
     }
   });
 </script>
+<footer class="footer" id="footer"></footer>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>

@@ -1,32 +1,56 @@
 // functions/api/prayers.js
-// Handles prayer request submit (POST) and list (GET)
-// Bound to D1 as env.DB and secret env.PRAYER_PASSCODE
-
 export async function onRequestPost(context) {
   const { request, env } = context;
-
-  // Read form data (works with HTMX form posts)
   const formData = await request.formData();
   const passcode = formData.get("passcode");
-  const prayer   = formData.get("prayer")?.trim();
-  const name     = formData.get("name")?.trim() || null;
+  const action   = formData.get("action");
 
-  // Simple auth
   if (passcode !== env.PRAYER_PASSCODE) {
     return htmlResponse(`<div class="error">Invalid passcode</div>`, 401);
   }
 
-  if (!prayer) {
-    return htmlResponse(`<div class="error">Prayer request is required</div>`, 400);
+  if (action === "create") {
+    const prayer = formData.get("prayer")?.trim();
+    const name   = formData.get("name")?.trim() || null;
+    if (!prayer) return htmlResponse(`<div class="error">Prayer request is required</div>`, 400);
+
+    await env.DB.prepare(
+      "INSERT INTO prayer_requests (request, name) VALUES (?, ?)"
+    ).bind(prayer, name).run();
   }
 
-  // Insert into D1
-  await env.DB.prepare(
-    "INSERT INTO prayer_requests (request, name) VALUES (?, ?)"
-  ).bind(prayer, name).run();
+  else if (action === "update") {
+    const id     = formData.get("id");
+    const prayer = formData.get("prayer")?.trim();
+    const name   = formData.get("name")?.trim() || null;
+    if (!id || !prayer) return htmlResponse(`<div class="error">Missing data</div>`, 400);
 
-  // Return the updated list so HTMX can swap it in
-  return await renderPrayerList(env, passcode);
+    await env.DB.prepare(
+      "UPDATE prayer_requests SET request = ?, name = ? WHERE id = ?"
+    ).bind(prayer, name, id).run();
+  }
+
+  else if (action === "delete") {
+    const id = formData.get("id");
+    if (!id) return htmlResponse(`<div class="error">Missing id</div>`, 400);
+
+    await env.DB.prepare("DELETE FROM prayer_requests WHERE id = ?").bind(id).run();
+  }
+
+  else if (action === "answer") {
+    const id          = formData.get("id");
+    const answer_note = formData.get("answer_note")?.trim() || null;
+    if (!id) return htmlResponse(`<div class="error">Missing id</div>`, 400);
+
+    await env.DB.prepare(
+      `UPDATE prayer_requests 
+       SET answered = 1, answered_on = datetime('now'), answer_note = ?
+       WHERE id = ?`
+    ).bind(answer_note, id).run();
+  }
+
+  // Always return the fresh list so HTMX can swap it
+  return await renderPrayerList(env);
 }
 
 export async function onRequestGet(context) {
@@ -37,16 +61,16 @@ export async function onRequestGet(context) {
     return htmlResponse(`<div class="error">Invalid passcode</div>`, 401);
   }
 
-  return await renderPrayerList(env, passcode);
+  return await renderPrayerList(env);
 }
 
-// helpers 
+// ---------- helpers ----------
 
-async function renderPrayerList(env, passcode) {
+async function renderPrayerList(env) {
   const { results } = await env.DB.prepare(
-    `SELECT id, request, name, created_at 
-     FROM prayer_requests 
-     ORDER BY created_at DESC 
+    `SELECT id, request, name, created_at, answered, answered_on, answer_note
+     FROM prayer_requests
+     ORDER BY answered ASC, created_at DESC
      LIMIT 50`
   ).all();
 
@@ -54,13 +78,52 @@ async function renderPrayerList(env, passcode) {
     return htmlResponse("<p>No prayer requests yet.</p>");
   }
 
-  const html = results.map(row => `
-    <div class="prayer">
-      <p>${escapeHtml(row.request)}</p>
-      ${row.name ? `<small>— ${escapeHtml(row.name)}</small>` : ""}
-      <small class="timestamp">${formatDate(row.created_at)}</small>
-    </div>
-  `).join("");
+  const html = results.map(row => {
+    const answered = row.answered ? "answered" : "";
+    const answerInfo = row.answered
+      ? `<div class="answer-note">
+           <small>Answered ${formatDate(row.answered_on)}</small>
+           ${row.answer_note ? `<p>${escapeHtml(row.answer_note)}</p>` : ""}
+         </div>`
+      : "";
+
+    return `
+      <div class="prayer ${answered}">
+        <p>${escapeHtml(row.request)}</p>
+        ${row.name ? `<small>— ${escapeHtml(row.name)}</small>` : ""}
+        <small class="timestamp">${formatDate(row.created_at)}</small>
+        ${answerInfo}
+
+        <div class="actions">
+          <!-- Edit -->
+          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:inline">
+            <input type="hidden" name="action" value="update">
+            <input type="hidden" name="id" value="${row.id}">
+            <input type="text" name="prayer" value="${escapeHtml(row.request)}" required>
+            <input type="text" name="name" value="${escapeHtml(row.name || "")}" placeholder="Name">
+            <button type="submit">Save</button>
+          </form>
+
+          <!-- Mark Answered -->
+          ${!row.answered ? `
+          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:inline">
+            <input type="hidden" name="action" value="answer">
+            <input type="hidden" name="id" value="${row.id}">
+            <input type="text" name="answer_note" placeholder="Answer note (optional)">
+            <button type="submit">Mark Answered</button>
+          </form>` : ""}
+
+          <!-- Delete -->
+          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:inline"
+                hx-confirm="Delete this prayer request?">
+            <input type="hidden" name="action" value="delete">
+            <input type="hidden" name="id" value="${row.id}">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+    `;
+  }).join("");
 
   return htmlResponse(html);
 }
@@ -73,7 +136,7 @@ function htmlResponse(html, status = 200) {
 }
 
 function escapeHtml(str) {
-  return String(str)
+  return String(str ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
