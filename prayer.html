@@ -80,21 +80,43 @@
 
     <h2>Recent Requests</h2>
     <div id="prayer-list"
-         hx-get="/api/prayers"
-         hx-trigger="load"
-         hx-vals="js:{passcode: document.querySelector('#passcode').value}">
-      <p>Enter the passcode and submit (or reload) to view requests.</p>
+     hx-get="/api/prayers"
+     hx-trigger="load, input delay:400ms from:#passcode"
+     hx-vals="js:{passcode: document.querySelector('#passcode').value}"
+     hx-swap="innerHTML">
+    <p>Enter the passcode to view requests.</p>
     </div>
-  </div>
 
+  </div>
+  
   <script>
-    // Copy the current passcode into the hidden fields of answer/delete forms
-    document.body.addEventListener("htmx:configRequest", (evt) => {
-      const passcode = document.querySelector("#passcode").value;
-      if (evt.detail.parameters) {
-        evt.detail.parameters.passcode = passcode;
-      }
-    });
-  </script>
+  const passcodeInput = document.querySelector("#passcode");
+
+  // Restore previously entered passcode
+  const saved = localStorage.getItem("prayerPasscode");
+  if (saved) {
+    passcodeInput.value = saved;
+  }
+
+  // Save it as the user types
+  passcodeInput.addEventListener("input", () => {
+    localStorage.setItem("prayerPasscode", passcodeInput.value);
+  });
+
+  // Make sure every HTMX request gets the current passcode
+  document.body.addEventListener("htmx:configRequest", (evt) => {
+    const passcode = passcodeInput.value;
+    if (evt.detail.parameters) {
+      evt.detail.parameters.passcode = passcode;
+    }
+  });
+
+  // If we restored a passcode, load the list once the page is ready
+  document.addEventListener("DOMContentLoaded", () => {
+    if (passcodeInput.value) {
+      htmx.trigger("#prayer-list", "load");
+    }
+  });
+</script>
 </body>
 </html>
