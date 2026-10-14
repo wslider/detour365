@@ -82,7 +82,7 @@ async function renderPrayerList(env) {
     const answered = row.answered ? "answered" : "";
     const answerInfo = row.answered
       ? `<div class="answer-note">
-           <small>Answered ${formatDate(row.answered_on)}</small>
+           <p>Answered ${formatDate(row.answered_on)}</p>
            ${row.answer_note ? `<p>${escapeHtml(row.answer_note)}</p>` : ""}
          </div>`
       : "";
@@ -90,8 +90,8 @@ async function renderPrayerList(env) {
     return `
       <div class="prayer ${answered}">
         <p>${escapeHtml(row.request)}</p>
-        ${row.name ? `<small>— ${escapeHtml(row.name)}</small>` : ""}
-        <small class="timestamp">${formatDate(row.created_at)}</small>
+        ${row.name ? `<p>— ${escapeHtml(row.name)}</p>` : ""}
+        <p class="timestamp">${formatDate(row.created_at)}</p>
         ${answerInfo}
 
         <div class="actions">
