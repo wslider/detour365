@@ -136,13 +136,13 @@ button:hover {
   gap: 0.4rem;
   margin: 0;
   width: 100%;
-  flex: 1 1 280px;
+  flex: auto;
 }
 
 .actions form input[type="text"] {
   flex: 1;
   min-width: 120px;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   padding: 0.35rem 0.55rem;
 }
 
