@@ -1,4 +1,4 @@
-    :root {
+:root {
   --sprucePine: #003a00;
   --kentuckyNight: #000d08;
   --mountainFog: #f0fff8;
@@ -102,7 +102,7 @@ button:hover {
   border-radius: 4px;
 }
 
-.prayer {
+.prayer p {
   color: rgba(255, 255, 255, 0.7);
   display: block;
   margin-top: 0.25rem;
@@ -126,37 +126,36 @@ button:hover {
   margin-top: 0.85rem;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   gap: 0.6rem;
-  align-items: center;
+  align-items: stretch;
 }
 
 .actions form {
   display: flex;
-  align-self: center;
-  width: 100%; 
-  gap: 0.4rem;
   align-items: center;
+  gap: 0.4rem;
   margin: 0;
+  width: 100%;
   flex: 1 1 280px;
 }
 
-.actions input[type="text"] {
-  font-size: 1.1rem;
-  padding: 0.35rem 0.55rem;
+.actions form input[type="text"] {
   flex: 1;
   min-width: 120px;
+  font-size: 1.1rem;
+  padding: 0.35rem 0.55rem;
 }
 
-.actions button {
+.actions form button {
+  margin-left: auto;
   font-size: 1.25rem;
   padding: 0.35rem 0.75rem;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.actions button.deleteButton{
-  align-self: center;
-  padding: 0;
+.actions button.deleteButton {
+  padding: 0.35rem 0.75rem;
 }
 
 .htmx-indicator {
