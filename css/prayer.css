@@ -125,6 +125,7 @@ button:hover {
 .actions {
   margin-top: 0.85rem;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 0.6rem;
   align-items: center;
@@ -151,6 +152,11 @@ button:hover {
   font-size: 1.25rem;
   padding: 0.35rem 0.75rem;
   white-space: nowrap;
+}
+
+.actions button.deleteButton{
+  align-self: center;
+  padding: 0;
 }
 
 .htmx-indicator {

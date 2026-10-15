@@ -118,7 +118,7 @@ async function renderPrayerList(env) {
                 hx-confirm="Delete this prayer request?">
             <input type="hidden" name="action" value="delete">
             <input type="hidden" name="id" value="${row.id}">
-            <button type="submit">Delete</button>
+            <button "class="deleteButton" type="submit">Delete</button>
           </form>
         </div>
       </div>
