@@ -1,3 +1,5 @@
+# python/stats.py
+
 import datetime as dt
 import json
 import os
@@ -11,6 +13,7 @@ from dotenv import load_dotenv
 from wordcloud import STOPWORDS, WordCloud
 
 from youtube_stats import YTstats
+from youtube_embeds import YouTubeEmbeds
 
 
 class BibleStudyStats:
@@ -27,6 +30,7 @@ class BibleStudyStats:
         bible_path: str | Path = "../data/bible_books.csv",
         yt_data_path: str | Path = "../data/d365_yt_stats.json",
         plots_dir: str | Path = "../plots",
+        yt_embeds_path: str | Path = "../data/d365_yt_embeds.json",
     ):
         script_dir = Path(__file__).resolve().parent
 
@@ -37,6 +41,7 @@ class BibleStudyStats:
         self.yt_data_path = (script_dir / yt_data_path).resolve()
         self.plots_dir = (script_dir / plots_dir).resolve()
         self.plots_dir.mkdir(parents=True, exist_ok=True)
+        self.yt_embeds_path = (script_dir / yt_embeds_path).resolve()
 
         print(f"Podcast data   : {self.podcast_path}")
         print(f"Daily verses   : {self.daily_path}")
@@ -44,6 +49,7 @@ class BibleStudyStats:
         print(f"Bible data     : {self.bible_path}")
         print(f"YouTube stats  : {self.yt_data_path}")
         print(f"Plots folder   : {self.plots_dir}")
+        print(f"YouTube Embeds  : {self.yt_embeds_path}")
 
         for path in (self.podcast_path, self.daily_path, self.yt_videos_path, self.bible_path):
             if not path.exists():
@@ -114,6 +120,15 @@ class BibleStudyStats:
         yt.dump(self.yt_data_path)
         print("YouTube channel stats:", stats)
 
+    def _youtube_embeds(self):
+        load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+        api_key = os.getenv("D365_YOUTUBE_API_KEY")
+        if not api_key:
+            raise RuntimeError("Missing D365_YOUTUBE_API_KEY")
+
+        yt = YouTubeEmbeds(api_key, "UCgfVr2t5RBmkkuaWeKbWEvQ")
+        yt.dump(self.yt_embeds_path)
+
     def _plot_horizontal_bar(
         self,
         series: pd.Series,
@@ -169,6 +184,7 @@ class BibleStudyStats:
 
     def update_stats(self):
         self._youtube_stats()
+        self._youtube_embeds()
         self._filter_past_and_current()
         self._extract_books()
         self._merge_categories()
@@ -186,6 +202,7 @@ class BibleStudyStats:
             filename="book_counts.png",
         )
         self._plot_wordcloud()
+        
 
 
 if __name__ == "__main__":
