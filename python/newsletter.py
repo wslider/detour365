@@ -14,11 +14,11 @@
     # public html version + prayer requests 
     # only send to mailing list 
 from __future__ import annotations
-
-import datetime
 import json
 import os
 import smtplib
+
+from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
@@ -32,12 +32,45 @@ NEWSLETTERS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def build_context() -> dict:
-    now = datetime.datetime.now()
+    now = datetime.now()
+    today = now.date()
+
     embeds = json.loads(Path("data/d365_yt_embeds.json").read_text(encoding="utf-8"))
+    podcasts = json.loads(Path("data/podcast.json").read_text(encoding="utf-8"))
+
     latest_video = embeds[0]
+
+    # Parse podcast dates and find the current or next upcoming one
+    parsed_podcasts = []
+    for p in podcasts:
+        try:
+            # Dates are in the form "2026 October 24" or "2026 November 07"
+            dt = datetime.strptime(p["date"], "%Y %B %d").date()
+            parsed_podcasts.append((dt, p))
+        except (ValueError, KeyError):
+            continue  # skip any malformed entries
+
+    # Sort by date so we can reliably find the soonest upcoming
+    parsed_podcasts.sort(key=lambda x: x[0])
+
+    next_podcast = None
+    for dt, p in parsed_podcasts:
+        if dt >= today:
+            next_podcast = p
+            break
+
+    # Fallback to the last podcast if everything is in the past
+    if next_podcast is None and parsed_podcasts:
+        next_podcast = parsed_podcasts[-1][1]
+
     return {
         "date": now.strftime("%Y-%m-%d"),
         "youtube_src": latest_video["embed_src"],
+        "next_podcast_date": next_podcast["date"] if next_podcast else None,
+        "next_podcast_title": next_podcast["title"] if next_podcast else None,
+        "next_podcast_passage": next_podcast["passage"] if next_podcast else None,
+        "next_podcast_passage_link": next_podcast["bible_gateway_link"] if next_podcast else None,
+        "next_podcast_series": next_podcast["series"] if next_podcast else None,
     }
 
 
@@ -62,6 +95,9 @@ def render_newsletter(context: dict) -> str:
             background-color: #000d08;
             color: #f0fff8;
         }}
+        .header {{
+        text-align: center; 
+        }}
         .container {{
             max-width: 600px;
             margin: 20px auto;
@@ -70,6 +106,16 @@ def render_newsletter(context: dict) -> str:
             border-radius: 8px;
             text-align: center;
         }}
+        .quoteContainer {{
+            font-size: 0.9rem;
+            text-align: center;
+            align-items: center;
+            background-color: var(--transparentMidnight);
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--mountainFog);
+            box-shadow: 5px 5px 15px #000000a1;
+        }}
+
         h1, h2 {{
             color: #f0fff8;
         }}
@@ -127,12 +173,22 @@ def render_newsletter(context: dict) -> str:
     </style>
 </head>
 <body>
-    <header>
-        <h1>Detour 365 - Newsletter</h1>
+
+    <header class="header">
+        <h1>Detour 365 Newsletter</h1>
         <h2>{context['date']}</h2>
     </header>
-    <div class="container">
+
+    <div class="thisWeekContent container" id="thisWeekContent">
+                <h2>Next on Detour 365 ... </h2>
+                    <h3 id="epDate">{context['next_podcast_date']}</h3>
+                    <h3 id="epTitle">{context['next_podcast_title']}</h3>
+                    <a href="{context['next_podcast_passage_link']}" id="passage-backup-link" target="_blank" class="link-text">
+                        <h3 id="epPassageTitle">{context['next_podcast_passage']}</h3>
+                    </a>
+                    <h3 id="epSeries">{context['next_podcast_series']}</h3>
     </div>
+
     <div class="container">
         <h2>Latest Episode on YouTube</h2>
         <a href="{watch_url}" class="video-link" target="_blank">
@@ -140,8 +196,14 @@ def render_newsletter(context: dict) -> str:
             <span class="play-button">▶ Watch on YouTube</span>
         </a>
     </div>
-    <div>
-        <h2>Follow Us & Take The Detour</h2>       
+
+    <div class="quoteContainer container">
+                <blockquote class="quote"><i>Trust in the Lord with all your heart and lean not on your own understanding;
+            in all your ways submit to him, and he will make your paths straight - Proverbs 3:5-6 NIV</i></blockquote>
+    </div>
+    
+    <div class="container">
+        <h2>Follow Detour 365</h2>       
         <ul class="socialLinks" role="list">
         <li>
             <a href="https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd?si=082221aceb0c4fb6" aria-label="Detour 365 on Spotify" title="Spotify Podcast">
@@ -167,7 +229,7 @@ def render_newsletter(context: dict) -> str:
 
 def generate_newsletter() -> Path:
     """Generate today's newsletter and return the path to the file."""
-    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    today = datetime.now().strftime("%Y-%m-%d")
     context = build_context()
     filename = NEWSLETTERS_DIR / f"d365_newsletter_{today}.html"
     filename.write_text(render_newsletter(context), encoding="utf-8")
@@ -176,7 +238,7 @@ def generate_newsletter() -> Path:
 
 def send_newsletter(to_email) -> bool:
     html_path = generate_newsletter()
-    date = datetime.datetime.now().strftime("%Y-%m-%d")
+    date = datetime.now().strftime("%Y-%m-%d")
 
     from_email = os.environ.get("EMAIL_USER")
     password = os.environ.get("EMAIL_PASS")
@@ -210,4 +272,4 @@ def send_newsletter(to_email) -> bool:
 
 # add to_email argument to send_newsletter() when calling function for testing here
 if __name__ == "__main__":
-    send_newsletter("")
+    send_newsletter()
