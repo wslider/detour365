@@ -3,6 +3,7 @@ notes.md
 notebooks/
 *.db
 .db*
+data/email_list.json
 
 # === Python ===
 __pycache__/
