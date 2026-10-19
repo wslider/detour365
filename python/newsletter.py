@@ -251,17 +251,17 @@ def render_newsletter(context: dict) -> str:
         <ul class="socialLinks" role="list">
             <li>
                 <a href="https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd?si=082221aceb0c4fb6" aria-label="Detour 365 Podcast" title="Podcast">
-                    <img class="social-icon" src="https://detour365.org/images/podcast_icon_white.png" alt="Podcast Icon" width="36" height="36">
+                    <img class="social-icon" src="https://detour365.org/images/podcast_icon_white.jpg" alt="Podcast Icon" width="36" height="36">
                 </a>
             </li>
             <li>
                 <a href="https://youtube.com/@detour365" aria-label="Detour 365 on Youtube" title="Youtube Channel">
-                    <img class="social-icon" src="https://detour365.org/images/yt_icon_white.png" alt="YouTube Icon" width="36" height="36">
+                    <img class="social-icon" src="https://detour365.org/images/yt_icon_white.jpg" alt="YouTube Icon" width="36" height="36">
                 </a>
             </li>
             <li>
                 <a href="https://x.com/Detour365" aria-label="Detour 365 on X" title="X Profile">
-                    <img class="social-icon" src="https://detour365.org/images/x_icon_white.png" alt="X Icon" width="36" height="36">
+                    <img class="social-icon" src="https://detour365.org/images/x_icon_white.jpg" alt="X Icon" width="36" height="36">
                 </a>
             </li>
         </ul>
