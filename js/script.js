@@ -1,7 +1,6 @@
 import { updateCustomCss } from "./utils.js";
 import { navBarLinks } from "./utils.js";
 import { updateFooter } from "./utils.js";
-import { displayLatestEpisode } from "./latestEpisode.js";
 import { displayVerseOfTheDay } from "./daily.js";
 import { displayThisWeek } from "./thisWeek.js";  
 import { generateShareableVerseImage } from "./daily.js";  
@@ -14,7 +13,6 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         updateCustomCss();
         setInterval(updateCustomCss, 30 * 60 * 1000); // Update every 30 minutes
-        displayLatestEpisode();
         displayThisWeek();
         displayVerseOfTheDay();
         updateFooter();
@@ -23,7 +21,6 @@ if (document.readyState === 'loading') {
 } else {
     updateCustomCss();
     setInterval(updateCustomCss, 30 * 60 * 1000); // Update every 30 minutes
-    displayLatestEpisode();
     displayThisWeek();
     displayVerseOfTheDay();
     updateFooter();
