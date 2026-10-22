@@ -1,44 +1,36 @@
-const channelId = 'UCgfVr2t5RBmkkuaWeKbWEvQ';
-
 async function loadLatestVideo() {
-  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-  const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
   try {
-    const response = await fetch(proxyUrl);
-    
+    const response = await fetch('data/youtube.json');
+
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
 
-    // Check if we actually got videos
-    if (!data.items || data.items.length === 0) {
-      throw new Error('No videos found in the channel feed');
+    // videos are ordered newest-first
+    if (!data.videos || data.videos.length === 0) {
+      throw new Error('No videos found in youtube.json');
     }
 
-    const videoUrl = data.items[0].link;
-    // Better extraction of video ID (more robust)
-    const videoId = videoUrl.split('v=')[1]?.split('&')[0];
+    const videoId = data.videos[0].id;
 
     if (!videoId) {
-      throw new Error('Could not extract video ID from the feed');
+      throw new Error('Could not extract video ID from youtube.json');
     }
 
-    // Load the video into a simple iframe
     const playerElement = document.getElementById('player');
     if (playerElement) {
       playerElement.src = `https://www.youtube.com/embed/${videoId}`;
-      console.log('Latest video loaded successfully:', videoId);
+      console.log('Latest video loaded successfully from youtube.json:', videoId);
     } else {
       console.error('Player element not found in the DOM');
     }
 
   } catch (error) {
-    console.error('Failed to load latest video:', error.message);
-    
-    // Display Fallback Video 
+    console.error('Failed to load latest video from youtube.json:', error.message);
+
+    // Fallback embed
     const playerContainer = document.getElementById('player-container') || document.getElementById('player');
     if (playerContainer) {
       playerContainer.innerHTML = `
@@ -53,5 +45,5 @@ async function loadLatestVideo() {
   }
 }
 
-// Run the function when the page loads
+// Run when the page loads
 window.onload = loadLatestVideo;
