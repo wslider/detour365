@@ -224,6 +224,16 @@ def render_newsletter(context: dict) -> str:
                     <h3 id="epSeries">{context['next_podcast_series']}</h3>
     </div>
 
+    <div class="thisWeekContent container" id="meetingInfo">
+            <h2>Next Meeting</h2>
+                <h3 id="epDate">{context['next_podcast_date']}</h3>
+                <h3>Fellowship Time: 6:45 PM</h3>
+                <h3>Discussion Begins: 7:15 PM</h3>
+                <a href="{context['next_podcast_passage_link']}" id="passage-backup-link" target="_blank" class="link-text">
+                    <h3 id="epPassageTitle">{context['next_podcast_passage']}</h3>
+                </a>
+        </div>
+
     <div class="container">
         <h2>Latest Episode on YouTube</h2>
         <a href="{watch_url}" class="video-link" target="_blank">
@@ -316,4 +326,4 @@ def send_newsletter(to_email) -> bool:
 
 # add to_email argument to send_newsletter() when calling function for testing here
 if __name__ == "__main__":
-    send_newsletter("")
+    send_newsletter()
