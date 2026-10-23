@@ -15,8 +15,9 @@
   --spacing-lg: 2rem;
 }
 
-body {
+.body {
   background-color: #00062f;
+  display: block; 
   background-image: url('/images/rainier-night-sky.jpg');
   background-size: cover;
   background-position: center;
@@ -24,9 +25,12 @@ body {
   color: #ffffffdf;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-  padding: 2rem 1rem;
   min-height: 100vh;
   font-size: 1.6rem;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #00062f;
+   
 }
 
 .container {
@@ -168,3 +172,5 @@ button:hover {
   font-size: 1.25rem;
   opacity: 0.8;
 }
+
+

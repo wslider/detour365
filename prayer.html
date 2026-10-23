@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <title>Prayer Requests</title>
   <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/prayer.css">
 </head>
-<body>
-    <nav class="topnav" id="topNavBar">
+<body class="body">
+    <nav class="topnav" id="topNavBar" style="min-height: 5vh;">
         <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
+            <span style="display: block; width: 28px; height: 3px; margin: 6px 0;transition: all 0.3s ease;"></span>
+            <span style="display: block; width: 28px; height: 3px; margin: 6px 0;transition: all 0.3s ease;"></span>
+            <span style="display: block; width: 28px; height: 3px; margin: 6px 0;transition: all 0.3s ease;"></span>
         </button>
         <div class="navLinks" id="myLinks">
             <a href="index.html">🌲 Home</a>
@@ -22,8 +25,14 @@
         </div>
     </nav>
 
+    <header class="header" style="padding: 3vh 0vh;">
+            <h1>Prayer List</h1>
+            <h3><i>Add, Edit and View Prayer Requests</i></h3>
+    </header>
+        
+  <main class="main">
   <div class="container">
-    <h1>Prayer Requests</h1>
+    <h1>Prayer Request Form</h1>
 
     <form hx-post="/api/prayers"
           hx-target="#prayer-list"
@@ -77,6 +86,7 @@
     }
   });
 </script>
+</main>
 <footer class="footer" id="footer"></footer>
     <script type="module" src="js/script.js"></script>
 </body>
