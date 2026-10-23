@@ -104,178 +104,103 @@ def render_newsletter(context: dict) -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detour 365 Newsletter</title>
-    <style>
-    :root {{
-    --sprucePine: #003a00;
-    --kentuckyNight: #000d08;
-    --mountainFog: #f0fff8;
-    --stormCloud: #333849;
-    --campfireSmoke: #2f2e2eb3;
-    --smokeyMountainMist: #b0c4de;
-    --blueRidgeParkway: #002167;
-    --starLight: #e1ceff;
-    --midnightBlue: #001f3f;
-    --transparentMidnight: #001f3f80;
-    --marianaTrench: #00111f;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    }}
-    body {{
-        margin: 0;
-        padding: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: var(--kentuckyNight);
-        color: var(--mountainFog);
-    }}
-    .header {{
-        text-align: center;
-    }}
-    .container {{
-        max-width: 600px;
-        margin: var(--spacing-md) auto;
-        background-color: var(--transparentMidnight);
-        padding: var(--spacing-md);
-        border-radius: 8px;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-    }}
-    .quoteContainer {{
-        font-size: 0.9rem;
-        text-align: center;
-        align-items: center;
-        background-color: var(--transparentMidnight);
-        font-family: Arial, Helvetica, sans-serif;
-        color: var(--mountainFog);
-        box-shadow: 5px 5px 15px #000000a1;
-    }}
-    h1, h2 {{
-        color: var(--mountainFog);
-    }}
-    p {{
-        color: #ffffff;
-        font-size: 1.15rem;
-        line-height: 1.5;
-        text-shadow: 1px 1px 3px #000;
-        text-align: center;
-    }}
-    .video-link {{
-        display: inline-block;
-        text-decoration: none;
-    }}
-    .thumbnail {{
-        max-width: 100%;
-        height: auto;
-        border-radius: 6px;
-        border: 2px solid var(--midnightBlue);
-    }}
-    .play-button {{
-        display: block;
-        margin-top: var(--spacing-sm);
-        color: var(--starLight);
-        font-weight: bold;
-    }}
-    .socialLinks {{
-        text-align: center;
-        margin: var(--spacing-md) 0;
-        padding: 0;
-        list-style: none;
-    }}
-    .socialLinks li {{
-        display: inline-block;
-        margin: 0 8px;
-        vertical-align: middle;
-    }}
-    .socialLinks a {{
-        display: inline-block;
-        padding: var(--spacing-sm);
-        text-decoration: none;
-        background-color: var(--marianaTrench);
-        border-radius: 8px;
-    }}
-    .social-icon {{
-        width: 36px;
-        height: 36px;
-        fill: #ffffff;
-        color: #ffffff;
-        vertical-align: middle;
-    }}
-    .socialLinks a:hover .social-icon {{
-        fill: var(--starLight);
-        color: var(--starLight);
-    }}
-    </style>
 </head>
-<body>
+<body style="margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; background-color:#000d08; color:#f0fff8;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#000d08;">
+        <tr>
+            <td align="center" style="padding:20px 10px;">
+                <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="max-width:600px; background-color:#001f3f80; border-radius:8px;">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="padding:20px;">
+                            <h1 style="margin:0; color:#f0fff8;">Detour 365 Newsletter</h1>
+                            <h2 style="margin:8px 0 0; color:#f0fff8; font-weight:normal;">{context['date']}</h2>
+                        </td>
+                    </tr>
 
-    <header class="header">
-        <h1>Detour 365 Newsletter</h1>
-        <h2>{context['date']}</h2>
-    </header>
+                    <!-- Next on Detour 365 -->
+                    <tr>
+                        <td style="padding:16px; text-align:center;">
+                            <h2 style="margin:0 0 12px; color:#f0fff8;">Next on Detour 365 ...</h2>
+                            <h3 style="margin:8px 0; color:#ffffff;">{context['next_podcast_date']}</h3>
+                            <h3 style="margin:8px 0; color:#ffffff;">{context['next_podcast_title']}</h3>
+                            <a href="{context['next_podcast_passage_link']}" style="color:#e1ceff; text-decoration:none;">
+                                <h3 style="margin:8px 0; color:#e1ceff;">{context['next_podcast_passage']}</h3>
+                            </a>
+                            <h3 style="margin:8px 0; color:#ffffff;">{context['next_podcast_series']}</h3>
+                        </td>
+                    </tr>
 
-    <div class="thisWeekContent container" id="thisWeekContent">
-                <h2>Next on Detour 365 ... </h2>
-                    <h3 id="epDate">{context['next_podcast_date']}</h3>
-                    <h3 id="epTitle">{context['next_podcast_title']}</h3>
-                    <a href="{context['next_podcast_passage_link']}" id="passage-backup-link" target="_blank" class="link-text">
-                        <h3 id="epPassageTitle">{context['next_podcast_passage']}</h3>
-                    </a>
-                    <h3 id="epSeries">{context['next_podcast_series']}</h3>
-    </div>
+                    <!-- Next Meeting -->
+                    <tr>
+                        <td style="padding:16px; text-align:center; border-top:1px solid #00111f;">
+                            <h2 style="margin:0 0 12px; color:#f0fff8;">Next Meeting</h2>
+                            <h3 style="margin:8px 0; color:#ffffff;">{context['next_podcast_date']}</h3>
+                            <h3 style="margin:8px 0; color:#ffffff;">Fellowship Time: 6:45 PM</h3>
+                            <h3 style="margin:8px 0; color:#ffffff;">Discussion Begins: 7:15 PM</h3>
+                            <a href="{context['next_podcast_passage_link']}" style="color:#e1ceff; text-decoration:none;">
+                                <h3 style="margin:8px 0; color:#e1ceff;">{context['next_podcast_passage']}</h3>
+                            </a>
+                        </td>
+                    </tr>
 
-    <div class="thisWeekContent container" id="meetingInfo">
-            <h2>Next Meeting</h2>
-                <h3 id="epDate">{context['next_podcast_date']}</h3>
-                <h3>Fellowship Time: 6:45 PM</h3>
-                <h3>Discussion Begins: 7:15 PM</h3>
-                <a href="{context['next_podcast_passage_link']}" id="passage-backup-link" target="_blank" class="link-text">
-                    <h3 id="epPassageTitle">{context['next_podcast_passage']}</h3>
-                </a>
-        </div>
+                    <!-- Latest Episode -->
+                    <tr>
+                        <td align="center" style="padding:16px;">
+                            <h2 style="margin:0 0 12px; color:#f0fff8;">Latest Episode on YouTube</h2>
+                            <a href="{watch_url}" style="text-decoration:none;">
+                                <img src="{thumbnail_url}" alt="Watch latest episode" width="560" style="max-width:100%; height:auto; border-radius:6px; border:2px solid #001f3f;">
+                                <div style="margin-top:8px; color:#e1ceff; font-weight:bold;">▶ Watch on YouTube</div>
+                            </a>
+                        </td>
+                    </tr>
 
-    <div class="container">
-        <h2>Latest Episode on YouTube</h2>
-        <a href="{watch_url}" class="video-link" target="_blank">
-            <img src="{thumbnail_url}" alt="Watch latest episode" class="thumbnail" width="560">
-            <span class="play-button">▶ Watch on YouTube</span>
-        </a>
-    </div>
+                    <!-- Verse of the Day -->
+                    <tr>
+                        <td style="padding:16px; text-align:center;">
+                            <h2 style="margin:0 0 12px; color:#f0fff8;">Verse of The Day</h2>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#001f3f80; border-radius:8px; background-image:url('{context["verse_bg"]}'); background-size:cover; background-position:center;">
+                                <tr>
+                                    <td style="padding:24px; text-align:center;">
+                                        <p style="margin:0 0 12px; color:#ffffff; font-size:1.15rem; line-height:1.5; text-shadow:1px 1px 3px #000;">{context['verse_text']}</p>
+                                        <p style="margin:0; color:#ffffff; font-size:1.15rem;">{context['verse_reference']}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
 
-    <div class="container">
-        <h2>Verse of The Day</h2>
-        <div class="container" style="background: #001f3f80 url('{context["verse_bg"]}') center/cover no-repeat; border-radius: 8px; padding: 24px; margin: 20px auto; max-width: 560px;">
-            <p>{context['verse_text']}</p>
-            <p>{context['verse_reference']}</p>
-        </div>
-    </div>
-    
+                    <!-- Quote -->
+                    <tr>
+                        <td style="padding:16px; text-align:center;">
+                            <blockquote style="margin:0; font-style:italic; color:#f0fff8;">
+                                Trust in the Lord with all your heart and lean not on your own understanding;
+                                in all your ways submit to him, and he will make your paths straight - Proverbs 3:5-6 NIV
+                            </blockquote>
+                        </td>
+                    </tr>
 
-    <div class="quoteContainer container">
-                <blockquote class="quote"><i>Trust in the Lord with all your heart and lean not on your own understanding;
-            in all your ways submit to him, and he will make your paths straight - Proverbs 3:5-6 NIV</i></blockquote>
-    </div>
-    
-    <div class="container">
-        <h2>Follow Detour 365</h2>       
-        <ul class="socialLinks" role="list">
-            <li>
-                <a href="https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd?si=082221aceb0c4fb6" aria-label="Detour 365 Podcast" title="Podcast">
-                    <img class="social-icon" src="https://detour365.org/images/podcast_icon_white.jpg" alt="Podcast Icon" width="36" height="36">
-                </a>
-            </li>
-            <li>
-                <a href="https://youtube.com/@detour365" aria-label="Detour 365 on Youtube" title="Youtube Channel">
-                    <img class="social-icon" src="https://detour365.org/images/yt_icon_white.jpg" alt="YouTube Icon" width="36" height="36">
-                </a>
-            </li>
-            <li>
-                <a href="https://x.com/Detour365" aria-label="Detour 365 on X" title="X Profile">
-                    <img class="social-icon" src="https://detour365.org/images/x_icon_white.jpg" alt="X Icon" width="36" height="36">
-                </a>
-            </li>
-        </ul>
-    </div>
+                    <!-- Social links -->
+                    <tr>
+                        <td align="center" style="padding:20px 16px;">
+                            <h2 style="margin:0 0 12px; color:#f0fff8;">Follow Detour 365</h2>
+                            <a href="https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd?si=082221aceb0c4fb6" style="display:inline-block; margin:0 8px; padding:8px; background-color:#00111f; border-radius:8px; text-decoration:none;">
+                                <img src="https://detour365.org/images/podcast_icon_white.jpg" alt="Podcast" width="36" height="36" style="display:block;">
+                            </a>
+                            <a href="https://youtube.com/@detour365" style="display:inline-block; margin:0 8px; padding:8px; background-color:#00111f; border-radius:8px; text-decoration:none;">
+                                <img src="https://detour365.org/images/yt_icon_white.jpg" alt="YouTube" width="36" height="36" style="display:block;">
+                            </a>
+                            <a href="https://x.com/Detour365" style="display:inline-block; margin:0 8px; padding:8px; background-color:#00111f; border-radius:8px; text-decoration:none;">
+                                <img src="https://detour365.org/images/x_icon_white.jpg" alt="X" width="36" height="36" style="display:block;">
+                            </a>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 """
