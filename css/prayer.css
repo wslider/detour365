@@ -25,6 +25,7 @@
   color: #ffffffdf;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  padding: 0; 
   min-height: 100vh;
   font-size: 1.6rem;
   background-repeat: no-repeat;
@@ -116,6 +117,11 @@ button:hover {
   font-size: 1.25rem;
 }
 
+form > button {
+  align-self: center;
+  margin: 15px; 
+}
+
 .answer-note {
   margin-top: 0.6rem;
   padding: 0.5rem 0.75rem;
@@ -151,7 +157,7 @@ button:hover {
 }
 
 .actions form button {
-  margin-left: auto;
+  margin: 15px; 
   font-size: 1.25rem;
   padding: 0.35rem 0.75rem;
   white-space: nowrap;
