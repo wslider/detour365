@@ -65,6 +65,11 @@ input, textarea, button {
   font-size: 1.4rem;
 }
 
+input, textarea, form>button {
+  width: 85%;
+  align-self: center;
+}
+
 input::placeholder,
 textarea::placeholder {
   color: rgba(255, 255, 255, 0.5);
