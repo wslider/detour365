@@ -97,6 +97,8 @@ button:hover {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: 1rem 0;
   margin-bottom: 0.25rem;
+  display: flex;
+  flex-direction: column; 
 }
 
 .prayer.answered {
@@ -105,6 +107,8 @@ button:hover {
   padding-left: 0.9rem;
   background: rgba(74, 222, 128, 0.07);
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 }
 
 .prayer p {
@@ -179,6 +183,3 @@ form > button {
   opacity: 0.8;
 }
 
-#myLinks > a {
-  font-size: 2.5rem;
-}

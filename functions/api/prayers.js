@@ -96,7 +96,7 @@ async function renderPrayerList(env) {
 
         <div class="actions">
           <!-- Edit -->
-          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:inline">
+          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:flex; flex-direction:column;">
             <input type="hidden" name="action" value="update">
             <input type="hidden" name="id" value="${row.id}">
             <input type="text" name="prayer" value="${escapeHtml(row.request)}" required>
@@ -106,7 +106,7 @@ async function renderPrayerList(env) {
 
           <!-- Mark Answered -->
           ${!row.answered ? `
-          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:inline">
+          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:flex; flex-direction:column;">
             <input type="hidden" name="action" value="answer">
             <input type="hidden" name="id" value="${row.id}">
             <input type="text" name="answer_note" placeholder="Answer note (optional)">
@@ -114,7 +114,7 @@ async function renderPrayerList(env) {
           </form>` : ""}
 
           <!-- Delete -->
-          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:inline"
+          <form hx-post="/api/prayers" hx-target="#prayer-list" hx-swap="innerHTML" style="display:flex; flex-direction:column;"
                 hx-confirm="Delete this prayer request?">
             <input type="hidden" name="action" value="delete">
             <input type="hidden" name="id" value="${row.id}">
