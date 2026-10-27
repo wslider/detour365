@@ -154,7 +154,7 @@ h3 {
 }
 
 .container {
-    width: clamp(300px, 95%, 800px);
+    width: clamp(300px, 90%, 800px);
     display: flex;
     flex-direction: column;
     align-items: center;
