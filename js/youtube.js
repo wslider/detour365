@@ -1,6 +1,6 @@
 async function loadLatestVideo() {
   try {
-    const response = await fetch('data/youtube.json');
+    const response = await fetch('data/d365_yt_embeds.json');
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -9,26 +9,26 @@ async function loadLatestVideo() {
     const data = await response.json();
 
     // videos are ordered newest-first
-    if (!data.videos || data.videos.length === 0) {
+    if (!data || data.length === 0) {
       throw new Error('No videos found in youtube.json');
     }
 
-    const videoId = data.videos[0].id;
+    const embed_src = data[0].embed_src;
 
-    if (!videoId) {
-      throw new Error('Could not extract video ID from youtube.json');
+    if (!embed_src) {
+      throw new Error('Could not extract embed_src from d365_yt_embeds.json');
     }
 
     const playerElement = document.getElementById('player');
     if (playerElement) {
-      playerElement.src = `https://www.youtube.com/embed/${videoId}`;
-      console.log('Latest video loaded successfully from youtube.json:', videoId);
+      playerElement.src = embed_src;
+      console.log('Latest video loaded successfully from d365_yt_embeds.json:', embed_src);
     } else {
       console.error('Player element not found in the DOM');
     }
 
   } catch (error) {
-    console.error('Failed to load latest video from youtube.json:', error.message);
+    console.error('Failed to load latest video from d365_yt_embeds.json: ', error.message);
 
     // Fallback embed
     const playerContainer = document.getElementById('player-container') || document.getElementById('player');
