@@ -102,6 +102,7 @@ button:hover {
   border-left: 4px solid #7b4ade;
   padding-left: 0.9rem;
   background: rgba(74, 222, 128, 0.07);
+  margin-bottom: 1.1rem;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
