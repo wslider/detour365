@@ -12,22 +12,24 @@ export async function onRequestPost(context) {
   if (action === "create") {
     const prayer = formData.get("prayer")?.trim();
     const name   = formData.get("name")?.trim() || null;
+    const urgency = formData.get("urgency")?.trim() || 5;
     if (!prayer) return htmlResponse(`<div class="error">Prayer request is required</div>`, 400);
 
     await env.DB.prepare(
-      "INSERT INTO prayer_requests (request, name) VALUES (?, ?)"
-    ).bind(prayer, name).run();
+      "INSERT INTO prayer_requests (request, name, urgency) VALUES (?, ?, ?)"
+    ).bind(prayer, name, urgency).run();
   }
 
   else if (action === "update") {
     const id     = formData.get("id");
     const prayer = formData.get("prayer")?.trim();
     const name   = formData.get("name")?.trim() || null;
+    const urgency = formData.get("urgency")?.trim() || 5;
     if (!id || !prayer) return htmlResponse(`<div class="error">Missing data</div>`, 400);
 
     await env.DB.prepare(
-      "UPDATE prayer_requests SET request = ?, name = ? WHERE id = ?"
-    ).bind(prayer, name, id).run();
+      "UPDATE prayer_requests SET request = ?, name = ?, urgency = ?, WHERE id = ?"
+    ).bind(prayer, name, urgency, id).run();
   }
 
   else if (action === "delete") {
@@ -68,9 +70,9 @@ export async function onRequestGet(context) {
 
 async function renderPrayerList(env) {
   const { results } = await env.DB.prepare(
-    `SELECT id, request, name, created_at, answered, answered_on, answer_note
+    `SELECT id, request, name, urgency, created_at, answered, answered_on, answer_note
      FROM prayer_requests
-     ORDER BY answered ASC, created_at DESC
+     ORDER BY urgency DESC, created_at DESC
      LIMIT 50`
   ).all();
 
@@ -91,6 +93,7 @@ async function renderPrayerList(env) {
       <div class="prayer ${answered}">
         <p>${escapeHtml(row.request)}</p>
         ${row.name ? `<p>— ${escapeHtml(row.name)}</p>` : ""}
+        ${row.urgency ? `<p>— ${escapeHtml(row.urgency)}</p>` : ""}
         <p class="timestamp">${formatDate(row.created_at)}</p>
         ${answerInfo}
 
@@ -101,6 +104,7 @@ async function renderPrayerList(env) {
             <input type="hidden" name="id" value="${row.id}">
             <input type="text" name="prayer" value="${escapeHtml(row.request)}" required>
             <input type="text" name="name" value="${escapeHtml(row.name || "")}" placeholder="Name">
+            <input type="text" name="urgency" value="${escapeHtml(row.urgency || "")}" placeholder="Enter Value 1-10">
             <button type="submit">Save</button>
           </form>
 

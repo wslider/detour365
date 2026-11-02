@@ -40,6 +40,18 @@
       <input type="password" name="passcode" id="passcode" placeholder="Passcode" required>
       <input type="text" name="name" placeholder="Your name (optional)">
       <textarea name="prayer" placeholder="Prayer request" required></textarea>
+      <select id="urgency" name="urgency" required>
+        <option value="1">1 – Ongoing / routine</option>
+        <option value="2">2 – Low urgency</option>
+        <option value="3">3 – Mild concern</option>
+        <option value="4">4 – Moderate</option>
+        <option value="5" selected>5 – Default</option>
+        <option value="6">6 – Urgent</option>
+        <option value="7">7 – High Priority</option>
+        <option value="8">8 – Critical</option>
+        <option value="9">9 – Extremely Urgent</option>
+        <option value="10">10 – Emergency</option>
+      </select>
       <input type="hidden" name="action" value="create">
       <button type="submit">Submit</button>
       <span id="indicator" class="htmx-indicator">Saving…</span>
