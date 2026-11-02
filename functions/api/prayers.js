@@ -28,7 +28,7 @@ export async function onRequestPost(context) {
     if (!id || !prayer) return htmlResponse(`<div class="error">Missing data</div>`, 400);
 
     await env.DB.prepare(
-      "UPDATE prayer_requests SET request = ?, name = ?, urgency = ?, WHERE id = ?"
+      "UPDATE prayer_requests SET request = ?, name = ?, urgency = ? WHERE id = ?"
     ).bind(prayer, name, urgency, id).run();
   }
 
