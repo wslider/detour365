@@ -92,8 +92,8 @@ async function renderPrayerList(env) {
     return `
       <div class="prayer ${answered}">
         <p>${escapeHtml(row.request)}</p>
-        ${row.name ? `<p>— ${escapeHtml(row.name)}</p>` : ""}
-        ${row.urgency ? `<p>— ${escapeHtml(row.urgency)}</p>` : ""}
+        ${row.name ? `<p>👤: ${escapeHtml(row.name)}</p>` : ""}
+        ${row.urgency ? `<p>Urgency: ${escapeHtml(row.urgency)}</p>` : ""}
         <p class="timestamp">${formatDate(row.created_at)}</p>
         ${answerInfo}
 
