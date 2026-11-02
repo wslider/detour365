@@ -12,7 +12,7 @@ export async function onRequestPost(context) {
   if (action === "create") {
     const prayer = formData.get("prayer")?.trim();
     const name   = formData.get("name")?.trim() || null;
-    const urgency = formData.get("urgency")?.trim() || 5;
+    const urgency = parseInt(formData.get("urgency"), 10) || 5;
     if (!prayer) return htmlResponse(`<div class="error">Prayer request is required</div>`, 400);
 
     await env.DB.prepare(
@@ -24,7 +24,7 @@ export async function onRequestPost(context) {
     const id     = formData.get("id");
     const prayer = formData.get("prayer")?.trim();
     const name   = formData.get("name")?.trim() || null;
-    const urgency = formData.get("urgency")?.trim() || 5;
+    const urgency = parseInt(formData.get("urgency"), 10) || 5;
     if (!id || !prayer) return htmlResponse(`<div class="error">Missing data</div>`, 400);
 
     await env.DB.prepare(
@@ -104,7 +104,18 @@ async function renderPrayerList(env) {
             <input type="hidden" name="id" value="${row.id}">
             <input type="text" name="prayer" value="${escapeHtml(row.request)}" required>
             <input type="text" name="name" value="${escapeHtml(row.name || "")}" placeholder="Name">
-            <input type="text" name="urgency" value="${escapeHtml(row.urgency || "")}" placeholder="Enter Value 1-10">
+            <select name="urgency">
+              <option value="1" ${row.urgency == 1 ? "selected" : ""}>1 – Ongoing / routine</option>
+              <option value="2" ${row.urgency == 2 ? "selected" : ""}>2 – Low urgency</option>
+              <option value="3" ${row.urgency == 3 ? "selected" : ""}>3 – Mild concern</option>
+              <option value="4" ${row.urgency == 4 ? "selected" : ""}>4 – Moderate</option>
+              <option value="5" ${row.urgency == 5 ? "selected" : ""}>5 – Default</option>
+              <option value="6" ${row.urgency == 6 ? "selected" : ""}>6 – Urgent</option>
+              <option value="7" ${row.urgency == 7 ? "selected" : ""}>7 – High Priority</option>
+              <option value="8" ${row.urgency == 8 ? "selected" : ""}>8 – Critical</option>
+              <option value="9" ${row.urgency == 9 ? "selected" : ""}>9 – Extremely Urgent</option>
+              <option value="10" ${row.urgency == 10 ? "selected" : ""}>10 – Emergency</option>
+            </select>
             <button type="submit">Save</button>
           </form>
 
