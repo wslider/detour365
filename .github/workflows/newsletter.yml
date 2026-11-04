@@ -1,0 +1,30 @@
+name: Weekly Newsletter
+
+on:
+  schedule:
+    # Thursday 00:00 UTC — adjust to your desired local time
+    - cron: "0 0 * * 4"
+  workflow_dispatch:  # lets you trigger manually from the Actions tab
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests  # add any other packages your newsletter code needs
+
+      - name: Run newsletter
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_DATABASE_ID: ${{ secrets.CLOUDFLARE_DATABASE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # add any other secrets your send method needs
+        run: python python/auto_email_list.py
