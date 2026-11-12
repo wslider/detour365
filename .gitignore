@@ -4,6 +4,7 @@ notebooks/
 *.db
 .db*
 data/email_list.json
+d365_episode_template.txt
 
 # === Python ===
 __pycache__/
