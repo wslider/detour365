@@ -2,8 +2,8 @@
 """
 Detour 365 – Blog generator
 - Reads published Markdown files from content/posts/
-- Auto-matches missing youtube_id by date (within 6 days)
-- Creates simple cards from data/youtube.json for videos without Markdown
+- Auto-matches missing youtube_id by date (within 6 days) using d365_yt_embeds.json
+- Creates simple cards from embeds for videos without Markdown
 - Builds data/blog.json + blog.html + individual post pages
 """
 
@@ -24,7 +24,7 @@ DATA_DIR = ROOT / "data"
 OUTPUT_DIR = ROOT / "posts"
 BLOG_HTML = ROOT / "blog.html"
 BLOG_JSON = DATA_DIR / "blog.json"
-YOUTUBE_JSON = DATA_DIR / "youtube.json"
+EMBEDS_JSON = DATA_DIR / "d365_yt_embeds.json"
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -55,6 +55,13 @@ def parse_date(date_str: str):
         return datetime.strptime(str(date_str)[:10], "%Y-%m-%d").date()
     except ValueError:
         return None
+
+def extract_youtube_id(embed_src: str) -> str:
+    """Pull the video ID from an embed URL like https://www.youtube.com/embed/VIDEO_ID"""
+    if not embed_src:
+        return ""
+    match = re.search(r"/embed/([a-zA-Z0-9_-]{11})", embed_src)
+    return match.group(1) if match else ""
 
 def load_markdown_posts() -> list[dict]:
     posts = []
@@ -101,25 +108,35 @@ def load_markdown_posts() -> list[dict]:
     return posts
 
 def load_youtube_videos() -> list[dict]:
-    if not YOUTUBE_JSON.exists():
+    if not EMBEDS_JSON.exists():
+        print(f"Warning: {EMBEDS_JSON} not found")
         return []
-    data = json.loads(YOUTUBE_JSON.read_text())
+
+    data = json.loads(EMBEDS_JSON.read_text())
     videos = []
-    for v in data.get("videos", []):
+
+    for item in data:
+        yt_id = extract_youtube_id(item.get("embed_src", ""))
+        if not yt_id:
+            continue
+
+        date_str = (item.get("date_uploaded") or "")[:10]
+
         videos.append({
             "source": "youtube",
-            "slug": slugify(v["title"]),
+            "slug": slugify(item.get("title", "untitled")),
             "type": "video",
-            "title": v["title"],
-            "date": v["publishedAt"][:10],
-            "description": v.get("description", ""),
-            "excerpt": (v.get("description") or "")[:220].replace("\n", " "),
-            "youtube_id": v["id"],
-            "youtube_url": f"https://www.youtube.com/watch?v={v['id']}",
-            "thumbnail": v.get("thumbnail") or youtube_thumbnail(v["id"]),
+            "title": item.get("title", "Untitled"),
+            "date": date_str,
+            "description": None,
+            "excerpt": "",
+            "youtube_id": yt_id,
+            "youtube_url": f"https://www.youtube.com/watch?v={yt_id}",
+            "thumbnail": youtube_thumbnail(yt_id),
             "featured": False,
-            "html_body": f"<p>{(v.get('description') or '').replace(chr(10), '<br>')}</p>",
+            "html_body": "<p>Video embed available.</p>",
         })
+
     return videos
 
 def enrich_markdown_with_youtube(md_posts: list[dict], yt_videos: list[dict]) -> list[dict]:
@@ -201,7 +218,7 @@ def render_card(post: dict) -> str:
         <span class="badge">{type_badge}</span>
         <h2>{post["title"]}</h2>
         <p class="meta">{post.get("date", "")}</p>
-        <p class="excerpt">{post.get("excerpt", "")}</p>
+        <p class="excerpt">{post.get("excerpt") or ""}</p>
         <div class="links">{ " · ".join(links) }</div>
       </div>
     </article>
@@ -216,12 +233,13 @@ def write_blog_html(posts: list[dict]):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog – Detour 365</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/night.css">
   <style>
     .blog-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; padding: 1rem; }}
-    .blog-card {{ background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.08); }}
+    .blog-card {{ background: #000000; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.08); }}
     .blog-card img {{ width: 100%; height: 180px; object-fit: cover; }}
     .card-body {{ padding: 1rem; }}
-    .badge {{ background: #222; color: #fff; font-size: .75rem; padding: .2rem .5rem; border-radius: 4px; }}
+    .badge {{ background: #000000; color: #fff; font-size: .75rem; padding: .2rem .5rem; border-radius: 4px; }}
     .excerpt {{ color: #444; font-size: .95rem; }}
     .links a {{ margin-right: .5rem; }}
   </style>
