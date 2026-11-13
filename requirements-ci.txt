@@ -5,3 +5,5 @@ python-dotenv
 wordcloud
 requests
 pillow
+python-frontmatter
+markdown
