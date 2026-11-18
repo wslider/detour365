@@ -849,9 +849,63 @@
     "id": 95,
     "date": "2026 November 21",
     "title": "#95: TBD",
-    "passage": "Isaiah",
+    "passage": "",
     "series": "Advent",
-    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Philippians%202%3A27&version=NIV",
+    "bible_gateway_link": "",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+    },
+    {
+    "id": 95,
+    "date": "2026 November 21",
+    "title": "#95: The King We Wanted",
+    "passage": "2 Samuel 7; Matthew 1:1; Romans 1:1-4; Acts 13:22-23",
+    "series": "King of Kings",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=2+Samuel+7&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+    },
+    {
+    "id": 96,
+    "date": "2026 November 28",
+    "title": "#96: The Kings Who Failed Us",
+    "passage": "1 Kings 11; Hebrews 7:11-28; Hebrews 8:1-6",
+    "series": "King of Kings",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Hebrews+7&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+    },
+    {
+    "id": 97,
+    "date": "2026 December 05",
+    "title": "#97: The People’s King",
+    "passage": "Luke 2:8-20; Isaiah 9:6-7",
+    "series": "King of Kings",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Luke+2%3A8-20&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+    },
+    {
+    "id": 98,
+    "date": "2026 December 12",
+    "title": "#98: The Humble King",
+    "passage": "Luke 2:22-40; Malachi 3:1",
+    "series": "King of Kings",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Luke+2%3A22-40&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+    },
+    {
+    "id": 99,
+    "date": "2026 December 26",
+    "title": "#99: The King the Nations Seek",
+    "passage": "Matthew 2:1-12; Isaiah 60:1-6; Micah 5:2",
+    "series": "King of Kings",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Matthew+2&version=NIV",
+    "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
+    },
+    {
+    "id": 100,
+    "date": "2027 January 02",
+    "title": "#100: King of Kings",
+    "passage": "Revelation 19:11-16; Philippians 2:5-11; Hebrews 8:7-13",
+    "series": "King of Kings",
+    "bible_gateway_link": "https://www.biblegateway.com/passage/?search=Revelation+19%3A11-16&version=NIV",
     "spotify_link": "https://open.spotify.com/show/4pPy7ulDhZZjPmnqhcijOd"
     }
 ]
