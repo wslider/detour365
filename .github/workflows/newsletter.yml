@@ -2,8 +2,7 @@ name: Weekly Newsletter
 
 on:
   schedule:
-    # Thursday 00:00 UTC — adjust to your desired local time
-    - cron: "0 0 * * 4"
+    - cron: "0 14 * * 4"
   workflow_dispatch:  # lets you trigger manually from the Actions tab
 
 jobs:

@@ -2,7 +2,7 @@ name: Update Bible Study Stats
 
 on:
   schedule:
-    - cron: "0 0 * * 4"
+    - cron: "0 6 * * 4"
 
   # Allow manual runs from the Actions tab
   workflow_dispatch:

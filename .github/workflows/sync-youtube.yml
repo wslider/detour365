@@ -2,7 +2,7 @@ name: Sync YouTube archive
 
 on:
   schedule:
-    - cron: "0 0 * * 4"
+    - cron: "0 6 * * 4"
   workflow_dispatch:
 
 jobs:
