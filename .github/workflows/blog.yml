@@ -1,0 +1,40 @@
+name: Generate Blog
+
+on:
+  schedule:
+    - cron: "0 7 * * 4"
+
+  # Allow manual runs from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed so the final git push works
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-ci.txt
+
+      - name: Generate Blog
+        run: python python/blog.py
+        env:
+          D365_YOUTUBE_API_KEY: ${{ secrets.D365_YOUTUBE_API_KEY }}
+
+      - name: Commit and push updated blog page
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add blog.html 
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update blog.html" && git push)
