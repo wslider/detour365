@@ -244,7 +244,7 @@ def write_blog_html(posts: list[dict]):
     .links a {{ margin-right: .5rem; }}
   </style>
 </head>
-<body>
+<body class="body">
   <header class="header"><h1>Detour 365 Blog</h1></header>
   <main>
     <div class="blog-grid">
