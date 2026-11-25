@@ -1,7 +1,21 @@
 {
-  "updatedAt": "2026-11-13T20:36:04.364001Z",
-  "count": 76,
+  "updatedAt": "2026-11-25T18:03:46.497696Z",
+  "count": 77,
   "posts": [
+    {
+      "source": "youtube",
+      "slug": "the-king-they-thought-they-wanted",
+      "type": "video",
+      "title": "The King They Thought They Wanted",
+      "date": "2026-11-25",
+      "description": null,
+      "excerpt": "",
+      "youtube_id": "rnlfcJqvNos",
+      "youtube_url": "https://www.youtube.com/watch?v=rnlfcJqvNos",
+      "thumbnail": "https://i.ytimg.com/vi/rnlfcJqvNos/hqdefault.jpg",
+      "featured": false,
+      "html_body": "<p>Video embed available.</p>"
+    },
     {
       "source": "youtube",
       "slug": "ephesians-21-10-bible-study",
@@ -410,7 +424,7 @@
     },
     {
       "source": "youtube",
-      "slug": "ezekielâs-vision-godâs-presence-leaves-the-temple-ezekiel-10",
+      "slug": "ezekiels-vision-gods-presence-leaves-the-temple-ezekiel-10",
       "type": "video",
       "title": "Ezekielâ€™s Vision: Godâ€™s Presence Leaves The Temple - Ezekiel 10",
       "date": "2025-03-23",
@@ -606,7 +620,7 @@
     },
     {
       "source": "youtube",
-      "slug": "josephâs-dream-matthew-118-25",
+      "slug": "josephs-dream-matthew-118-25",
       "type": "video",
       "title": "Josephâ€™s Dream - Matthew 1:18-25",
       "date": "2024-12-16",
@@ -732,7 +746,7 @@
     },
     {
       "source": "youtube",
-      "slug": "did-god-harden-pharaohâs-heart-in-exodus",
+      "slug": "did-god-harden-pharaohs-heart-in-exodus",
       "type": "video",
       "title": "Did God Harden Pharaohâ€™s Heart in Exodus?",
       "date": "2024-08-13",
